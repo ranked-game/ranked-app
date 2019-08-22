@@ -1,4 +1,4 @@
-@import './palette.scss';
+@import 'resources.scss';
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
     scroll-behavior: smooth;
     user-select: none;
 
-    user-select: none;
+    transition: all 0.5s;
 }
 
 a {
@@ -16,12 +16,12 @@ a {
 }
 
 body {
-    color: $paletteWhite;
-    max-width: 1300px;
+    color: $palettePurple5;
+    max-width: 900px;
     max-height: 700px;
-    background: $paletteGrey1;
-    font-family: Roboto, Arial, Helvetica, Helvetica Neue, serif;
-    overflow: hidden;
+    background: $palettePurple1;
+    font-family: 'SF Pro Display', sans-serif;
+    overflow: scroll;
 
     ::-webkit-scrollbar {
         width: 3px;
@@ -29,17 +29,13 @@ body {
     }
 
     ::-webkit-scrollbar-thumb {
-        background: $paletteGreen1;
+        background: $paletteBlue1;
         border-radius: 4px;
     }
     ::-webkit-scrollbar-track {
         background-color: transparent;
     }
 }
-
-// #body {
-//     padding-left: 5rem;
-// }
 
 // /* notifications */
 // .toast-container {

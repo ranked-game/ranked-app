@@ -1,25 +1,82 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }	    
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "manifest_version": 1,
+  "type": "WebApp",
+  "meta": {
+      "name": "Ranked",
+      "version": "0.0.1",
+      "minimum-overwolf-version": "0.119.1",
+      "author": "Ranked.game",
+      "icon": "IconMouseOver.png",
+      "icon_gray": "IconMouseNormal.png",
+      "launcher_icon": "launcher_icon.ico",
+      "description": "Join a team and fight your way to the top of suggested Ladders!",
+      "dock_button_title": "Ranked Game"
+  },
+  "permissions": ["Extensions", "Streaming", "Profile", "GameInfo", "Clipboard"],
+  "data": {
+      "start_window": "controller",
+      "protocol_override_domains": { "googlesyndication": "http" },
+      "developer": {
+          "enable_auto_refresh": true,
+          "reload_delay": 1000
+      },
+      "game_targeting": {
+          "type": "dedicated",
+          "game_ids": [7314, 5426]
+      },
+      "hotkeys": {
+          "toggle_app": {
+              "title": "Show/Hide Ranked",
+              "action-type": "toggle",
+              "default": "Shift+F3"
+          }
+      },
+      "windows": {
+          "controller": {
+              "file": "controller.html",
+              "is_background_page": true,
+              "is_alt_f4_blocked": true
+          },
+          "main": {
+              "file": "index.html",
+              "transparent": true,
+              "disable_rightclick": true,
+              "clickthrough": false,
+              "resizable": false,
+              "is_background_page": false,
+              "show_in_taskbar": true,
+              "show_minimize": true,
+              "override_on_update": true,
+              "is_alt_f4_blocked": true,
+              "desktop_only": true,
+              "native_window": true,
+              "size": {
+                  "width": 1300,
+                  "height": 720
+              },
+              "min_size": {
+                  "width": 1300,
+                  "height": 720
+              },
+              "max_size": {
+                  "width": 1300,
+                  "height": 720
+              },
+              "block_top_window_navigation": true,
+              "popup_blocker": true,
+              "mute": true,
+              "force_browser": "overwolf"
+          },
+      },
+      "game_events": [7314, 5426],
+      "launch_events": [
+          {
+              "event": "GameLaunch",
+              "event_data": {
+                  "game_ids": [7314, 5426, 10902]
+              },
+              "start_minimized": true
+          }
+      ]
+  }
 }

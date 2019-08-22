@@ -6,12 +6,23 @@ import { connect } from 'react-redux';
 
 //Routes
 import Public from './Routes/Public';
+import Private from './Routes/Private';
+
+//Instruments
+import TopControlBar from '../components/TopControlBar';
 
 @hot(module)
 @withRouter
 @connect()
 export default class App extends Component {
     render() {
-        return <Public />;
+        const isAuthenticated = false;
+
+        return (
+            <>
+                <TopControlBar />
+                {isAuthenticated ? <Private /> : <Public />}
+            </>
+        );
     }
 }
