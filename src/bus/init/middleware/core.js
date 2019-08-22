@@ -14,7 +14,7 @@ const logger = createLogger({
     collapsed: true,
 });
 
-const history = createBrowserHistory();
+const history = createBrowserHistory(); 
 const routerMiddleware = createRouterMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
