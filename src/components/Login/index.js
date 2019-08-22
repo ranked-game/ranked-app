@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Styles
-import Styles from './styles.m.scss';
+import Styles from './styles.module.scss';
 
 export default class Login extends Component {
     render() {

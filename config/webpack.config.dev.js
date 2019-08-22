@@ -35,7 +35,7 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.(m)\.(scss|sass)$/;
+const sassModuleRegex = /\.(m|module)\.(scss|sass)$/;
 
 // common function to get style loaders
 const getStyleLoaders = (cssOptions, preProcessor) => {
