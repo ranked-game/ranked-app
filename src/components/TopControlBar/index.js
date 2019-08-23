@@ -1,10 +1,10 @@
-//Core
+// Core
 import React, { Component } from 'react';
 
-//Styles
+// Styles
 import Styles from './styles.module.scss';
 
-//Instruments
+// Instruments
 import close from '../../theme/assets/svg/close.svg';
 import minimize from '../../theme/assets/svg/minimize.svg';
 

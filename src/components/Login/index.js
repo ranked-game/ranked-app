@@ -1,7 +1,7 @@
-//Core
+// Core
 import React, { Component } from 'react';
 
-//Styles
+// Styles
 import Styles from './styles.module.scss';
 
 export default class Login extends Component {

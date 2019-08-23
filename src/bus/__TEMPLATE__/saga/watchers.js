@@ -1,10 +1,10 @@
-//Core
+// Core
 import { takeEvery, all, call } from 'redux-saga/effects';
 
-//Types
+// Types
 import { types } from '../types';
 
-//Workers
+// Workers
 import {} from './workers';
 
 function* name() {

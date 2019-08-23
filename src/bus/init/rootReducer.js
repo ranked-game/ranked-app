@@ -1,8 +1,8 @@
-//Core
+// Core
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-//Reducers
+// Reducers
 
 export const rootReducer = (history) =>
     combineReducers({

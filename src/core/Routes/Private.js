@@ -1,11 +1,11 @@
-// Core
+//  Core
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-// Pages
+//  Pages
 import Login from '../../components/Login';
 
-//Instruments
+// Instruments
 import { book } from './book';
 
 export default class Private extends Component {

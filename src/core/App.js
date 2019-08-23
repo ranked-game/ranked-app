@@ -1,14 +1,14 @@
-//Core
+// Core
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-//Routes
+// Routes
 import Public from './Routes/Public';
 import Private from './Routes/Private';
 
-//Instruments
+// Instruments
 import TopControlBar from '../components/TopControlBar';
 
 @hot(module)

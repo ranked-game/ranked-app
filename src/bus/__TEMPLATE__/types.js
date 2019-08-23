@@ -1,4 +1,4 @@
 export const types = {
-    //Sync
-    //Async
+    // Sync
+    // Async
 };

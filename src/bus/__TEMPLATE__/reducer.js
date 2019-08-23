@@ -1,7 +1,7 @@
-//Core
+// Core
 import {} from 'immutable';
 
-//Instruments
+// Instruments
 import { types } from './types';
 
 const initialState = {};

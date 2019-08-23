@@ -1,8 +1,8 @@
-//Core
+// Core
 import { applyMiddleware, compose } from 'redux';
 import { createBrowserHistory } from 'history';
 
-//Middleware
+// Middleware
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 

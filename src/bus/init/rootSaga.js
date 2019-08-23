@@ -1,7 +1,7 @@
-//Core
-import { all, call } from 'redux-saga/effects';
+// Core
+import { all } from 'redux-saga/effects';
 
-//Watchers
+// Watchers
 
 export function* rootSaga() {
     yield all([]);

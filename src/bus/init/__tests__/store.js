@@ -1,8 +1,8 @@
-//Core
+// Core
 import { createStore, combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 
-//Reducers
+// Reducers
 import { authReducer as auth } from '../../auth/reducer';
 import { uiReducer as ui } from '../../ui/reducer';
 import { profileReducer as profile } from '../../profile/reducer';
@@ -16,7 +16,7 @@ import { advertisementsReducer as advertisements } from '../../app/advertisement
 import { statisticsReducer as statistics } from '../../app/statistics/reducer';
 import { gamesReducer as games } from '../../app/games/reducer';
 
-//Store
+// Store
 import { store } from '../store';
 
 const referenceRootReducer = combineReducers({
