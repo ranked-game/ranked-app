@@ -3,7 +3,7 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr) 4.5rem 4.5rem repeat(2, 1fr);
     grid-row-gap: 1.2rem;
     place-items: center start;
 

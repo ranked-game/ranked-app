@@ -24,7 +24,7 @@ export default class TopControlBar extends Component {
 
     render() {
         return (
-            <div className={Styles.container}>
+            <section className={Styles.container}>
                 <p>Ranked Game</p>
                 <img
                     src={arrow}
@@ -39,7 +39,7 @@ export default class TopControlBar extends Component {
                     className={Styles.minimize}
                 />
                 <img src={close} alt="close button" onClick={this._close} />
-            </div>
+            </section>
         );
     }
 }
