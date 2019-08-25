@@ -5,12 +5,54 @@
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 25px;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: auto 2.5rem repeat(2, 2rem);
+    place-items: end end;
 
-    background: $paletteErrorRed;
+    width: 100%;
+    height: 2rem;
+
+    padding: 0 0.5rem;
+
+    background: $palettePurple2;
+
+    & p {
+        place-self: center center;
+
+        padding-left: 6.5rem;
+    }
+
+    & .arrow {
+        place-self: end center;
+
+        transform: rotate(-90deg);
+        height: 90%;
+
+        /* 
+            using padding to create more space for a user to click 
+            as the icon itself is too small
+        */
+        padding: 0.4rem;
+    }
+
+    & .minimize {
+        /* 
+            using padding to create more space for a user to click 
+            as the icon itself is too small
+        */
+        height: 50%;
+        width: 50%;
+        padding-top: 0.4rem;
+    }
 
     & img {
-        margin: 0 0.5rem;
+        cursor: pointer;
+
+        padding-bottom: 0.5rem;
+
+        &:hover {
+            filter: brightness(2);
+        }
     }
 }

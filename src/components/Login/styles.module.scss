@@ -1,3 +1,70 @@
+@import 'src/theme/scss/index.scss';
+
 .container {
-    background: red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    grid-row-gap: 1.2rem;
+    place-items: center start;
+
+    padding: 4rem 18%;
+
+    & .logo {
+        grid-column: 1 / 3;
+
+        height: 3rem;
+    }
+
+    & .title {
+        grid-column: 1 / 3;
+
+        font-size: 2.5rem;
+        color: $paletteWhite;
+    }
+
+    & .signup {
+        grid-column: 1 / 3;
+        place-self: start start;
+
+        text-decoration: underline;
+    }
+
+    & .input {
+        grid-column: 1 / 3;
+    }
+
+    & .rememberMe {
+        cursor: pointer;
+        grid-column: 1;
+        place-self: center start;
+
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-column-gap: 0.7rem;
+        place-items: center center;
+
+        & span {
+            color: $paletteWhite;
+        }
+    }
+
+    & .forgotPassword {
+        grid-column: 2;
+        place-self: center end;
+    }
+
+    & .button {
+        cursor: pointer;
+        grid-column: 1 / 3;
+
+        width: 100%;
+        height: 4rem;
+
+        background: $paletteBlue1;
+
+        border-radius: 8px;
+        border: none;
+
+        color: $paletteWhite;
+    }
 }

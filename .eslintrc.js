@@ -56,7 +56,6 @@ module.exports = {
         'no-extra-bind': 2,
         'no-fallthrough': 2,
         'no-floating-decimal': 1,
-        'no-invalid-this': 1,
         'no-labels': 1,
         'no-lone-blocks': 1,
         'no-loop-func': 2,

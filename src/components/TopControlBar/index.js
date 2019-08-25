@@ -5,8 +5,9 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Instruments
-import close from '../../theme/assets/svg/close.svg';
+import arrow from '../../theme/assets/svg/left-arrow.svg';
 import minimize from '../../theme/assets/svg/minimize.svg';
+import close from '../../theme/assets/svg/close.svg';
 
 export default class TopControlBar extends Component {
     _close = () => {
@@ -17,10 +18,26 @@ export default class TopControlBar extends Component {
         console.log('minimize button clicked');
     };
 
+    _handleArrowClick = () => {
+        console.log('arrow button clicked');
+    };
+
     render() {
         return (
             <div className={Styles.container}>
-                <img src={minimize} alt="minimize button" onClick={this._minimize} />
+                <p>Ranked Game</p>
+                <img
+                    src={arrow}
+                    alt="minimize button"
+                    onClick={this._handleArrowClick}
+                    className={Styles.arrow}
+                />
+                <img
+                    src={minimize}
+                    alt="minimize button"
+                    onClick={this._minimize}
+                    className={Styles.minimize}
+                />
                 <img src={close} alt="close button" onClick={this._close} />
             </div>
         );

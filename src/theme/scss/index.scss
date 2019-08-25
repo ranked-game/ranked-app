@@ -11,8 +11,8 @@
     transition: all 0.5s;
 }
 
-a {
-    text-decoration: none;
+html {
+    font-size: 75%;
 }
 
 body {
@@ -37,6 +37,10 @@ body {
     ::-webkit-scrollbar-track {
         background-color: transparent;
     }
+}
+
+a {
+    text-decoration: none;
 }
 
 //  /* notifications */
