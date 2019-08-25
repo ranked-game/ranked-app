@@ -34,7 +34,7 @@ export default class Login extends Component {
                     <img src={rememberMe ? checkboxFilled : checkbox} alt="remember me button" />
                     <span>Remember me</span>
                 </div>
-                <span className={Styles.forgotPassword}>Forgot password</span>
+                <span className={Styles.forgotPassword}>Forgot password?</span>
                 <button className={Styles.button}>Log In</button>
             </section>
         );
