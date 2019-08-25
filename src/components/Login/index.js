@@ -40,7 +40,7 @@ export default class Login extends Component {
             <section className={Styles.container}>
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Sign In</p>
-                <Link to={book.signup} className={Styles.signup}>
+                <Link to={book.registration} className={Styles.signup}>
                     I don't have an account
                 </Link>
                 <InputField
