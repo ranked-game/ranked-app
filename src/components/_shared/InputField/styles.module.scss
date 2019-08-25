@@ -74,3 +74,9 @@
         margin-right: 1rem;
     }
 }
+
+.invalidInput {
+    border: 1px solid $paletteErrorRed;
+
+    color: $paletteErrorRed;
+}

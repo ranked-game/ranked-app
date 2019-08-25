@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 // Styles
 import Styles from './styles.module.scss';
 
-// Instrments
+// Instruments
 import _ from 'lodash';
 import { book } from '../../core/Routes/book';
+import {
+    emailValidation,
+    passwordValidation,
+    loginValidation,
+    countryValidation,
+} from '../../utils/validation';
 import InputField from '../_shared/InputField';
 import logo from '../../theme/assets/svg/pseudoLogo.svg';
 import checkbox from '../../theme/assets/svg/checkbox.svg';
@@ -27,7 +33,7 @@ export default class Registration extends Component {
         const { name, value } = event.target;
 
         this.setState({
-            [name]: value,
+            [name]: value.trim(),
         });
     };
 
@@ -38,30 +44,39 @@ export default class Registration extends Component {
     };
 
     render() {
-        const { termsAgreed } = this.state;
+        const { termsAgreed, email, password, passwordConfirmation, login, country } = this.state;
 
         const inputs = [
             {
                 name: 'login',
                 type: 'text',
+                valid: loginValidation(login),
             },
             {
                 name: 'email',
                 type: 'text',
+                valid: emailValidation(email),
             },
             {
                 name: 'country',
                 type: 'text',
+                valid: countryValidation(country),
             },
             {
                 name: 'password',
                 type: 'password',
+                valid: passwordValidation(password),
             },
             {
                 name: 'passwordConfirmation',
                 type: 'password',
+                valid: password === passwordConfirmation,
             },
         ];
+
+        const fieldsValid = inputs.filter((item) => !item.valid).length === 0;
+
+        console.log(`terms -> ${termsAgreed}, fields -> ${fieldsValid}`);
 
         return (
             <section className={Styles.container}>
@@ -81,6 +96,7 @@ export default class Registration extends Component {
                             item.name.includes('C') ? 'Confirm password' : _.capitalize(item.name)
                         }
                         type={item.type}
+                        valid={item.valid}
                         key={index}
                     />
                 ))}
@@ -95,7 +111,7 @@ export default class Registration extends Component {
                         <br /> Terms and Conditions
                     </span>
                 </div>
-                <button className={Styles.button} disabled={!termsAgreed}>
+                <button className={Styles.button} disabled={!termsAgreed || !fieldsValid}>
                     Sign Up
                 </button>
             </section>

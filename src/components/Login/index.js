@@ -29,7 +29,7 @@ export default class Login extends Component {
         const { name, value } = event.target;
 
         this.setState({
-            [name]: value,
+            [name]: value.trim(),
         });
     };
 
@@ -50,6 +50,7 @@ export default class Login extends Component {
                     type={'text'}
                     value={login}
                     name={'login'}
+                    valid
                 />
                 <InputField
                     className={Styles.input}
@@ -58,6 +59,7 @@ export default class Login extends Component {
                     type={'password'}
                     value={password}
                     name={'password'}
+                    valid
                 />
                 <div className={Styles.rememberMe} onClick={this._toggleRememberMe}>
                     <img src={rememberMe ? checkboxFilled : checkbox} alt="remember me button" />

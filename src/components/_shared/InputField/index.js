@@ -49,12 +49,14 @@ export default class InputField extends Component {
     };
 
     render() {
-        const { className, onChange, value, label, type, name } = this.props;
+        const { className, onChange, value, label, type, name, valid } = this.props;
         const { editing, inputType } = this.state;
 
         return (
             <div
-                className={`${editing ? Styles.containerEditing : Styles.container} ${className}`}
+                className={`${
+                    editing ? Styles.containerEditing : Styles.container
+                } ${className} ${!valid && Styles.invalidInput}`}
                 onClick={this._startEditing}
             >
                 <p>{label}</p>
