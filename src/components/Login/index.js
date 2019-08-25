@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -9,6 +10,7 @@ import logo from '../../theme/assets/svg/pseudoLogo.svg';
 import checkbox from '../../theme/assets/svg/checkbox.svg';
 import checkboxFilled from '../../theme/assets/svg/checkbox-filled.svg';
 import InputField from '../_shared/InputField';
+import { book } from '../../core/Routes/book';
 
 export default class Login extends Component {
     state = {
@@ -38,7 +40,9 @@ export default class Login extends Component {
             <section className={Styles.container}>
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Sign In</p>
-                <p className={Styles.signup}>I don't have an account</p>
+                <Link to={book.signup} className={Styles.signup}>
+                    I don't have an account
+                </Link>
                 <InputField
                     className={Styles.input}
                     onChange={this._handleInput}
@@ -59,7 +63,9 @@ export default class Login extends Component {
                     <img src={rememberMe ? checkboxFilled : checkbox} alt="remember me button" />
                     <span>Remember me</span>
                 </div>
-                <span className={Styles.forgotPassword}>Forgot password?</span>
+                <Link to={book.recovery} className={Styles.forgotPassword}>
+                    Forgot password?
+                </Link>
                 <button className={Styles.button}>Log In</button>
             </section>
         );

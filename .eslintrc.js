@@ -79,7 +79,6 @@ module.exports = {
 
         /* stylistic */
         'block-spacing': 1,
-        'capitalized-comments': 1,
         'comma-dangle': ['warn', 'always-multiline'],
         'func-call-spacing': ['error', 'never'],
         'id-length': ['error', { min: 3 }],
