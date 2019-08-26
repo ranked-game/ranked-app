@@ -37,6 +37,7 @@
         "eslint-plugin-react": "7.14.3",
         "eslint-plugin-react-hooks": "^1.6.1",
         "file-loader": "3.0.1",
+        "firebase": "^6.4.2",
         "fork-ts-checker-webpack-plugin-alt": "^0.4.14",
         "fs": "^0.0.1-security",
         "fs-extra": "7.0.1",

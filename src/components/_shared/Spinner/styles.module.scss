@@ -1,0 +1,42 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    place-items: center center;
+
+    & .spinner {
+        grid-row: 1;
+        grid-column: 1;
+
+        width: 100%;
+        height: 100%;
+
+        border-right: 3px solid goldenrod;
+        border-radius: 100%;
+        box-shadow: 10px 0 1.5rem -7px red;
+
+        transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: spin 1s infinite;
+    }
+
+    & .children {
+        grid-row: 1;
+        grid-column: 1;
+
+        display: grid;
+        place-items: center center;
+
+        width: 80%;
+        height: 80%;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(-90deg);
+    }
+}

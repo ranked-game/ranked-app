@@ -76,8 +76,6 @@ export default class Registration extends Component {
 
         const fieldsValid = inputs.filter((item) => !item.valid).length === 0;
 
-        console.log(`terms -> ${termsAgreed}, fields -> ${fieldsValid}`);
-
         return (
             <section className={Styles.container}>
                 <img src={logo} alt="logo" className={Styles.logo} />
