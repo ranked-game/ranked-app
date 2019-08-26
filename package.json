@@ -53,6 +53,7 @@
         "jest-watch-typeahead": "0.3.1",
         "lodash": "^4.17.15",
         "mini-css-extract-plugin": "0.5.0",
+        "moment": "^2.24.0",
         "node-sass": "^4.12.0",
         "optimize-css-assets-webpack-plugin": "5.0.3",
         "password-validator": "^4.1.2",
