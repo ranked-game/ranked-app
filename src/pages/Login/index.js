@@ -9,7 +9,7 @@ import Styles from './styles.module.scss';
 import logo from '../../theme/assets/svg/pseudoLogo.svg';
 import checkbox from '../../theme/assets/svg/checkbox.svg';
 import checkboxFilled from '../../theme/assets/svg/checkbox-filled.svg';
-import InputField from '../_shared/InputField';
+import InputField from '../../components/_shared/InputField';
 import { book } from '../../core/Routes/book';
 
 export default class Login extends Component {

@@ -14,7 +14,7 @@ import {
     loginValidation,
     countryValidation,
 } from '../../utils/validation';
-import InputField from '../_shared/InputField';
+import InputField from '../../components/_shared/InputField';
 import logo from '../../theme/assets/svg/pseudoLogo.svg';
 import checkbox from '../../theme/assets/svg/checkbox.svg';
 import checkboxFilled from '../../theme/assets/svg/checkbox-filled.svg';

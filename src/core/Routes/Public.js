@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
-import Login from '../../components/Login';
-import Registration from '../../components/Registration';
-import PasswordRecovery from '../../components/PasswordRecovery';
+import { Login, Registration, PasswordRecovery } from '../../pages';
 
 // Instruments
 import { book } from './book';
