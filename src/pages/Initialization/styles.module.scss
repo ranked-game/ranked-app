@@ -1,0 +1,22 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+
+    display: grid;
+    place-items: center center;
+    gap: 2rem;
+
+    & .logo {
+        height: 15rem;
+        margin-bottom: 5rem;
+    }
+
+    & p {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+}
