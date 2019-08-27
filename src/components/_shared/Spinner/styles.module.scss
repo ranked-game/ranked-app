@@ -15,8 +15,13 @@
         border-radius: 100%;
         box-shadow: 10px 0 1.5rem -7px red;
 
-        transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: spin 1s infinite;
+        transition: all 1s;
+        animation: spin 1s infinite ease-in-out;
+
+        &.loader {
+            transition: all 1s;
+            animation: loading 0.3s infinite linear;
+        }
     }
 
     & .children {
@@ -38,5 +43,15 @@
 
     100% {
         transform: rotate(-90deg);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(-90deg);
+    }
+
+    100% {
+        transform: rotate(270deg);
     }
 }
