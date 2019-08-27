@@ -16,7 +16,7 @@ import TopControlBar from '../components/TopControlBar';
 @connect()
 export default class App extends Component {
     render() {
-        const isAuthenticated = true;
+        const isAuthenticated = false;
 
         return (
             <>
