@@ -8,11 +8,12 @@ import Styles from './styles.module.scss';
 import moment from 'moment';
 import Firebase from '../../utils/firebase';
 import Spinner from '../_shared/Spinner';
+import Timer from '../Timer';
+import logo from '../../theme/assets/svg/pseudoLogo.svg';
 
 export default class TimerPage extends Component {
     state = {
-        secondsToStart: 10000000,
-        interval: null,
+        secondsToStart: null,
     };
 
     componentDidMount = () => {
@@ -31,20 +32,9 @@ export default class TimerPage extends Component {
 
                     this.setState({
                         secondsToStart: diff,
-                        interval: setInterval(() => {
-                            this.setState((prevState) => ({
-                                secondsToStart: --prevState.secondsToStart,
-                            }));
-                        }, 1000),
                     });
                 });
             });
-    };
-
-    componentWillUnmount = () => {
-        const { interval } = this.state;
-
-        clearInterval(interval);
     };
 
     render() {
@@ -52,9 +42,16 @@ export default class TimerPage extends Component {
 
         return (
             <section className={Styles.container}>
-                <p>Time to closed beta:</p>
+                <img src={logo} alt="logo" />
                 <Spinner size="27rem">
-                    <p>{secondsToStart} seconds</p>
+                    <div className={Styles.dataContainer}>
+                        <p>Time to closed beta:</p>
+                        {secondsToStart ? (
+                            <Timer seconds={secondsToStart} />
+                        ) : (
+                            <Spinner size="5rem" loader />
+                        )}
+                    </div>
                 </Spinner>
             </section>
         );

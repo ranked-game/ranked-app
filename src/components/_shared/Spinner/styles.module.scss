@@ -19,6 +19,8 @@
         animation: spin 1s infinite ease-in-out;
 
         &.loader {
+            border-top: 3px solid goldenrod;
+
             transition: all 1s;
             animation: loading 0.3s infinite linear;
         }
@@ -31,8 +33,8 @@
         display: grid;
         place-items: center center;
 
-        width: 80%;
-        height: 80%;
+        width: 90%;
+        height: 90%;
     }
 }
 

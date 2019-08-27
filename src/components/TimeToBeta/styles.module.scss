@@ -1,0 +1,26 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -75%);
+
+    display: grid;
+    place-items: center center;
+    gap: 10rem;
+
+    & img {
+        width: 40%;
+    }
+
+    & .dataContainer {
+        display: grid;
+        gap: 1.5rem;
+        place-items: center center;
+
+        & p {
+            font-size: 1.5rem;
+        }
+    }
+}

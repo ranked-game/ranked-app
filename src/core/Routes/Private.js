@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
 // import Login from '../../components/Login';
-import TimerPage from '../../components/TimerPage';
+import TimerPage from '../../components/TimeToBeta';
 
 // Instruments
 import { book } from './book';
