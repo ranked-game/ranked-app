@@ -1,10 +1,10 @@
-//Core
+// Core
 import { put, apply } from 'redux-saga/effects';
 
-//Instruments
-import { profileActions } from '../../../profile/actions';
+// Instruments
+// import { profileActions } from '../../../profile/actions';
 import { authActions } from '../../../auth/actions';
-import { historyActions } from '../../../app/history/actions';
+// import { historyActions } from '../../../app/history/actions';
 
 //* apply(context, method, arrayOfArguments)
 //* викликає метод з потрібним контекстом і аргументами
@@ -18,6 +18,6 @@ export function* logout() {
 
     yield put(authActions.logout());
     yield apply(localStorage, localStorage.clear);
-    yield put(profileActions.clearProfile());
-    yield put(historyActions.clearHistory());
+    // yield put(profileActions.clearProfile());
+    // yield put(historyActions.clearHistory());
 }

@@ -23,4 +23,21 @@
             font-size: 1.5rem;
         }
     }
+
+    & .logoutButton {
+        cursor: pointer;
+
+        position: fixed;
+        bottom: 1rem;
+
+        width: 100%;
+        margin-bottom: -12rem;
+
+        text-align: center;
+        font-size: 0.9rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

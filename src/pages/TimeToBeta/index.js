@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -11,6 +12,17 @@ import Spinner from '../../components/_shared/Spinner';
 import Timer from '../../components/Timer';
 import logo from '../../theme/assets/svg/pseudoLogo.svg';
 
+// Actions
+import { authActions } from '../../bus/auth/actions';
+
+const mapDispatchToProps = {
+    logoutAsync: authActions.logoutAsync,
+};
+
+@connect(
+    null,
+    mapDispatchToProps,
+)
 export default class TimerPage extends Component {
     state = {
         secondsToStart: null,
@@ -39,6 +51,7 @@ export default class TimerPage extends Component {
 
     render() {
         const { secondsToStart } = this.state;
+        const { logoutAsync } = this.props;
 
         return (
             <section className={Styles.container}>
@@ -53,6 +66,9 @@ export default class TimerPage extends Component {
                         )}
                     </div>
                 </Spinner>
+                <p className={Styles.logoutButton} onClick={logoutAsync}>
+                    Logout
+                </p>
             </section>
         );
     }

@@ -47,6 +47,7 @@ export default class Login extends Component {
 
         return (
             <section className={Styles.container}>
+                
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Log In / Sign Up</p>
                 <div

@@ -20,7 +20,7 @@ export const authActions = {
             payload: userData,
         };
     },
-    looutAsync: () => {
+    logoutAsync: () => {
         return {
             type: types.LOGOUT_ASYNC,
         };
