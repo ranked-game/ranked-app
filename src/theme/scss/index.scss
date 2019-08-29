@@ -21,9 +21,10 @@ body {
     max-height: 700px;
     background: $palettePurple1;
     font-family: 'SF Pro Display', sans-serif;
-    overflow: scroll;
 
     padding-top: 25px;
+
+    overflow: hidden;
 
     ::-webkit-scrollbar {
         width: 3px;

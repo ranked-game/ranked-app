@@ -11,12 +11,16 @@ import Private from './Routes/Private';
 // Instruments
 import TopControlBar from '../components/TopControlBar';
 
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.get('isAuthenticated'),
+});
+
 @hot(module)
 @withRouter
-@connect()
+@connect(mapStateToProps)
 export default class App extends Component {
     render() {
-        const isAuthenticated = false;
+        const { isAuthenticated } = this.props;
 
         return (
             <>

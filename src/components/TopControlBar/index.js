@@ -10,12 +10,37 @@ import minimize from '../../theme/assets/svg/minimize.svg';
 import close from '../../theme/assets/svg/close.svg';
 
 export default class TopControlBar extends Component {
-    _close = () => {
-        console.log('close button clicked');
+    _minimize = () => {
+        overwolf.windows.getCurrentWindow((data) => {
+            const { id } = data.window;
+
+            overwolf.windows.minimize(id, () => {
+                console.log('--- minimized ---');
+            });
+        });
     };
 
-    _minimize = () => {
-        console.log('minimize button clicked');
+    _closeWindow = () => {
+        overwolf.windows.getCurrentWindow((data) => {
+            const { id } = data.window;
+            overwolf.windows.close(id);
+        });
+    };
+
+    _onMouseDown = (e) => {
+        const {
+            button,
+            target: { className },
+        } = e;
+
+        if (button !== 0 || (className !== Styles.container && className !== Styles.title)) {
+            return null;
+        }
+
+        return overwolf.windows.getCurrentWindow((data) => {
+            const { id } = data.window;
+            overwolf.windows.dragMove(id);
+        });
     };
 
     _handleArrowClick = () => {
@@ -24,8 +49,8 @@ export default class TopControlBar extends Component {
 
     render() {
         return (
-            <section className={Styles.container}>
-                <p>Ranked Game</p>
+            <section className={Styles.container} onMouseDown={this._onMouseDown}>
+                <p className={Styles.title}>Ranked Game</p>
                 <img
                     src={arrow}
                     alt="minimize button"
@@ -38,7 +63,7 @@ export default class TopControlBar extends Component {
                     onClick={this._minimize}
                     className={Styles.minimize}
                 />
-                <img src={close} alt="close button" onClick={this._close} />
+                <img src={close} alt="close button" onClick={this._closeWindow} />
             </section>
         );
     }

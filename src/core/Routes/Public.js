@@ -4,8 +4,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
 import {
-    // Login,
-    Initialization,
+    Login,
+    // Initialization,
     // Registration,
     // PasswordRecovery
 } from '../../pages';
@@ -17,7 +17,7 @@ export default class Public extends Component {
     render() {
         return (
             <Switch>
-                <Route path={book.login} component={Initialization} />
+                <Route path={book.login} component={Login} />
                 <Redirect to={book.login} />
             </Switch>
         );

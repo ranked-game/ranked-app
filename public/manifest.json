@@ -9,12 +9,12 @@
         "icon": "IconMouseOver.png",
         "icon_gray": "IconMouseNormal.png",
         "launcher_icon": "launcher_icon.ico",
-        "description": "Join a team and fight your way to the top of suggested Ladders!",
+        "description": "Join a team and fight your way to the competitive cyberscene!",
         "dock_button_title": "Ranked Game"
     },
     "permissions": ["Extensions", "Streaming", "Profile", "GameInfo", "Clipboard"],
     "data": {
-        "start_window": "controller",
+        "start_window": "main",
         "protocol_override_domains": { "googlesyndication": "http" },
         "developer": {
             "enable_auto_refresh": true,
@@ -32,11 +32,6 @@
             }
         },
         "windows": {
-            "controller": {
-                "file": "controller.html",
-                "is_background_page": true,
-                "is_alt_f4_blocked": true
-            },
             "main": {
                 "file": "index.html",
                 "transparent": true,
@@ -51,16 +46,16 @@
                 "desktop_only": true,
                 "native_window": true,
                 "size": {
-                    "width": 1300,
-                    "height": 720
+                    "width": 420,
+                    "height": 700
                 },
                 "min_size": {
-                    "width": 1300,
-                    "height": 720
+                    "width": 420,
+                    "height": 700
                 },
                 "max_size": {
-                    "width": 1300,
-                    "height": 720
+                    "width": 420,
+                    "height": 700
                 },
                 "block_top_window_navigation": true,
                 "popup_blocker": true,

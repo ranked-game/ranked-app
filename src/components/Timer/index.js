@@ -15,7 +15,6 @@ export default class Timer extends Component {
                 <CompoundTimer
                     initialTime={seconds * 1000}
                     direction="backward"
-                    lastUnit="d"
                     formatValue={(value) => `${value < 10 ? `0${value}` : value}`}
                 >
                     <div className={Styles.timerShit}>
