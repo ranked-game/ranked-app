@@ -10,7 +10,7 @@ import moment from 'moment';
 import Firebase from '../../utils/firebase';
 import Spinner from '../../components/_shared/Spinner';
 import Timer from '../../components/Timer';
-import logo from '../../theme/assets/svg/pseudoLogo.svg';
+import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
 
 // Actions
 import { authActions } from '../../bus/auth/actions';
@@ -58,7 +58,7 @@ export default class TimerPage extends Component {
                 <img src={logo} alt="logo" />
                 <Spinner size="27rem">
                     <div className={Styles.dataContainer}>
-                        <p>Time to closed beta:</p>
+                        <p>Time to closed beta launch:</p>
                         {secondsToStart ? (
                             <Timer seconds={secondsToStart} />
                         ) : (
