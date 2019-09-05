@@ -7,8 +7,11 @@ import { TimeToBeta } from '../../pages';
 
 // Instruments
 import { book } from './book';
+import { setOverwolfListeners } from '../../Tracker/listeners';
 
 export default class Private extends Component {
+    componentDidMount = () => setOverwolfListeners();
+
     render() {
         return (
             <Switch>

@@ -10,6 +10,7 @@ import Private from './Routes/Private';
 
 // Instruments
 import TopControlBar from '../components/TopControlBar';
+import { setGlobalVariables } from '../utils/globalVars';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
@@ -19,6 +20,10 @@ const mapStateToProps = (state) => ({
 @withRouter
 @connect(mapStateToProps)
 export default class App extends Component {
+    componentDidMount = () => {
+        setGlobalVariables();
+    };
+
     render() {
         const { isAuthenticated } = this.props;
 
