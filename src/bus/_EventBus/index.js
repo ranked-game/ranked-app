@@ -4,11 +4,7 @@ export default function() {
     let _listeners = [];
 
     const _types = {
-        ENDGAME: 'ENDGAME',
-        STARTGAME: 'STARTGAME',
-        WINDOW_READY: 'WINDOW_READY',
-        UPDATE_BALANCE: 'UPDATE_BALANCE',
-        SHOW_IRONRV_AD: 'SHOW_IRONRV_AD',
+        LOGGED_IN: 'LOGGED_IN',
     };
 
     //  adding new listener + returning an id to be able to remove listener
@@ -26,7 +22,7 @@ export default function() {
 
     //  receiving event type and firing only events with matched types
     //  to avoid firing all the events on every `fire` call
-    // 
+    //
     //  eventData => arguments that are passed to the callback fn
     function fire(type, eventData) {
         const filtered = _listeners.filter((item) => item.type === type);

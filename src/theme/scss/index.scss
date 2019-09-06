@@ -7,8 +7,6 @@
     outline: none;
     scroll-behavior: smooth;
     user-select: none;
-
-    transition: all 0.5s;
 }
 
 html {
@@ -17,8 +15,6 @@ html {
 
 body {
     color: $palettePurple5;
-    max-width: 900px;
-    max-height: 700px;
     background: $palettePurple1;
     font-family: 'SF Pro Display', sans-serif;
 

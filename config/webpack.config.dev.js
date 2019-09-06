@@ -88,11 +88,21 @@ module.exports = {
             require.resolve('react-error-overlay'),
             paths.appIndexJs,
         ],
-        //  controller: [
-        //      require.resolve('react-dev-utils/webpackHotDevClient'),
-        //      require.resolve('react-error-overlay'),
-        //      paths.appSrc + '/controller.js',
-        //  ],
+        login: [
+            require.resolve('react-dev-utils/webpackHotDevClient'),
+            require.resolve('react-error-overlay'),
+            paths.appSrc + '/login.js',
+        ],
+        success: [
+            require.resolve('react-dev-utils/webpackHotDevClient'),
+            require.resolve('react-error-overlay'),
+            paths.appSrc + '/success.js',
+        ],
+        controller: [
+            require.resolve('react-dev-utils/webpackHotDevClient'),
+            require.resolve('react-error-overlay'),
+            paths.appSrc + '/controller.js',
+        ],
     },
     output: {
         path: paths.appBuild,
@@ -327,12 +337,24 @@ module.exports = {
             chunks: ['index'],
             template: paths.appHtml,
         }),
-        //  new HtmlWebpackPlugin({
-        //      inject: true,
-        //      chunks: ['controller'],
-        //      template: paths.controllerHtml,
-        //      filename: 'controller.html',
-        //  }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['controller'],
+            template: paths.controllerHtml,
+            filename: 'controller.html',
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['login'],
+            template: paths.loginHtml,
+            filename: 'login.html',
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['success'],
+            template: paths.successHtml,
+            filename: 'success.html',
+        }),
 
         //  Makes some environment variables available in index.html.
         //  The public URL is available as %PUBLIC_URL% in index.html, e.g.:

@@ -21,9 +21,9 @@ export default class TopControlBar extends Component {
     };
 
     _closeWindow = () => {
-        overwolf.windows.getCurrentWindow((data) => {
+        overwolf.windows.obtainDeclaredWindow('controller', (data) => {
             const { id } = data.window;
-            overwolf.windows.close(id);
+            overwolf.windows.close(id, (result) => console.log(result));
         });
     };
 

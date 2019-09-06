@@ -49,9 +49,35 @@ export default class TimerPage extends Component {
             });
     };
 
+    _logout = () => {
+        const { logoutAsync } = this.props;
+        logoutAsync();
+
+        overwolf.windows.obtainDeclaredWindow('login', (result) => {
+            const {
+                window: { id },
+                status,
+            } = result;
+
+            if (status === 'success') {
+                overwolf.windows.restore(id);
+            }
+        });
+
+        overwolf.windows.getCurrentWindow((result) => {
+            const {
+                window: { id },
+                status,
+            } = result;
+
+            if (status === 'success') {
+                overwolf.windows.close(id);
+            }
+        });
+    };
+
     render() {
         const { secondsToStart } = this.state;
-        const { logoutAsync } = this.props;
 
         return (
             <section className={Styles.container}>
@@ -66,7 +92,7 @@ export default class TimerPage extends Component {
                         )}
                     </div>
                 </Spinner>
-                <p className={Styles.logoutButton} onClick={logoutAsync}>
+                <p className={Styles.logoutButton} onClick={this._logout}>
                     Logout
                 </p>
             </section>

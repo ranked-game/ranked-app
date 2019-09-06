@@ -8,7 +8,7 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import './theme/scss/index.scss';
 
 // App
-import Private from './core/Routes/Private';
+import Public from './core/Routes/Public';
 import TopControlBar from './components/TopControlBar';
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
@@ -17,7 +17,7 @@ render(
     <Provider store={store}>
         <Router history={history}>
             <TopControlBar />
-            <Private />
+            <Public />
         </Router>
     </Provider>,
     document.getElementById('app'),
