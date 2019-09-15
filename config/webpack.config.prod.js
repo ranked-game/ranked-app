@@ -126,6 +126,10 @@ module.exports = {
             // require.resolve('react-dev-utils/webpackHotDevClient'),
             paths.appSrc + '/success.js',
         ],
+        failed: [
+            // require.resolve('react-dev-utils/webpackHotDevClient'),
+            paths.appSrc + '/failed.js',
+        ],
         controller: [
             //  require.resolve('react-dev-utils/webpackHotDevClient'),
             paths.appSrc + '/controller.js',
@@ -505,6 +509,24 @@ module.exports = {
             chunks: ['success'],
             template: paths.successHtml,
             filename: 'success.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+            },
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['failed'],
+            template: paths.failedHtml,
+            filename: 'failed.html',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,

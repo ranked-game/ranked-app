@@ -1,0 +1,24 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    grid-template-columns: 1;
+    place-items: center center;
+
+    text-align: center;
+
+    & .title {
+        font-size: 3rem;
+        color: $paletteWhite;
+    }
+
+    & .subtitle {
+        font-size: 1.5rem;
+        color: $paletteWarningYellow;
+    }
+}

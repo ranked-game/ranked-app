@@ -71,7 +71,7 @@ module.exports = {
     appPublic: resolveApp('public'),
     appHtml: resolveApp('public/index.html'),
     controllerHtml: resolveApp('public/controller.html'),
-    loginFailHtml: resolveApp('public/loginFail.html'),
+    failedHtml: resolveApp('public/failed.html'),
     successHtml: resolveApp('public/success.html'),
     loginHtml: resolveApp('public/login.html'),
     startgameHtml: resolveApp('public/startgame.html'),

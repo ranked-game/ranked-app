@@ -45,11 +45,9 @@
                 "resizable": false,
                 "is_background_page": false,
                 "show_in_taskbar": true,
-                "show_minimize": true,
-                "override_on_update": true,
+                "show_minimize": false,
                 "is_alt_f4_blocked": true,
-                "desktop_only": true,
-                "native_window": true,
+                "override_on_update": true,
                 "size": {
                     "width": 420,
                     "height": 700

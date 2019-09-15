@@ -38,6 +38,11 @@ export default class Login extends Component {
 
             if (status === 'success') {
                 overwolf.windows.changeSize(id, 420, 700);
+                overwolf.windows.changePosition(
+                    id,
+                    0.5 * screen.width - 210,
+                    0.5 * screen.height - 350,
+                );
             }
         });
     };
@@ -53,13 +58,17 @@ export default class Login extends Component {
 
         overwolf.windows.getCurrentWindow((result) => {
             const {
-                window: { id, left, top },
+                window: { id },
                 status,
             } = result;
 
             if (status === 'success') {
                 overwolf.windows.changeSize(id, 1000, 700);
-                overwolf.windows.changePosition(id, Math.max(20, left - 400), top);
+                overwolf.windows.changePosition(
+                    id,
+                    0.5 * screen.width - 500,
+                    0.5 * screen.height - 350,
+                );
             }
         });
 

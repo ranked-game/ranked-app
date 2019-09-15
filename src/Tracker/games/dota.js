@@ -1,3 +1,7 @@
+import { countBestMultikill } from '../utils/countDotaMultikill';
+import { watchItemUsed } from '../utils/dota/watchItemUsed';
+import { updateInventory, resetInventory, itemConsumed } from '../utils/dota/watchInventory';
+
 const features = [
     'game_state_changed',
     'match_state_changed',
@@ -19,6 +23,66 @@ const features = [
     'party',
 ];
 
+let gameData = {
+    bots: false,
+    customMode: false,
+
+    kills: 0,
+    deaths: 0,
+    assists: 0,
+
+    xpm: 0,
+    gpm: 0,
+
+    lastHits: 0,
+    denies: 0,
+
+    wardsPlaced: 0,
+    smokesUsed: 0,
+
+    maximumKillStreak: 0,
+    bestMultikill: null,
+    multikillsAmount: 0,
+    skillBuild: [],
+
+    matchId: null,
+    playerTeam: null,
+    victory: null,
+    party: null,
+};
+
+const clearGameData = () => {
+    gameData = {
+        bots: false,
+        customMode: false,
+
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+
+        xpm: 0,
+        gpm: 0,
+
+        lastHits: 0,
+        denies: 0,
+
+        wardsPlaced: 0,
+        smokesUsed: 0,
+
+        maximumKillStreak: 0,
+        bestMultikill: null,
+        multikillsAmount: 0,
+        skillBuild: [],
+
+        matchId: null,
+        playerTeam: null,
+        victory: null,
+        party: null,
+    };
+
+    tracker.log('gameData reset');
+};
+
 const setFeatures = () => {
     overwolf.games.events.setRequiredFeatures(features, ({ status }) =>
         status === 'error' ? setTimeout(setFeatures, 2000) : tracker.log('Dota 2 features set'),
@@ -29,7 +93,123 @@ const onNewEvents = ({ events }) => {
     const { name, data: jsonData } = events[0];
     const data = JSON.parse(jsonData);
 
-    return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
+    switch (name) {
+        case 'match_state_changed':
+            const { match_state: matchState } = data;
+
+            switch (matchState) {
+                case 'DOTA_GAMERULES_STATE_STRATEGY_TIME':
+                    if (gameData.customMode)
+                        return tracker.warning('Showing custom game pre-game screen');
+                    tracker.success('Showing pre-game screen');
+                    break;
+
+                case 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS':
+                    if (gameData.customMode) return null;
+                    tracker.success('Sending startgame transaction....');
+                    break;
+
+                default:
+                    // return tracker.log(`[MATCH_STATE_CHANGED] -> `, matchState);
+                    return null;
+            }
+
+            break;
+
+        case 'game_state_changed':
+            const { match_state } = data;
+
+            if (match_state === 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP') {
+                tracker.warning('Custom game');
+                gameData = {
+                    ...gameData,
+                    customMode: true,
+                };
+            }
+
+            break;
+
+        case 'match_ended':
+            tracker.log('Dota 2 -> match_ended -> getInfo data');
+            overwolf.games.events.getInfo((data) => tracker.log(data));
+            tracker.log(gameData);
+
+            clearGameData();
+            resetInventory();
+            break;
+
+        case 'cs':
+            const { last_hits: lastHits, denies } = data;
+
+            gameData = {
+                ...gameData,
+                lastHits,
+                denies,
+            };
+            break;
+
+        case 'kill':
+            const { kills, kill_streak, label } = data;
+            const { bestMultikill, maximumKillStreak, multikillsAmount } = gameData;
+
+            gameData = {
+                ...gameData,
+                maximumKillStreak: Math.max(kill_streak, maximumKillStreak),
+                bestMultikill: countBestMultikill(bestMultikill, label),
+                multikillsAmount: label === 'kill' ? multikillsAmount : multikillsAmount + 1,
+                kills,
+            };
+            break;
+
+        case 'death':
+            const { deaths } = data;
+
+            gameData = {
+                ...gameData,
+                deaths,
+            };
+            break;
+
+        case 'hero_ability_skilled':
+            const { name: skill } = data;
+
+            gameData = {
+                ...gameData,
+                skillBuild: [...gameData.skillBuild, skill],
+            };
+            break;
+
+        case 'hero_ability_used':
+            break;
+
+        case 'hero_health_mana_info':
+            break;
+
+        case 'hero_item_changed':
+            const { slot: itemSlot, name: changedItemName, location } = data;
+
+            if (location === 'hero') {
+                updateInventory(itemSlot, changedItemName, gameData);
+            }
+            break;
+
+        case 'hero_item_consumed':
+            const { slot: consumedSlot, name: consumedName } = data;
+            itemConsumed(consumedSlot, consumedName, gameData);
+            break;
+
+        case 'hero_item_used':
+            const { name: itemName } = data;
+
+            watchItemUsed(itemName, gameData);
+            break;
+
+        case 'hero_status_effect_changed':
+            break;
+
+        default:
+            return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
+    }
 
     /**
      * 1) Inventory actions (Check out wards!)

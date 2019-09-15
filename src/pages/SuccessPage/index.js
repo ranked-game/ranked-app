@@ -9,10 +9,6 @@ import TopControlBar from '../../components/TopControlBar';
 
 export default class SuccessPage extends Component {
     componentDidMount = () => {
-        const { eventBus } = overwolf.windows.getMainWindow();
-        const { types } = eventBus;
-        eventBus.fire(types.LOGGED_IN);
-
         overwolf.windows.obtainDeclaredWindow('app', (result) => {
             const {
                 window: { id },
@@ -21,6 +17,11 @@ export default class SuccessPage extends Component {
 
             if (status === 'success') {
                 overwolf.windows.restore(id);
+                overwolf.windows.changePosition(
+                    id,
+                    0.5 * screen.width - 210,
+                    0.5 * screen.height - 350,
+                );
             }
         });
 

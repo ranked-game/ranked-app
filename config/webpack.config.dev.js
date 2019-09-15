@@ -98,6 +98,11 @@ module.exports = {
             require.resolve('react-error-overlay'),
             paths.appSrc + '/success.js',
         ],
+        failed: [
+            require.resolve('react-dev-utils/webpackHotDevClient'),
+            require.resolve('react-error-overlay'),
+            paths.appSrc + '/failed.js',
+        ],
         controller: [
             require.resolve('react-dev-utils/webpackHotDevClient'),
             require.resolve('react-error-overlay'),
@@ -354,6 +359,12 @@ module.exports = {
             chunks: ['success'],
             template: paths.successHtml,
             filename: 'success.html',
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['failed'],
+            template: paths.failedHtml,
+            filename: 'failed.html',
         }),
 
         //  Makes some environment variables available in index.html.

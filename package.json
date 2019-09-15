@@ -92,6 +92,7 @@
     "scripts": {
         "start": "node scripts/start.js",
         "build:dev": "node scripts/build.js",
+        "build:Dev": "node scripts/build.js",
         "build:prod": "node scripts/build.js",
         "test": "node scripts/test.js"
     },
