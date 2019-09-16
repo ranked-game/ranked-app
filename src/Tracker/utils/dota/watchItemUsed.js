@@ -23,4 +23,6 @@ export const watchItemUsed = (itemName, gameDataReference) => {
         default:
             return tracker.log(`[ITEM] -> ${itemName}`);
     }
+
+    return null;
 };

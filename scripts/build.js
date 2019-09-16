@@ -53,7 +53,7 @@ checkBrowsers(paths.appPath, isInteractive)
     .then(() => {
         //  First, read the current file sizes in build directory.
         //  This lets us display how much they changed later.
-        return measureFileSizesBeforeBuild(paths.appBuild);
+        return measureFileSizesBeforeBuild(paths.appBuild + '/App/Files');
     })
     .then((previousFileSizes) => {
         //  Remove all content but keep the directory so that
@@ -87,7 +87,7 @@ checkBrowsers(paths.appPath, isInteractive)
             printFileSizesAfterBuild(
                 stats,
                 previousFileSizes,
-                paths.appBuild,
+                paths.appBuild + '/App/Files',
                 WARN_AFTER_BUNDLE_GZIP_SIZE,
                 WARN_AFTER_CHUNK_GZIP_SIZE,
             );

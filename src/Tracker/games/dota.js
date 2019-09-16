@@ -214,6 +214,8 @@ const onNewEvents = ({ events }) => {
     /**
      * 1) Inventory actions (Check out wards!)
      */
+
+    return null;
 };
 
 const onInfoUpdates = (data) => {

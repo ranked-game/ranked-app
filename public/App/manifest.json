@@ -48,6 +48,8 @@
                 "show_minimize": false,
                 "is_alt_f4_blocked": true,
                 "override_on_update": true,
+                "desktop_only": true,
+                "native_window": true,
                 "size": {
                     "width": 420,
                     "height": 700
@@ -62,8 +64,7 @@
                 },
                 "block_top_window_navigation": true,
                 "popup_blocker": true,
-                "mute": true,
-                "force_browser": "overwolf"
+                "mute": true
             },
             "success": {
                 "file": "success.html",
@@ -97,11 +98,11 @@
                 },
                 "block_top_window_navigation": true,
                 "popup_blocker": true,
-                "mute": true,
-                "force_browser": "overwolf"
+                "mute": true
             }
         },
         "game_events": [7314, 5426],
+        "force_browser": "overwolf",
         "launch_events": [
             {
                 "event": "GameLaunch",
