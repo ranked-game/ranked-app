@@ -72,7 +72,7 @@ export default class Login extends Component {
             }
         });
 
-        window.location.replace(`http://api.ranked.game/api/auth/${id}`);
+        window.location.replace(`https://api.ranked.game/api/auth/${id}`);
     };
 
     render() {

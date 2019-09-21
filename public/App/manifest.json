@@ -33,12 +33,12 @@
         },
         "windows": {
             "controller": {
-                "file": "controller.html",
+                "file": "Files/controller.html",
                 "is_background_page": true,
                 "is_alt_f4_blocked": true
             },
             "login": {
-                "file": "login.html",
+                "file": "Files/login.html",
                 "transparent": true,
                 "disable_rightclick": true,
                 "clickthrough": false,
@@ -67,12 +67,12 @@
                 "mute": true
             },
             "success": {
-                "file": "success.html",
+                "file": "Files/success.html",
                 "is_background_page": true,
                 "is_alt_f4_blocked": true
             },
             "app": {
-                "file": "index.html",
+                "file": "Files/index.html",
                 "transparent": true,
                 "disable_rightclick": true,
                 "clickthrough": false,

@@ -1,6 +1,10 @@
-import { countBestMultikill } from '../utils/countDotaMultikill';
-import { watchItemUsed } from '../utils/dota/watchItemUsed';
-import { updateInventory, resetInventory, itemConsumed } from '../utils/dota/watchInventory';
+import {
+    countBestMultikill,
+    watchItemUsed,
+    updateInventory,
+    resetInventory,
+    itemConsumed,
+} from './helpers';
 
 const features = [
     'game_state_changed',

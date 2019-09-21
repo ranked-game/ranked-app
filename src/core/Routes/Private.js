@@ -7,7 +7,7 @@ import { TimeToBeta } from '../../pages';
 
 // Instruments
 import { book } from './book';
-import { setOverwolfListeners } from '../../Tracker/listeners';
+import { setOverwolfListeners } from '../../Tracker';
 import { setGlobalVariables } from '../../utils/globalVars';
 
 export default class Private extends Component {

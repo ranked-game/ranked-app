@@ -1,4 +1,5 @@
-import { setDotaListener, removeDotaListener, setLolListener, removeLolListener } from './games';
+import { setDotaListener, removeDotaListener } from './dota';
+import { setLolListener, removeLolListener } from './lol';
 
 let listenerSet = false;
 

@@ -48,6 +48,7 @@ export const updateInventory = (slot, item, gameDataReference) => {
     const wards = ['item_ward_observer', 'item_ward_sentry'];
 
     if (prevSlotItem === 'item_ward_dispenser' && wards.includes(item)) {
+        currentUserInventory[slot] = item;
         return incrementWardsPlaced(true, gameDataReference);
     }
 

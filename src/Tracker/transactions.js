@@ -1,3 +1,0 @@
-// startgames
-
-// endagames
