@@ -4,6 +4,8 @@ import {
     updateInventory,
     resetInventory,
     itemConsumed,
+    clearGameData,
+    updateGameData,
 } from './helpers';
 
 const features = [
@@ -27,7 +29,7 @@ const features = [
     'party',
 ];
 
-let gameData = {
+export let gameData = {
     bots: false,
     customMode: false,
 
@@ -53,38 +55,6 @@ let gameData = {
     playerTeam: null,
     victory: null,
     party: null,
-};
-
-const clearGameData = () => {
-    gameData = {
-        bots: false,
-        customMode: false,
-
-        kills: 0,
-        deaths: 0,
-        assists: 0,
-
-        xpm: 0,
-        gpm: 0,
-
-        lastHits: 0,
-        denies: 0,
-
-        wardsPlaced: 0,
-        smokesUsed: 0,
-
-        maximumKillStreak: 0,
-        bestMultikill: null,
-        multikillsAmount: 0,
-        skillBuild: [],
-
-        matchId: null,
-        playerTeam: null,
-        victory: null,
-        party: null,
-    };
-
-    tracker.log('gameData reset');
 };
 
 const setFeatures = () => {
@@ -125,10 +95,7 @@ const onNewEvents = ({ events }) => {
 
             if (match_state === 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP') {
                 tracker.warning('Custom game');
-                gameData = {
-                    ...gameData,
-                    customMode: true,
-                };
+                updateGameData({ customMode: true });
             }
 
             break;
@@ -138,49 +105,37 @@ const onNewEvents = ({ events }) => {
             overwolf.games.events.getInfo((data) => tracker.log(data));
             tracker.log(gameData);
 
-            clearGameData();
+            clearGameData(gameData);
             resetInventory();
             break;
 
         case 'cs':
             const { last_hits: lastHits, denies } = data;
+            updateGameData({ lastHits, denies });
 
-            gameData = {
-                ...gameData,
-                lastHits,
-                denies,
-            };
             break;
 
         case 'kill':
             const { kills, kill_streak, label } = data;
             const { bestMultikill, maximumKillStreak, multikillsAmount } = gameData;
-
-            gameData = {
-                ...gameData,
+            updateGameData({
                 maximumKillStreak: Math.max(kill_streak, maximumKillStreak),
                 bestMultikill: countBestMultikill(bestMultikill, label),
                 multikillsAmount: label === 'kill' ? multikillsAmount : multikillsAmount + 1,
                 kills,
-            };
+            });
             break;
 
         case 'death':
             const { deaths } = data;
-
-            gameData = {
-                ...gameData,
-                deaths,
-            };
+            updateGameData({ deaths });
             break;
 
         case 'hero_ability_skilled':
             const { name: skill } = data;
-
-            gameData = {
-                ...gameData,
+            updateGameData({
                 skillBuild: [...gameData.skillBuild, skill],
-            };
+            });
             break;
 
         case 'hero_ability_used':
@@ -204,7 +159,6 @@ const onNewEvents = ({ events }) => {
 
         case 'hero_item_used':
             const { name: itemName } = data;
-
             watchItemUsed(itemName, gameData);
             break;
 
