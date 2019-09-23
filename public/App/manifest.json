@@ -5,7 +5,7 @@
         "name": "Ranked",
         "version": "0.0.1",
         "minimum-overwolf-version": "0.119.1",
-        "author": "Ranked.game",
+        "author": "Ranked Game",
         "icon": "IconMouseOver.png",
         "icon_gray": "IconMouseNormal.png",
         "launcher_icon": "launcher_icon.ico",
@@ -33,12 +33,12 @@
         },
         "windows": {
             "controller": {
-                "file": "Files/controller.html",
+                "file": "controller.html",
                 "is_background_page": true,
                 "is_alt_f4_blocked": true
             },
             "login": {
-                "file": "Files/login.html",
+                "file": "login.html",
                 "transparent": true,
                 "disable_rightclick": true,
                 "clickthrough": false,
@@ -67,12 +67,12 @@
                 "mute": true
             },
             "success": {
-                "file": "Files/success.html",
+                "file": "success.html",
                 "is_background_page": true,
                 "is_alt_f4_blocked": true
             },
             "app": {
-                "file": "Files/index.html",
+                "file": "index.html",
                 "transparent": true,
                 "disable_rightclick": true,
                 "clickthrough": false,
@@ -102,7 +102,7 @@
             }
         },
         "game_events": [7314, 5426],
-        "force_browser": "overwolf",
+        "force_browser": "user",
         "launch_events": [
             {
                 "event": "GameLaunch",

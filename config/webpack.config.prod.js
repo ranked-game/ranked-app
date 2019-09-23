@@ -150,7 +150,7 @@ module.exports = {
     //          path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'),
     //  },
     output: {
-        path: paths.appBuild + '/App/Files',
+        path: paths.appBuild + '/App',
         pathinfo: true,
         filename: 'static/js/[name].bundle.js',
         chunkFilename: 'static/js/[name].chunk.js',
