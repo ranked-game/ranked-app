@@ -54,7 +54,7 @@ export default class Login extends Component {
     };
 
     _handleLoginButtonClick = (e) => {
-        const { id } = e.target;
+        const { href } = e.target;
 
         overwolf.windows.getCurrentWindow((result) => {
             const {
@@ -69,10 +69,9 @@ export default class Login extends Component {
                     0.5 * screen.width - 500,
                     0.5 * screen.height - 350,
                 );
+                window.location.replace(href);
             }
         });
-
-        window.location.replace(`https://api.ranked.game/api/auth/${id}`);
     };
 
     render() {
@@ -82,22 +81,24 @@ export default class Login extends Component {
             <section className={Styles.container}>
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Log In / Sign Up</p>
-                <div
+                <a
+                    href="https://api.ranked.game/api/auth/google"
                     className={`${Styles.socialButton} ${Styles.google}`}
-                    onClick={this._handleLoginButtonClick}
-                    id="google"
+                    // onClick={this._handleLoginButtonClick}
                 >
                     <img src={google} alt="" />
                     Log in with Google
-                </div>
-                <div
+                </a>
+
+                <a
+                    href="https://api.ranked.game/api/auth/discord"
                     className={`${Styles.socialButton} ${Styles.discord}`}
-                    onClick={this._handleLoginButtonClick}
-                    id="discord"
+                    // onClick={this._handleLoginButtonClick}
                 >
                     <img src={discord} alt="" />
                     Log in with Discord
-                </div>
+                </a>
+
                 {/*
                 <div
                     className={`${Styles.socialButton} ${Styles.steam}`}

@@ -11,7 +11,7 @@ export default class SuccessPage extends Component {
     componentDidMount = () => {
         setTimeout(() => {
             window.location.assign(
-                'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/login.html',
+                'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/login.html',
             );
         }, 3000);
     };
