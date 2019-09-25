@@ -10,9 +10,23 @@ import TopControlBar from '../../components/TopControlBar';
 export default class SuccessPage extends Component {
     componentDidMount = () => {
         setTimeout(() => {
-            window.location.assign(
-                'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/login.html',
-            );
+            overwolf.windows.obtainDeclaredWindow('login', (result) => {
+                const {
+                    window: { id },
+                    status,
+                } = result;
+
+                if (status === 'success') {
+                    overwolf.windows.restore(id);
+                    overwolf.windows.changePosition(
+                        id,
+                        0.5 * screen.width - 210,
+                        0.5 * screen.height - 350,
+                    );
+                }
+            });
+
+            window.close();
         }, 3000);
     };
 

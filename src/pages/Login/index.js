@@ -45,6 +45,39 @@ export default class Login extends Component {
                 );
             }
         });
+
+        window.addEventListener('storage', this._localStorageListener);
+    };
+
+    _localStorageListener = (e) => {
+        if (e.key === 'ranked-external-auth') {
+            overwolf.windows.obtainDeclaredWindow('app', (result) => {
+                const {
+                    window: { id },
+                    status,
+                } = result;
+
+                if (status === 'success') {
+                    overwolf.windows.restore(id);
+                    overwolf.windows.changePosition(
+                        id,
+                        0.5 * screen.width - 210,
+                        0.5 * screen.height - 350,
+                    );
+                }
+            });
+
+            overwolf.windows.getCurrentWindow((result) => {
+                const {
+                    window: { id },
+                    status,
+                } = result;
+
+                if (status === 'success') {
+                    overwolf.windows.close(id);
+                }
+            });
+        }
     };
 
     _toggleRememberMe = () => {
@@ -84,6 +117,8 @@ export default class Login extends Component {
                 <a
                     href="https://api.ranked.game/api/auth/google"
                     className={`${Styles.socialButton} ${Styles.google}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
                     // onClick={this._handleLoginButtonClick}
                 >
                     <img src={google} alt="" />
@@ -93,6 +128,8 @@ export default class Login extends Component {
                 <a
                     href="https://api.ranked.game/api/auth/discord"
                     className={`${Styles.socialButton} ${Styles.discord}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
                     // onClick={this._handleLoginButtonClick}
                 >
                     <img src={discord} alt="" />

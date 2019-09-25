@@ -3,7 +3,7 @@
     "type": "WebApp",
     "meta": {
         "name": "Ranked",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "minimum-overwolf-version": "0.119.1",
         "author": "Ranked Game",
         "icon": "IconMouseOver.png",
@@ -102,7 +102,7 @@
             }
         },
         "game_events": [7314, 5426],
-        "force_browser": "user",
+        "force_browser": "overwolf",
         "launch_events": [
             {
                 "event": "GameLaunch",
