@@ -47,6 +47,8 @@ export default class TimerPage extends Component {
                     });
                 });
             });
+
+        if (!localStorage.getItem('ranked-remember-me')) localStorage.clear();
     };
 
     _logout = () => {

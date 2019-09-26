@@ -81,6 +81,9 @@ export default class Login extends Component {
     };
 
     _toggleRememberMe = () => {
+        const { rememberMe } = this.state;
+        if (!rememberMe) localStorage.setItem('ranked-remember-me', true);
+
         this.setState((prevState) => ({
             rememberMe: !prevState.rememberMe,
         }));
