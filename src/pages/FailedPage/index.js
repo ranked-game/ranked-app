@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Components
-import TopControlBar from '../../components/TopControlBar';
+import { TopControlBar } from '../../components';
 
 export default class SuccessPage extends Component {
     componentDidMount = () => {

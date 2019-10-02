@@ -47,6 +47,7 @@ export default class Login extends Component {
         });
 
         window.addEventListener('storage', this._localStorageListener);
+        localStorage.setItem('ranked-remember-me', true);
     };
 
     _localStorageListener = (e) => {
@@ -83,6 +84,7 @@ export default class Login extends Component {
     _toggleRememberMe = () => {
         const { rememberMe } = this.state;
         if (!rememberMe) localStorage.setItem('ranked-remember-me', true);
+        else localStorage.clear();
 
         this.setState((prevState) => ({
             rememberMe: !prevState.rememberMe,

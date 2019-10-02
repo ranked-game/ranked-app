@@ -1,9 +1,12 @@
 import { setDotaListener, removeDotaListener } from './dota';
 import { setLolListener, removeLolListener } from './lol';
 
+const development = process.env.NODE_ENV === 'development';
 let listenerSet = false;
 
 export const setOverwolfListeners = () => {
+    if (development) return tracker.error('Tracker is disabled for development mode');
+
     tracker.log('Setting OW listeners...');
 
     overwolf.games.onGameInfoUpdated.addListener((info) => {
@@ -49,5 +52,5 @@ export const setOverwolfListeners = () => {
         return (listenerSet = true);
     });
 
-    tracker.log('OW listeners set!');
+    return tracker.log('OW listeners set!');
 };

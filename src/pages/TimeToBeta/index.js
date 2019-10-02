@@ -8,8 +8,8 @@ import Styles from './styles.module.scss';
 // Instruments
 import moment from 'moment';
 import Firebase from '../../utils/firebase';
-import Spinner from '../../components/_shared/Spinner';
-import Timer from '../../components/Timer';
+import { Spinner } from '../../components/_shared';
+import { Timer } from '../../components';
 import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
 
 // Actions

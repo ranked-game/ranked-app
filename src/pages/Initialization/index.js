@@ -7,7 +7,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import getRandomFunnyMessage from '../../utils/randomFunnyMessage';
 import logo from '../../theme/assets/svg/logoBigVertical.svg';
-import Spinner from '../../components/_shared/Spinner';
+import { Spinner } from '../../components/_shared';
 
 export default class Initialization extends Component {
     render() {

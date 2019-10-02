@@ -1,6 +1,7 @@
 //  Core
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 
 //  Pages
 import {
@@ -13,6 +14,7 @@ import {
 // Instruments
 import { book } from './book';
 
+@hot(module)
 export default class Public extends Component {
     render() {
         return (

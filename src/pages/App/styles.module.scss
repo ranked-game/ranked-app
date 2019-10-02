@@ -1,0 +1,24 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 400px auto;
+
+    width: 100vw;
+    height: 100vh;
+
+    & .left {
+        display: grid;
+        grid-template-rows: 1fr 3fr 300px;
+        gap: 0.5rem;
+
+        & #adDiv {
+            background: url('../../theme/assets/svg/ad-placeholder.svg');
+        }
+    }
+
+    & .right {
+        background: red;
+    }
+}

@@ -1,7 +1,6 @@
 import Login from './Login';
 import TimeToBeta from './TimeToBeta';
-import Registration from './Registration';
-import PasswordRecovery from './PasswordRecovery';
 import Initialization from './Initialization';
+import App from './App';
 
-export { TimeToBeta, Registration, PasswordRecovery, Login, Initialization };
+export { TimeToBeta, Login, Initialization, App };

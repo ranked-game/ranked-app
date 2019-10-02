@@ -1,0 +1,92 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+
+    padding: 0.5rem;
+
+    & .top {
+        grid-column: 1 / 6;
+
+        display: grid;
+        grid-template-columns: 40% 25% 30% 5%;
+
+        padding-left: 1rem;
+        margin-bottom: 0.25rem;
+
+        & .logo {
+            place-self: center center;
+
+            width: 100%;
+        }
+
+        & .userpic {
+            place-self: center end;
+
+            width: 40%;
+
+            border-radius: 100%;
+            box-shadow: 0 0 2.5rem $palettePurple4;
+        }
+
+        & .username {
+            place-self: center center;
+
+            width: 100%;
+            padding: 0 0 0 1rem;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            & span {
+                font-size: 1.2rem;
+                color: $paletteWhite;
+            }
+        }
+
+        & .settings {
+            cursor: pointer;
+
+            place-self: center end;
+
+            transition: all 0.3s;
+
+            &:hover {
+                filter: brightness(1.2);
+            }
+        }
+    }
+
+    & .navlink {
+        cursor: pointer;
+        place-self: center center;
+
+        display: grid;
+        place-items: center center;
+
+        padding: 0.5rem 0.75rem;
+
+        font-size: 1.1rem;
+
+        border-radius: 4px;
+
+        &:hover {
+            background: $paletteYellow1;
+            color: $palettePurple1;
+        }
+
+        &.disabled {
+            cursor: default;
+
+            color: $palettePurple3;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+}
