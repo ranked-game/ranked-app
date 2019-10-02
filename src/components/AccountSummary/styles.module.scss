@@ -1,0 +1,59 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-template-columns: 4fr 5fr 4fr;
+    grid-template-rows: 3fr 1fr 2fr;
+    gap: 1rem 0;
+
+    place-self: center center;
+
+    width: 95%;
+    padding: 1rem;
+    margin: 1rem 0;
+
+    background: $palettePurple2;
+
+    & .userpic {
+        grid-column: 1 / 4;
+        place-self: center center;
+
+        border-radius: 100%;
+        box-shadow: 0 0 2.5rem $palettePurple4;
+    }
+
+    & .username {
+        grid-column: 1 / 4;
+        place-self: center center;
+
+        font-size: 1.75rem;
+        color: $paletteWhite;
+    }
+
+    & .infoBlock {
+        display: grid;
+        place-items: center center;
+
+        height: 80%;
+        width: 100%;
+
+        text-align: center;
+
+        border-width: 0 1px;
+        border-style: solid;
+        border-color: $palettePurple4;
+
+        &:first-of-type {
+            border: none;
+        }
+
+        &:last-of-type {
+            border: none;
+        }
+
+        & .value {
+            font-size: 1.5rem;
+            color: $paletteWhite;
+        }
+    }
+}

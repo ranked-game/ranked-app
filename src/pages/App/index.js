@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Components
-import { MainNavigation } from '../../components';
+import { MainNavigation, AccountSummary } from '../../components';
 
 export default class App extends Component {
     state = {
@@ -23,7 +23,7 @@ export default class App extends Component {
             <section className={Styles.container}>
                 <div className={Styles.left}>
                     <MainNavigation handleTabChange={this._handleTabChange} />
-                    <div>Some short info</div>
+                    <AccountSummary />
                     <div id={Styles.adDiv} />
                 </div>
                 <div className={Styles.right} />
