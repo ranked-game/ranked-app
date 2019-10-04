@@ -5,11 +5,11 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Components
-import { MainNavigation, AccountSummary } from '../../components';
+import { MainNavigation, AccountSummary, ProfileDetails, Tournaments } from '../../components';
 
 export default class App extends Component {
     state = {
-        activeTab: 'Profile',
+        activeTab: 'Tourneys',
     };
 
     _handleTabChange = (activeTab) => {
@@ -19,14 +19,19 @@ export default class App extends Component {
     };
 
     render() {
+        const { activeTab } = this.state;
+
         return (
             <section className={Styles.container}>
                 <div className={Styles.left}>
-                    <MainNavigation handleTabChange={this._handleTabChange} />
+                    <MainNavigation handleTabChange={this._handleTabChange} activeTab={activeTab} />
                     <AccountSummary />
                     <div id={Styles.adDiv} />
                 </div>
-                <div className={Styles.right} />
+                <div className={Styles.right}>
+                    {activeTab === 'Profile' && <ProfileDetails />}
+                    {activeTab === 'Tourneys' && <Tournaments />}
+                </div>
             </section>
         );
     }

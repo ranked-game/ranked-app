@@ -1,0 +1,60 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr 2fr 2fr;
+    place-items: center start;
+
+    height: 4rem;
+
+    background: linear-gradient(90deg, $palettePurple1 0%, $palettePurple2 50%);
+
+    &.header {
+        place-items: end start;
+
+        padding: 0 0.5rem;
+        height: auto;
+
+        background: none;
+    }
+
+    & .gameLogo {
+        place-self: center;
+
+        height: 3rem;
+    }
+
+    & .name {
+        display: grid;
+        place-content: center start;
+
+        height: 100%;
+        width: 100%;
+        padding-left: 1rem;
+
+        font-size: 1.25rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    & .points,
+    .participants,
+    .timeToStart {
+        place-self: center;
+    }
+
+    & .headerPoints,
+    .headerParticipants,
+    .headerTimeToStart {
+        place-self: end center;
+    }
+
+    & .headerName {
+        padding-left: 1rem;
+    }
+
+    & .headerGame {
+        place-self: end center;
+    }
+}

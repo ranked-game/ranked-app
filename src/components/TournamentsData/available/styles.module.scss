@@ -1,0 +1,33 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(2, 5% 5% 40%);
+
+    padding: 0 1rem 1rem;
+
+    & .title {
+        display: grid;
+        place-content: center left;
+
+        position: relative;
+        top: 40%;
+
+        height: 100%;
+        padding-left: 1rem;
+
+        background: linear-gradient(270deg, $palettePurple1 0%, $palettePurple2 50%);
+
+        color: $paletteWhite;
+        font-size: 1.25rem;
+    }
+
+    & .data {
+        display: grid;
+        gap: 1rem;
+
+        padding: 0.75rem 0.5rem 0;
+        overflow-y: scroll;
+    }
+}

@@ -9,8 +9,39 @@ import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
 import settings from '../../theme/assets/svg/settings.svg';
 import logoShortYellow from '../../theme/assets/svg/logoShortYellow.svg';
 
+const navLinks = [
+    {
+        name: 'Profile',
+        active: true,
+    },
+    {
+        name: 'Tourneys',
+        active: true,
+    },
+    {
+        name: 'Friends',
+        active: false,
+    },
+    {
+        name: 'Team',
+        active: false,
+    },
+    {
+        name: 'News',
+        active: false,
+    },
+];
+
 export default class MainNavigation extends Component {
+    _handleNavigation = ({ target: { innerText } }) => {
+        const { handleTabChange } = this.props;
+
+        handleTabChange(innerText);
+    };
+
     render() {
+        const { activeTab } = this.props;
+
         return (
             <section className={Styles.container}>
                 <div className={Styles.top}>
@@ -24,12 +55,16 @@ export default class MainNavigation extends Component {
                     <img src={settings} alt="" className={Styles.settings} />
                 </div>
 
-                {/* links */}
-                <div className={Styles.navlink}>Profile</div>
-                <div className={Styles.navlink}>Tourneys</div>
-                <div className={`${Styles.navlink} ${Styles.disabled}`}>Friends</div>
-                <div className={`${Styles.navlink} ${Styles.disabled}`}>Team</div>
-                <div className={`${Styles.navlink} ${Styles.disabled}`}>News</div>
+                {navLinks.map((item, index) => (
+                    <div
+                        onClick={item.active ? this._handleNavigation : undefined}
+                        className={`${Styles.navlink} ${!item.active &&
+                            Styles.disabled} ${activeTab === item.name && Styles.active}`}
+                        key={index}
+                    >
+                        {item.name}
+                    </div>
+                ))}
             </section>
         );
     }
