@@ -4,9 +4,9 @@
     display: grid;
     grid-template-rows: 3fr 2fr;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0.5rem;
+    gap: 1rem 0.5rem;
 
-    padding: 2rem 0.5rem 1rem;
+    padding: 1rem 0.5rem 1rem;
 
     border-bottom: 1px solid $palettePurple6;
 
@@ -14,10 +14,10 @@
         grid-column: 1 / 6;
 
         display: grid;
-        grid-template-columns: 40% 25% 30% 5%;
+        grid-template-columns: 34% 24% 34% 4%;
+        gap: 0.5rem;
 
-        padding-left: 1rem;
-        margin-bottom: 0.25rem;
+        padding: 0 1rem;
 
         & .logo {
             place-self: center center;
