@@ -10,7 +10,7 @@ import { Ongoing, Available, Completed } from '../TournamentsData';
 export default class Tournaments extends Component {
     state = {
         tabs: ['Ongoing', 'Available', 'Completed'],
-        active: 'Available',
+        active: 'Ongoing',
     };
 
     _switchTab = ({ target: { innerText } }) => {
