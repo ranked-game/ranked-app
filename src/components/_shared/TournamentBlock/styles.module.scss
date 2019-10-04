@@ -1,26 +1,47 @@
 @import 'src/theme/scss/index.scss';
 
 .container {
+    cursor: pointer;
+
     display: grid;
-    grid-template-columns: 1fr 5fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr 2fr;
     place-items: center start;
 
     height: 4rem;
 
+    border: 1px solid transparent;
+    border-radius: 4px;
     background: linear-gradient(90deg, $palettePurple1 0%, $palettePurple2 50%);
 
+    &:hover {
+        border: 1px solid $palettePurple3;
+    }
+
     &.upcoming {
+        cursor: default;
+
         filter: grayscale(1);
+        grid-template-columns: 1fr 5fr 2fr 2fr 2fr;
+
         background: linear-gradient(90deg, #00000000 0%, #00000049 50%);
+
+        &:hover {
+            border: 1px solid transparent;
+        }
     }
 
     &.header {
+        cursor: default;
         place-items: end start;
 
         padding: 0 0.5rem;
         height: auto;
 
         background: none;
+
+        &:hover {
+            border: 1px solid transparent;
+        }
     }
 
     & .gameLogo {
@@ -45,7 +66,8 @@
 
     & .points,
     .participants,
-    .timeToStart {
+    .timeToStart,
+    .details {
         place-self: center;
     }
 
