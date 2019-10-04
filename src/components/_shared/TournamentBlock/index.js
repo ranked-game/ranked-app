@@ -10,10 +10,13 @@ import dotaLogo from '../../../theme/assets/svg/dota-logo.svg';
 
 export default class TournamentBlock extends Component {
     render() {
-        const { header } = this.props;
+        const { header, upcoming } = this.props;
 
         return (
-            <section className={`${Styles.container} ${header && Styles.header}`}>
+            <section
+                className={`${Styles.container} ${header && Styles.header} ${upcoming &&
+                    Styles.upcoming}`}
+            >
                 {header ? (
                     <>
                         <p className={Styles.headerGame}>Game</p>

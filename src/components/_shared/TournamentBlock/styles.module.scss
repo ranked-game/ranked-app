@@ -9,6 +9,11 @@
 
     background: linear-gradient(90deg, $palettePurple1 0%, $palettePurple2 50%);
 
+    &.upcoming {
+        filter: grayscale(1);
+        background: linear-gradient(90deg, #00000000 0%, #00000049 50%);
+    }
+
     &.header {
         place-items: end start;
 

@@ -31,19 +31,17 @@ export default class Available extends Component {
                 <p className={Styles.title}>Upcoming tournaments</p>
                 <TournamentBlock header />
                 <div className={Styles.data}>
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
+                    <TournamentBlock upcoming />
                 </div>
             </section>
         );
