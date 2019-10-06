@@ -5,43 +5,43 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Components
-import { TournamentBlock } from '../../_shared';
+import { Available as AvailableTournament } from '../../_shared/_tournaments';
 
 export default class Available extends Component {
     render() {
         return (
             <section className={Styles.container}>
                 <p className={Styles.title}>Available now</p>
-                <TournamentBlock header />
+                <AvailableTournament header />
                 <div className={Styles.data}>
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
-                    <TournamentBlock />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
+                    <AvailableTournament />
                 </div>
                 <p className={Styles.title}>Upcoming tournaments</p>
-                <TournamentBlock header upcoming />
+                <AvailableTournament header upcoming />
                 <div className={Styles.data}>
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
-                    <TournamentBlock upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
+                    <AvailableTournament upcoming />
                 </div>
             </section>
         );

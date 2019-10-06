@@ -5,10 +5,10 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Instruments
-import dotaLogo from '../../../theme/assets/svg/dota-logo.svg';
-import logoShortYellow from '../../../theme/assets/svg/logoShortYellow.svg';
+import dotaLogo from '../../../../theme/assets/svg/dota-logo.svg';
+import logoShortYellow from '../../../../theme/assets/svg/logoShortYellow.svg';
 
-export default class OngoingTournamentBlock extends Component {
+export default class OngoingTournament extends Component {
     render() {
         return (
             <section className={Styles.container}>

@@ -1,6 +1,40 @@
-export TopControlBar from './TopControlBar';
-export Timer from './Timer';
-export MainNavigation from './MainNavigation';
-export AccountSummary from './AccountSummary';
-export ProfileDetails from './ProfileDetails';
-export Tournaments from './Tournaments';
+// Core
+import React from 'react';
+
+// Components
+import TopControlBar from './TopControlBar';
+import Timer from './Timer';
+import MainNavigation from './MainNavigation';
+import AccountSummary from './AccountSummary';
+import ProfileDetails from './ProfileDetails';
+import Tournaments from './Tournaments';
+
+/*
+    Some keys in Components may differ from actual component name
+    in favor of better syntax through the app.
+    
+    Add such cases to the bottom of the list.
+*/
+const Components = {
+    TopControlBar: <TopControlBar />,
+    Timer: <Timer />,
+    MainNavigation: <MainNavigation />,
+    AccountSummary: <AccountSummary />,
+
+    // Names of components below are changed
+    Profile: <ProfileDetails />,
+    Tourneys: <Tournaments />,
+};
+
+/*
+    Sometimes we want to control UI via redux state
+    and need a convenient way to render needed components.
+    As soon as storing components themselves in redux store
+    is meant to be a bad practice, we're just storing name of the component
+    and rendering it with Admin function
+*/
+const Admin = ({ name }) => Components[name];
+
+/* Standard reexporting */
+export { TopControlBar, Timer, MainNavigation, AccountSummary, ProfileDetails, Tournaments };
+export default Admin;

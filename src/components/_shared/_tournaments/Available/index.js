@@ -6,9 +6,9 @@ import Styles from './styles.module.scss';
 
 // Instruments
 // import moment from 'moment';
-import dotaLogo from '../../../theme/assets/svg/dota-logo.svg';
+import dotaLogo from '../../../../theme/assets/svg/dota-logo.svg';
 
-export default class TournamentBlock extends Component {
+export default class AvailableTournament extends Component {
     render() {
         const { header, upcoming } = this.props;
 

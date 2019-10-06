@@ -1,36 +1,37 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Components
-import { MainNavigation, AccountSummary, ProfileDetails, Tournaments } from '../../components';
+import Admin, { MainNavigation } from '../../components';
 
+const mapStateToProps = (state) => ({
+    leftSide: state.ui.get('leftSide'),
+    rightSide: state.ui.get('rightSide'),
+});
+
+const mapDispatchToProps = {};
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)
 export default class App extends Component {
-    state = {
-        activeTab: 'Tourneys',
-    };
-
-    _handleTabChange = (activeTab) => {
-        this.setState({
-            activeTab,
-        });
-    };
-
     render() {
-        const { activeTab } = this.state;
+        const { leftSide, rightSide } = this.props;
 
         return (
             <section className={Styles.container}>
                 <div className={Styles.left}>
-                    <MainNavigation handleTabChange={this._handleTabChange} activeTab={activeTab} />
-                    <AccountSummary />
+                    <MainNavigation activeTab={rightSide} />
+                    <Admin name={leftSide} />
                     <div id={Styles.adDiv} />
                 </div>
                 <div className={Styles.right}>
-                    {activeTab === 'Profile' && <ProfileDetails />}
-                    {activeTab === 'Tourneys' && <Tournaments />}
+                    <Admin name={rightSide} />
                 </div>
             </section>
         );

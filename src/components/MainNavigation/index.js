@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -8,6 +9,9 @@ import Styles from './styles.module.scss';
 import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
 import settings from '../../theme/assets/svg/settings.svg';
 import logoShortYellow from '../../theme/assets/svg/logoShortYellow.svg';
+
+// Actions
+import { uiActions } from '../../bus/allActions';
 
 const navLinks = [
     {
@@ -32,15 +36,27 @@ const navLinks = [
     },
 ];
 
+const mapStateToProps = (state) => ({
+    rightSide: state.ui.get('rightSide'),
+});
+
+const mapDispatchToProps = {
+    fillRightSide: uiActions.fillRightSide,
+};
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)
 export default class MainNavigation extends Component {
     _handleNavigation = ({ target: { innerText } }) => {
-        const { handleTabChange } = this.props;
+        const { fillRightSide } = this.props;
 
-        handleTabChange(innerText);
+        fillRightSide(innerText);
     };
 
     render() {
-        const { activeTab } = this.props;
+        const { rightSide } = this.props;
 
         return (
             <section className={Styles.container}>
@@ -59,7 +75,7 @@ export default class MainNavigation extends Component {
                     <div
                         onClick={item.active ? this._handleNavigation : undefined}
                         className={`${Styles.navlink} ${!item.active &&
-                            Styles.disabled} ${activeTab === item.name && Styles.active}`}
+                            Styles.disabled} ${rightSide === item.name && Styles.active}`}
                         key={index}
                     >
                         {item.name}
