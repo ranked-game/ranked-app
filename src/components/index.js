@@ -9,6 +9,8 @@ import AccountSummary from './AccountSummary';
 import ProfileDetails from './ProfileDetails';
 import Tournaments from './Tournaments';
 
+import { Leaderboard as TournamentLeaderboard } from '../components/_shared/_tournaments';
+
 /*
     Some keys in Components may differ from actual component name
     in favor of better syntax through the app.
@@ -24,6 +26,7 @@ const Components = {
     // Names of components below are changed
     Profile: <ProfileDetails />,
     Tourneys: <Tournaments />,
+    TournamentLeaderboard: <TournamentLeaderboard />,
 };
 
 /*

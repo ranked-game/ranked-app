@@ -1,6 +1,8 @@
 @import 'src/theme/scss/index.scss';
 
 .container {
+    cursor: pointer;
+
     display: grid;
     grid-auto-rows: min-content;
 
@@ -10,6 +12,13 @@
     border-radius: 4px;
 
     overflow: hidden;
+
+    &:hover {
+        border: 1px solid $palettePurple5;
+
+        /* Compensating border becoming thinner */
+        margin: 1px 1px;
+    }
 
     & .header {
         display: grid;
