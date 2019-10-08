@@ -1,0 +1,122 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    cursor: pointer;
+
+    display: grid;
+    grid-auto-rows: min-content;
+
+    height: 100%;
+
+    border: 2px solid $palettePurple2;
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    &:hover {
+        border: 1px solid $palettePurple5;
+
+        /* Compensating border becoming thinner */
+        margin: 1px 1px;
+    }
+
+    & .header {
+        display: grid;
+        grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+        place-items: center;
+
+        padding: 0.5rem 0;
+
+        background: $palettePurple2;
+
+        color: $paletteWhite;
+
+        & .name {
+            font-size: 1.25rem;
+        }
+
+        & .part {
+            & span {
+                color: $palettePurple5;
+            }
+        }
+    }
+
+    & .titles {
+        display: grid;
+        grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+        place-items: center;
+
+        padding: 0.5rem 0;
+
+        border-bottom: 1px solid $palettePurple3;
+    }
+
+    & .leaderboard {
+        display: grid;
+        grid-auto-flow: row;
+
+        padding: 0.5rem 0;
+
+        & .leaderboardRow {
+            display: grid;
+            grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+            place-items: center;
+
+            font-size: 1.1rem;
+
+            & .rank {
+                font-size: 1.25rem;
+            }
+
+            & .user {
+                display: grid;
+                grid-auto-flow: column;
+                place-items: center;
+                gap: 1rem;
+
+                & img {
+                    width: 2.5rem;
+                    border-radius: 100%;
+                }
+            }
+
+            & .username {
+                place-self: center start;
+            }
+        }
+    }
+
+    & .userResult {
+        display: grid;
+        grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+        place-items: center;
+
+        padding: 0.5rem 0;
+
+        background: $palettePurple2;
+
+        font-size: 1.1rem;
+        color: $paletteWhite;
+
+        & .rank {
+            font-size: 1.25rem;
+        }
+
+        & .user {
+            display: grid;
+            grid-auto-flow: column;
+            place-items: center;
+            gap: 1rem;
+
+            & img {
+                width: 2.5rem;
+                border-radius: 100%;
+            }
+        }
+
+        & .username {
+            place-self: center start;
+        }
+    }
+}

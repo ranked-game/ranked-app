@@ -2,14 +2,22 @@ import { types } from './types';
 
 export const uiActions = {
     // Sync
-    fillLeftSide: (payload) => ({
+    /**
+     * @param {string} component - Component name or null
+     * @param {object} props - Props object or null
+     */
+    fillLeftSide: (component, props) => ({
         type: types.FILL_LEFT_SIDE,
-        payload,
+        payload: { component, props },
     }),
 
-    fillRightSide: (payload) => ({
+    /**
+     * @param {string} component - Component name or null
+     * @param {object} props - Props object or null
+     */
+    fillRightSide: (component, props) => ({
         type: types.FILL_RIGHT_SIDE,
-        payload,
+        payload: { component, props },
     }),
 
     emitError: (error, meta = null) => ({

@@ -32,7 +32,7 @@ export default class AvailableTournament extends Component {
                         <p className={Styles.points}>50</p>
                         <p className={Styles.participants}>54/100</p>
                         <p className={Styles.timeToStart}>24 hours</p>
-                        {!upcoming && <p className={Styles.details}>Details</p>}
+                        {!upcoming && <p className={Styles.apply}>Join</p>}
                     </>
                 )}
             </section>

@@ -1,0 +1,134 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: 1rem;
+
+    height: 100%;
+
+    padding: 1rem;
+
+    & .header {
+        display: grid;
+        grid-template-columns: 10% 1fr;
+        place-items: center;
+
+        width: 40%;
+
+        font-size: 1.25rem;
+
+        transition: all 0.3s;
+
+        &:hover {
+            filter: brightness(1.5);
+        }
+
+        & img {
+            cursor: pointer;
+
+            position: relative;
+            left: 0;
+
+            transition: all 0.3s;
+
+            &:hover {
+                left: -0.25rem;
+            }
+        }
+
+        & p {
+            /* some shit is happening with aligning */
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    & .data {
+        display: grid;
+        grid-template-rows: min-content 1fr;
+
+        padding: 1rem 0.5rem;
+
+        background: $palettePurple2;
+        border-radius: 4px;
+
+        overflow-y: scroll;
+
+        & .shortInfoContainer {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            place-items: center;
+
+            height: 5rem;
+            padding-bottom: 1rem;
+
+            border-bottom: 1px solid $palettePurple3;
+
+            & .userPic {
+                grid-row: 1 / 3;
+
+                height: 4rem;
+
+                border-radius: 100%;
+                box-shadow: 0 0 2.5rem $palettePurple4;
+            }
+
+            & .key {
+                grid-row: 1;
+
+                &.player {
+                    place-self: center start;
+                    padding-left: 1rem;
+                }
+            }
+
+            & .value {
+                grid-row: 2;
+
+                font-size: 1.25rem;
+                color: $paletteWhite;
+
+                &.player {
+                    place-self: center start;
+                    padding-left: 1rem;
+                }
+            }
+
+            & .currentRank {
+                grid-row: 1 / 3;
+                display: grid;
+                place-items: center;
+
+                height: 4rem;
+                width: 4rem;
+
+                border-radius: 100%;
+                border: 1px solid $palettePurple4;
+
+                color: $paletteWhite;
+                font-size: 2rem;
+
+                &.golden {
+                    border: 1px solid $paletteYellow1;
+                    box-shadow: 0 0 2rem $paletteYellow1;
+                }
+
+                &.silver {
+                    border: 1px solid $paletteWhite;
+                    box-shadow: 0 0 2rem $paletteWhite;
+                }
+
+                &.bronze {
+                    border: 1px solid $paletteBronze1;
+                    box-shadow: 0 0 2rem $paletteBronze1;
+                }
+            }
+        }
+
+        & .mainInfoContainer {
+            display: grid;
+            place-items: center;
+        }
+    }
+}

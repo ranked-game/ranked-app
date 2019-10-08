@@ -1,4 +1,11 @@
 @import 'src/theme/scss/index.scss';
 
 .container {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 3rem;
+
+    padding: 1rem;
+
+    overflow: scroll;
 }

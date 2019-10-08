@@ -42,6 +42,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fillRightSide: uiActions.fillRightSide,
+    fillLeftSide: uiActions.fillLeftSide,
 };
 
 @connect(
@@ -50,9 +51,10 @@ const mapDispatchToProps = {
 )
 export default class MainNavigation extends Component {
     _handleNavigation = ({ target: { innerText } }) => {
-        const { fillRightSide } = this.props;
+        const { fillRightSide, fillLeftSide } = this.props;
 
         fillRightSide(innerText);
+        fillLeftSide('AccountSummary');
     };
 
     render() {

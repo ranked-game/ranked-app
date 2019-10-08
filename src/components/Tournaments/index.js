@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -7,20 +8,31 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Ongoing, Available, Completed } from '../TournamentsData';
 
+// Actions
+import { uiActions } from '../../bus/allActions';
+
+const mapDispatchToProps = {
+    fillRightSide: uiActions.fillRightSide,
+};
+
+@connect(
+    null,
+    mapDispatchToProps,
+)
 export default class Tournaments extends Component {
     state = {
         tabs: ['Ongoing', 'Available', 'Completed'],
-        active: 'Ongoing',
     };
 
     _switchTab = ({ target: { innerText } }) => {
-        this.setState({
-            active: innerText,
-        });
+        const { fillRightSide } = this.props;
+
+        fillRightSide(null, { active: innerText });
     };
 
     render() {
-        const { tabs, active } = this.state;
+        const { tabs } = this.state;
+        const { active = 'Available' } = this.props;
 
         return (
             <section className={Styles.container}>

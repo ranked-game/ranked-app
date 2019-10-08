@@ -66,8 +66,7 @@
 
     & .points,
     .participants,
-    .timeToStart,
-    .details {
+    .timeToStart {
         place-self: center;
     }
 
@@ -83,5 +82,26 @@
 
     & .headerGame {
         place-self: end center;
+    }
+
+    & .apply {
+        cursor: pointer;
+        place-self: center;
+
+        padding: 0.5rem 1rem;
+
+        background: $paletteBlue1;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        color: $paletteWhite;
+
+        transition: background 0.3s;
+
+        &:hover {
+            background: transparent;
+            border: 1px solid $paletteYellow2;
+            color: $paletteYellow2;
+        }
     }
 }

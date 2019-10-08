@@ -29,6 +29,16 @@ const features = [
     'party',
 ];
 
+/*
+    Startgame obj:
+
+    const startGameData = {
+        gameId: '123123',
+        matchId: null,
+        party: null,
+    }
+*/
+
 export let gameData = {
     bots: false,
     customMode: false,

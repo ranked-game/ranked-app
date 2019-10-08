@@ -14,22 +14,20 @@ import { uiActions } from '../../../../bus/allActions';
 
 const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
-    fillRightSide: uiActions.fillRightSide,
 };
 
 @connect(
     null,
     mapDispatchToProps,
 )
-export default class OngoingTournament extends Component {
+export default class CompletedTournament extends Component {
     _openDetails = () => {
-        const { fillLeftSide, fillRightSide } = this.props;
+        const { fillLeftSide } = this.props;
 
         // 1) Fetch this exact tournament data to redux store
         // 2) Fill left side with tournament leaderboard
         // 3) Fill right side with user stats for this tourney
-        fillLeftSide('TournamentLeaderboard');
-        fillRightSide('UserTournamentStats');
+        fillLeftSide('CompletedStats');
     };
 
     render() {
