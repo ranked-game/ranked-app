@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Styles from './styles.module.scss';
 
 // Instruments
-import arrow from '../../theme/assets/svg/left-arrow.svg';
+import arrow from '../../theme/assets/svg/triangle-arrow.svg';
 import minimize from '../../theme/assets/svg/minimize.svg';
 import close from '../../theme/assets/svg/close.svg';
 

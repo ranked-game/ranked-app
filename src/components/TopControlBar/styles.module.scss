@@ -26,14 +26,7 @@
     & .arrow {
         place-self: end center;
 
-        transform: rotate(-90deg);
-        height: 90%;
-
-        /* 
-            using padding to create more space for a user to click 
-            as the icon itself is too small
-        */
-        padding: 0.4rem;
+        height: 60%;
     }
 
     & .minimize {

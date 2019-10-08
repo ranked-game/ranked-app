@@ -1,6 +1,5 @@
 // Core
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -9,55 +8,29 @@ import Styles from './styles.module.scss';
 import dotaLogo from '../../../../theme/assets/svg/dota-logo.svg';
 import logoShortYellow from '../../../../theme/assets/svg/logoShortYellow.svg';
 
-// Actions
-import { uiActions } from '../../../../bus/allActions';
-
-const mapDispatchToProps = {
-    fillLeftSide: uiActions.fillLeftSide,
-};
-
-@connect(
-    null,
-    mapDispatchToProps,
-)
 export default class CompletedTournament extends Component {
-    _openDetails = () => {
-        const { fillLeftSide } = this.props;
-
-        // 1) Fetch this exact tournament data to redux store
-        // 2) Fill left side with tournament leaderboard
-        // 3) Fill right side with user stats for this tourney
-        fillLeftSide('CompletedStats');
-    };
-
     render() {
         return (
-            <section className={Styles.container} onClick={this._openDetails}>
+            <section className={Styles.container}>
                 <div className={Styles.header}>
                     <img className={Styles.gameLogo} src={dotaLogo} alt="" />
                     <p className={Styles.name}>SuperCoolName</p>
                     <p className={Styles.part}>
-                        <span>Points:</span>
+                        <span>Prize pool:</span>
                         <br />
                         50
                     </p>
                     <p className={Styles.part}>
-                        <span>Something:</span>
+                        <span>Ended on:</span>
                         <br />
-                        54/100
-                    </p>
-                    <p className={Styles.part}>
-                        <span>Ends in:</span>
-                        <br />
-                        24 hours
+                        12.12.12
                     </p>
                 </div>
                 <div className={Styles.titles}>
                     <p>Rank</p>
                     <p>Nickname</p>
-                    <p>Games</p>
                     <p>Points</p>
-                    <p>Progress</p>
+                    <p>Winnings</p>
                 </div>
                 <div className={Styles.userResult}>
                     <p className={Styles.rank}>1.</p>
@@ -65,10 +38,10 @@ export default class CompletedTournament extends Component {
                         <img src={logoShortYellow} alt="" />
                         <p>Who Is John Galt?</p>
                     </div>
-                    <p className={Styles.games}>42</p>
-                    <p className={Styles.points}>460.5</p>
-                    <p className={Styles.progress}>
-                        <img />2
+                    <p className={Styles.games}>460.5</p>
+                    <p className={Styles.points}>
+                        <img />
+                        10
                     </p>
                 </div>
             </section>
