@@ -6,7 +6,7 @@ import TopControlBar from './TopControlBar';
 import Timer from './Timer';
 import MainNavigation from './MainNavigation';
 import AccountSummary from './AccountSummary';
-import ProfileDetails from './ProfileDetails';
+import Profile from './Profile';
 import Tournaments from './Tournaments';
 
 import {
@@ -14,6 +14,8 @@ import {
     UserTournamentStats,
     CompletedStats,
 } from '../components/_shared/_tournaments';
+
+import { GameDetails } from '../components/_shared/_profile';
 
 /*
     Sometimes we want to control UI via redux state
@@ -37,17 +39,17 @@ const Admin = ({ name, props }) => {
         MainNavigation: <MainNavigation {...props} />,
         AccountSummary: <AccountSummary {...props} />,
         CompletedStats: <CompletedStats {...props} />,
-
-        // Names of components below are changed
-        Profile: <ProfileDetails {...props} />,
+        Profile: <Profile {...props} />,
         Tourneys: <Tournaments {...props} />,
-        TournamentLeaderboard: <TournamentLeaderboard {...props} />,
         UserTournamentStats: <UserTournamentStats {...props} />,
+        GameDetails: <GameDetails {...props} />,
+
+        TournamentLeaderboard: <TournamentLeaderboard {...props} />,
     };
 
     return Components[name];
 };
 
 /* Standard reexporting */
-export { TopControlBar, Timer, MainNavigation, AccountSummary, ProfileDetails, Tournaments };
+export { TopControlBar, Timer, MainNavigation, AccountSummary, Profile, Tournaments };
 export default Admin;

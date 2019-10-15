@@ -6,10 +6,10 @@ import { types } from './types';
 
 const initialState = Map({
     leftSide: 'AccountSummary',
-    rightSide: 'Tourneys',
+    rightSide: 'Profile',
 
     leftSideProps: {},
-    rightSideProps: { active: 'Completed' },
+    rightSideProps: {},
 });
 
 export const uiReducer = (state = initialState, { type, payload = {} }) => {

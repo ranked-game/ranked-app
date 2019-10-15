@@ -1,0 +1,36 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    cursor: pointer;
+
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+    place-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 0.5rem;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: linear-gradient(90deg, $palettePurple1 0%, $palettePurple2 50%);
+
+    &:hover {
+        border: 1px solid $palettePurple3;
+    }
+
+    &.active {
+        border: 1px solid $palettePurple3;
+    }
+
+    & .gameLogo {
+        grid-row: 1 / 3;
+    }
+
+    & .data {
+        font-size: 1.2rem;
+        color: $paletteWhite;
+    }
+}

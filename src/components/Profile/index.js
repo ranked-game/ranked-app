@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Ongoing, Available, Completed } from '../TournamentsData';
+import { HallOfFame, LatestGames, Performance } from '../ProfileData';
 
 // Actions
 import { uiActions } from '../../bus/allActions';
@@ -19,9 +19,9 @@ const mapDispatchToProps = {
     null,
     mapDispatchToProps,
 )
-export default class Tournaments extends Component {
+export default class Profile extends Component {
     state = {
-        tabs: ['Ongoing', 'Available', 'Completed'],
+        tabs: ['Performance', 'Latest games', 'Hall of Fame'],
     };
 
     componentDidMount = () => {
@@ -29,7 +29,7 @@ export default class Tournaments extends Component {
         const { tabs } = this.state;
 
         if (!tabs.includes(active)) {
-            fillRightSide(null, { active: 'Available' });
+            fillRightSide(null, { active: 'Latest games' });
         }
     };
 
@@ -41,7 +41,7 @@ export default class Tournaments extends Component {
 
     render() {
         const { tabs } = this.state;
-        const { active = 'Available' } = this.props;
+        const { active = 'Latest games' } = this.props;
 
         return (
             <section className={Styles.container}>
@@ -56,9 +56,9 @@ export default class Tournaments extends Component {
                         </div>
                     ))}
                 </div>
-                {active === 'Ongoing' && <Ongoing />}
-                {active === 'Available' && <Available />}
-                {active === 'Completed' && <Completed />}
+                {active === 'Performance' && <Performance />}
+                {active === 'Latest games' && <LatestGames />}
+                {active === 'Hall of Fame' && <HallOfFame />}
             </section>
         );
     }
