@@ -16,6 +16,7 @@ import {
 } from '../components/_shared/_tournaments';
 
 import { GameDetails } from '../components/_shared/_profile';
+import { LineChart, SpiderwebChart } from '../components/_shared/_charts';
 
 /*
     Sometimes we want to control UI via redux state
@@ -43,6 +44,8 @@ const Admin = ({ name, props }) => {
         Tourneys: <Tournaments {...props} />,
         UserTournamentStats: <UserTournamentStats {...props} />,
         GameDetails: <GameDetails {...props} />,
+        LineChart: <LineChart {...props} />,
+        SpiderwebChart: <SpiderwebChart {...props} />,
 
         TournamentLeaderboard: <TournamentLeaderboard {...props} />,
     };

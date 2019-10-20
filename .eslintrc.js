@@ -81,7 +81,7 @@ module.exports = {
         'block-spacing': 1,
         'comma-dangle': ['warn', 'always-multiline'],
         'func-call-spacing': ['error', 'never'],
-        'id-length': ['error', { min: 3, exceptions: ['e', '_', 'db', 'id', 'ui'] }],
+        'id-length': ['error', { min: 3, exceptions: ['e', '_', 'db', 'id', 'ui', 'x', 'y', 'i'] }],
         indent: [
             'warn',
             4,

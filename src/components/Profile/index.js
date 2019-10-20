@@ -29,7 +29,7 @@ export default class Profile extends Component {
         const { tabs } = this.state;
 
         if (!tabs.includes(active)) {
-            fillRightSide(null, { active: 'Latest games' });
+            fillRightSide(null, { active: 'Performance' });
         }
     };
 

@@ -6,7 +6,7 @@ export const uiActions = {
      * @param {string} component - Component name or null
      * @param {object} props - Props object or null
      */
-    fillLeftSide: (component, props) => ({
+    fillLeftSide: (component = 'AccountSummary', props) => ({
         type: types.FILL_LEFT_SIDE,
         payload: { component, props },
     }),

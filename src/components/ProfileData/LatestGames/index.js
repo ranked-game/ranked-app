@@ -24,6 +24,12 @@ const mapDispatchToProps = {
     mapDispatchToProps,
 )
 export default class LatestGames extends Component {
+    componentDidMount = () => {
+        const { fillLeftSide } = this.props;
+
+        fillLeftSide();
+    };
+
     _openGameDetails = ({ target: { id } }) => {
         const { fillLeftSide, games } = this.props;
 
@@ -33,18 +39,6 @@ export default class LatestGames extends Component {
     render() {
         return (
             <section className={Styles.container}>
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
                 <GameHistoryRow openGameDetails={this._openGameDetails} />
                 <GameHistoryRow openGameDetails={this._openGameDetails} />
                 <GameHistoryRow openGameDetails={this._openGameDetails} />

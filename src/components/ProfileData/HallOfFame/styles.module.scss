@@ -1,4 +1,23 @@
 @import 'src/theme/scss/index.scss';
 
 .container {
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+
+    height: 100%;
+    width: 100%;
+
+    & .logo {
+        align-self: end;
+
+        filter: grayscale(0.5);
+        opacity: 0.75;
+    }
+
+    & .text {
+        align-self: start;
+
+        font-size: 1.5rem;
+    }
 }
