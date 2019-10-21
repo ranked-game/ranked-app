@@ -8,6 +8,15 @@ import Styles from './styles.module.scss';
 // Actions
 import { uiActions } from '../../../bus/ui/actions';
 
+// Instruments
+import {
+    LastMatchBox,
+    TimeSpentBox,
+    LifetimePointsBox,
+    TournamentsBox,
+    SoloVsPartyBox,
+} from '../..';
+
 const mapStateToProps = (state) => ({
     ...state,
 });
@@ -21,31 +30,14 @@ const mapDispatchToProps = {
     mapDispatchToProps,
 )
 export default class Performance extends Component {
-    _openDetails = ({ target: { id, innerText } }) => {
-        const { fillLeftSide } = this.props;
-
-        fillLeftSide(id, { title: `${innerText} chart` });
-    };
-
     render() {
         return (
             <section className={Styles.container}>
-                <div className={Styles.timeSpent} id="LineChart" onClick={this._openDetails}>
-                    Time spent
-                </div>
-                <div className={Styles.points} id="LineChart" onClick={this._openDetails}>
-                    Points
-                </div>
-                <div className={Styles.tournaments} id="LineChart" onClick={this._openDetails}>
-                    Tournaments data
-                </div>
-                <div
-                    className={Styles.soloAndParty}
-                    id="SpiderwebChart"
-                    onClick={this._openDetails}
-                >
-                    Solo and party points
-                </div>
+                <LastMatchBox className={Styles.LastMatchBox} />
+                <LifetimePointsBox className={Styles.points} />
+                <TimeSpentBox className={Styles.timeSpent} />
+                <TournamentsBox className={Styles.tournaments} />
+                <SoloVsPartyBox className={Styles.soloAndParty} />
             </section>
         );
     }

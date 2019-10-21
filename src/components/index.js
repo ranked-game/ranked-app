@@ -8,6 +8,11 @@ import MainNavigation from './MainNavigation';
 import AccountSummary from './AccountSummary';
 import Profile from './Profile';
 import Tournaments from './Tournaments';
+import LastMatchBox from './LastMatchBox';
+import TimeSpentBox from './TimeSpentBox';
+import LifetimePointsBox from './LifetimePointsBox';
+import TournamentsBox from './TournamentsBox';
+import SoloVsPartyBox from './SoloVsPartyBox';
 
 import {
     Leaderboard as TournamentLeaderboard,
@@ -54,5 +59,17 @@ const Admin = ({ name, props }) => {
 };
 
 /* Standard reexporting */
-export { TopControlBar, Timer, MainNavigation, AccountSummary, Profile, Tournaments };
+export {
+    TopControlBar,
+    Timer,
+    MainNavigation,
+    AccountSummary,
+    Profile,
+    Tournaments,
+    LastMatchBox,
+    TimeSpentBox,
+    LifetimePointsBox,
+    TournamentsBox,
+    SoloVsPartyBox,
+};
 export default Admin;
