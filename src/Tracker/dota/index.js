@@ -7,6 +7,7 @@ import {
     clearGameData,
     updateGameData,
     checkBots,
+    handleRosterUpdate,
 } from './helpers';
 
 const features = [
@@ -98,12 +99,11 @@ const onNewEvents = ({ events }) => {
                     return tracker.success('Sending startgame transaction....');
 
                 default:
-                    // return tracker.log(`[MATCH_STATE_CHANGED] -> `, matchState);
                     return null;
             }
 
         case 'game_state_changed':
-            const { match_state } = data;
+            const { match_state, match_id, player_steam_id, player_team } = data;
 
             switch (match_state) {
                 case 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP':
@@ -111,13 +111,24 @@ const onNewEvents = ({ events }) => {
                     return tracker.warning('Custom game');
 
                 case 'DOTA_GAMERULES_STATE_INIT':
-                    const { match_id, player_steam_id, player_team } = data;
-
                     gameData = updateGameData({
                         matchId: match_id,
                         playerSteamId: player_steam_id,
                         playerTeam: player_team,
                     });
+
+                    tracker.log("ID's set");
+
+                    return null;
+
+                case 'DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD':
+                    gameData = updateGameData({
+                        matchId: match_id,
+                        playerSteamId: player_steam_id,
+                        playerTeam: player_team,
+                    });
+
+                    tracker.log("ID's set");
 
                     return null;
 
@@ -199,7 +210,7 @@ const onNewEvents = ({ events }) => {
             break;
 
         default:
-            return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
+        // return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
     }
 
     return null;
@@ -211,22 +222,9 @@ const onInfoUpdates = (data) => {
     switch (feature) {
         case 'roster':
             const roster = JSON.parse(info.roster.players);
-            const radiant = roster.filter((item) => item.team === 2);
-            const dire = roster.filter((item) => item.team === 3);
 
-            if (roster.length !== 10) return null;
-
-            const playerDataArray = roster.filter(
-                (item) => item.steamId === gameData.playerSteamId,
-            );
-
-            gameData = updateGameData({
-                roster: { radiant, dire },
-                bots: checkBots(),
-                playerHero: playerDataArray[0].hero,
-            });
-
-            return null;
+            gameData = updateGameData(handleRosterUpdate(roster));
+            break;
 
         case 'party':
             return tracker.log('party -> ', data);
