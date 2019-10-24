@@ -33,9 +33,13 @@ const checkWardUsedAndUpdateInventory = (slot, item, gameDataReference) => {
 
 /* === EXPORTED BLOCK === */
 
+/**
+ * @returns {object} Returns last recorded user inventory state
+ */
 export const resetInventory = () => {
+    const lastInventory = [...currentUserInventory];
     currentUserInventory = ['empty', 'empty', 'empty', 'empty', 'empty', 'empty'];
-    return true;
+    return lastInventory;
 };
 
 /**
@@ -60,7 +64,7 @@ export const updateInventory = (slot, item, gameDataReference) => {
  * @param {object} item
  * @param {object} gameDataReference - ref to gameData object
  */
-export const itemConsumed = (slot, item) => {
+export const watchItemConsumed = (slot, item) => {
     if (item === 'empty') return null;
 
     return tracker.log('Item consuumed -> ', item);

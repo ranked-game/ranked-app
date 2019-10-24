@@ -1,5 +1,5 @@
 import { setDotaListener, removeDotaListener } from './dota';
-import { setLolListener, removeLolListener } from './lol';
+import { setR6SiegeListener, removeR6SiegeListener } from './r6s';
 
 const development = process.env.NODE_ENV === 'development';
 let listenerSet = false;
@@ -21,8 +21,8 @@ export const setOverwolfListeners = () => {
                     listenerSet = false;
                     break;
 
-                case 'League of Legends':
-                    removeLolListener();
+                case "Tom Clancy's Rainbow Six: Siege":
+                    removeR6SiegeListener();
                     listenerSet = false;
                     break;
 
@@ -40,8 +40,8 @@ export const setOverwolfListeners = () => {
                 setDotaListener();
                 break;
 
-            case 'League of Legends':
-                setLolListener();
+            case "Tom Clancy's Rainbow Six: Siege":
+                setR6SiegeListener();
                 break;
 
             default:

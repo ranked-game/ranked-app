@@ -85,15 +85,15 @@
                 "desktop_only": true,
                 "native_window": true,
                 "size": {
-                    "width": 420,
+                    "width": 1000,
                     "height": 700
                 },
                 "min_size": {
-                    "width": 420,
+                    "width": 1000,
                     "height": 700
                 },
                 "max_size": {
-                    "width": 420,
+                    "width": 1000,
                     "height": 700
                 },
                 "block_top_window_navigation": true,

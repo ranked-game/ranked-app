@@ -94,6 +94,22 @@ export default class Login extends Component {
     _handleLoginButtonClick = (e) => {
         const { href } = e.target;
 
+        overwolf.windows.obtainDeclaredWindow('app', (result) => {
+            const {
+                window: { id },
+                status,
+            } = result;
+
+            if (status === 'success') {
+                overwolf.windows.restore(id);
+                overwolf.windows.changePosition(
+                    id,
+                    0.5 * screen.width - 210,
+                    0.5 * screen.height - 350,
+                );
+            }
+        });
+
         overwolf.windows.getCurrentWindow((result) => {
             const {
                 window: { id },
@@ -101,15 +117,26 @@ export default class Login extends Component {
             } = result;
 
             if (status === 'success') {
-                overwolf.windows.changeSize(id, 1000, 700);
-                overwolf.windows.changePosition(
-                    id,
-                    0.5 * screen.width - 500,
-                    0.5 * screen.height - 350,
-                );
-                window.location.replace(href);
+                overwolf.windows.close(id);
             }
         });
+
+        // overwolf.windows.getCurrentWindow((result) => {
+        //     const {
+        //         window: { id },
+        //         status,
+        //     } = result;
+
+        //     if (status === 'success') {
+        //         overwolf.windows.changeSize(id, 1000, 700);
+        //         overwolf.windows.changePosition(
+        //             id,
+        //             0.5 * screen.width - 500,
+        //             0.5 * screen.height - 350,
+        //         );
+        //         window.location.replace(href);
+        //     }
+        // });
     };
 
     render() {
@@ -120,11 +147,11 @@ export default class Login extends Component {
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Log In / Sign Up</p>
                 <a
-                    href="https://api.ranked.game/api/auth/google"
+                    // href="https://api.ranked.game/api/auth/google"
                     className={`${Styles.socialButton} ${Styles.google}`}
                     rel="noopener noreferrer"
                     target="_blank"
-                    // onClick={this._handleLoginButtonClick}
+                    onClick={this._handleLoginButtonClick}
                 >
                     <img src={google} alt="" />
                     Log in with Google

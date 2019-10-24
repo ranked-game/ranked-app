@@ -1,9 +1,19 @@
 import { gameData } from '..';
 
+/**
+ * @returns {Object} Initial gameData object
+ */
 export const clearGameData = () => {
-    gameData = {
+    tracker.log('Resetting gameData...');
+
+    return {
         bots: false,
         customMode: false,
+
+        roster: {
+            radiant: [],
+            dire: [],
+        },
 
         kills: 0,
         deaths: 0,
@@ -21,25 +31,23 @@ export const clearGameData = () => {
         maximumKillStreak: 0,
         bestMultikill: null,
         multikillsAmount: 0,
+
+        playerTeam: null,
+        playerSteamId: null,
+        playerHero: null,
         skillBuild: [],
-        itemsUsed: [],
+        playerInventory: [],
 
         matchId: null,
-        playerTeam: null,
         victory: null,
         party: null,
     };
-
-    tracker.log('gameData reset');
 };
 
 /**
- *
- * @param {object} newData
+ * @param {Object} newData Object with data to update
+ * @returns {Object} Returns updated gameData object
  */
 export const updateGameData = (newData) => {
-    gameData = {
-        ...gameData,
-        ...newData,
-    };
+    return { ...gameData, ...newData };
 };

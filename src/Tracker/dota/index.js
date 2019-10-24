@@ -3,9 +3,10 @@ import {
     watchItemUsed,
     updateInventory,
     resetInventory,
-    itemConsumed,
+    watchItemConsumed,
     clearGameData,
     updateGameData,
+    checkBots,
 } from './helpers';
 
 const features = [
@@ -29,19 +30,14 @@ const features = [
     'party',
 ];
 
-/*
-    Startgame obj:
-
-    const startGameData = {
-        gameId: '123123',
-        matchId: null,
-        party: null,
-    }
-*/
-
 export let gameData = {
     bots: false,
     customMode: false,
+
+    roster: {
+        radiant: [],
+        dire: [],
+    },
 
     kills: 0,
     deaths: 0,
@@ -59,10 +55,14 @@ export let gameData = {
     maximumKillStreak: 0,
     bestMultikill: null,
     multikillsAmount: 0,
+
+    playerTeam: null,
+    playerSteamId: null,
+    playerHero: null,
     skillBuild: [],
+    playerInventory: [],
 
     matchId: null,
-    playerTeam: null,
     victory: null,
     party: null,
 };
@@ -83,52 +83,69 @@ const onNewEvents = ({ events }) => {
 
             switch (matchState) {
                 case 'DOTA_GAMERULES_STATE_STRATEGY_TIME':
+                    //! add a helper for pre-game screen
                     if (gameData.customMode)
                         return tracker.warning('Showing custom game pre-game screen');
-                    tracker.success('Showing pre-game screen');
-                    break;
+
+                    if (gameData.bots)
+                        return tracker.warning('Showing game with bots pre-game screen');
+
+                    return tracker.success('Showing pre-game screen');
 
                 case 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS':
-                    if (gameData.customMode) return null;
-                    tracker.success('Sending startgame transaction....');
-                    break;
+                    if (gameData.customMode || gameData.bots) return null;
+
+                    return tracker.success('Sending startgame transaction....');
 
                 default:
                     // return tracker.log(`[MATCH_STATE_CHANGED] -> `, matchState);
                     return null;
             }
 
-            break;
-
         case 'game_state_changed':
             const { match_state } = data;
 
-            if (match_state === 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP') {
-                tracker.warning('Custom game');
-                updateGameData({ customMode: true });
+            switch (match_state) {
+                case 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP':
+                    gameData = updateGameData({ customMode: true });
+                    return tracker.warning('Custom game');
+
+                case 'DOTA_GAMERULES_STATE_INIT':
+                    const { match_id, player_steam_id, player_team } = data;
+
+                    gameData = updateGameData({
+                        matchId: match_id,
+                        playerSteamId: player_steam_id,
+                        playerTeam: player_team,
+                    });
+
+                    return null;
+
+                default:
+                    return null;
             }
 
-            break;
-
         case 'match_ended':
-            tracker.log('Dota 2 -> match_ended -> getInfo data');
-            overwolf.games.events.getInfo((data) => tracker.log(data));
-            tracker.log(gameData);
+            const { winner } = data;
+            gameData = updateGameData({
+                victory: winner === gameData.playerTeam,
+                playerInventory: resetInventory(),
+            });
 
+            tracker.log(gameData);
             clearGameData(gameData);
-            resetInventory();
             break;
 
         case 'cs':
             const { last_hits: lastHits, denies } = data;
-            updateGameData({ lastHits, denies });
+            gameData = updateGameData({ lastHits, denies });
 
             break;
 
         case 'kill':
             const { kills, kill_streak, label } = data;
             const { bestMultikill, maximumKillStreak, multikillsAmount } = gameData;
-            updateGameData({
+            gameData = updateGameData({
                 maximumKillStreak: Math.max(kill_streak, maximumKillStreak),
                 bestMultikill: countBestMultikill(bestMultikill, label),
                 multikillsAmount: label === 'kill' ? multikillsAmount : multikillsAmount + 1,
@@ -138,12 +155,18 @@ const onNewEvents = ({ events }) => {
 
         case 'death':
             const { deaths } = data;
-            updateGameData({ deaths });
+            gameData = updateGameData({ deaths });
+            break;
+
+        case 'assist':
+            const { assists } = data;
+            gameData = updateGameData({ assists });
             break;
 
         case 'hero_ability_skilled':
             const { name: skill } = data;
-            updateGameData({
+
+            gameData = updateGameData({
                 skillBuild: [...gameData.skillBuild, skill],
             });
             break;
@@ -164,7 +187,7 @@ const onNewEvents = ({ events }) => {
 
         case 'hero_item_consumed':
             const { slot: consumedSlot, name: consumedName } = data;
-            itemConsumed(consumedSlot, consumedName, gameData);
+            watchItemConsumed(consumedSlot, consumedName, gameData);
             break;
 
         case 'hero_item_used':
@@ -179,16 +202,38 @@ const onNewEvents = ({ events }) => {
             return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
     }
 
-    /**
-     * 1) Inventory actions (Check out wards!)
-     */
-
     return null;
 };
 
 const onInfoUpdates = (data) => {
-    return data;
-    // return tracker.log('onInfoUpdates from Dota 2 -> ', data);
+    const { info, feature } = data;
+
+    switch (feature) {
+        case 'roster':
+            const roster = JSON.parse(info.roster.players);
+            const radiant = roster.filter((item) => item.team === 2);
+            const dire = roster.filter((item) => item.team === 3);
+
+            if (roster.length !== 10) return null;
+
+            const playerDataArray = roster.filter(
+                (item) => item.steamId === gameData.playerSteamId,
+            );
+
+            gameData = updateGameData({
+                roster: { radiant, dire },
+                bots: checkBots(),
+                playerHero: playerDataArray[0].hero,
+            });
+
+            return null;
+
+        case 'party':
+            return tracker.log('party -> ', data);
+
+        default:
+            return null;
+    }
 };
 
 export const setDotaListener = () => {
