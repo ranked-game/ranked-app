@@ -32,7 +32,7 @@ export default class TimeSpentBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                TimeSpentBox
+                <span className={Styles.label}>Time spent</span>
             </section>
         );
     }

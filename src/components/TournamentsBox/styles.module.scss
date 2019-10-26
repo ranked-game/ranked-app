@@ -11,4 +11,17 @@
     border-radius: 4px;
 
     background: $palettePurple2;
+
+    & .label {
+        position: absolute;
+
+        padding: 0.85rem 2rem;
+
+        background: $paletteYellow2;
+        border-radius: 4px 0 0 0;
+        clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+
+        color: $palettePurple2;
+        font-size: 1.25rem;
+    }
 }

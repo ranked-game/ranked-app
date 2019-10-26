@@ -6,7 +6,6 @@ import {
     watchItemConsumed,
     clearGameData,
     updateGameData,
-    checkBots,
     handleRosterUpdate,
 } from './helpers';
 
@@ -138,13 +137,27 @@ const onNewEvents = ({ events }) => {
 
         case 'match_ended':
             const { winner } = data;
-            gameData = updateGameData({
-                victory: winner === gameData.playerTeam,
-                playerInventory: resetInventory(),
+
+            overwolf.games.events.getInfo(({ res }) => {
+                const {
+                    party,
+                    roster: { players },
+                    me: { steam_id, hero },
+                } = res;
+
+                gameData = updateGameData({
+                    victory: winner === gameData.playerTeam,
+                    playerInventory: resetInventory(),
+                    party: party ? JSON.parse(party.party) : null,
+                    roster: JSON.parse(players),
+                    playerSteamId: steam_id,
+                    hero,
+                });
+
+                tracker.log(gameData);
+                clearGameData(gameData);
             });
 
-            tracker.log(gameData);
-            clearGameData(gameData);
             break;
 
         case 'cs':
@@ -172,6 +185,16 @@ const onNewEvents = ({ events }) => {
         case 'assist':
             const { assists } = data;
             gameData = updateGameData({ assists });
+            break;
+
+        case 'xpm':
+            const { xpm } = data;
+            gameData = updateGameData({ xpm });
+            break;
+
+        case 'gpm':
+            const { gpm } = data;
+            gameData = updateGameData({ gpm });
             break;
 
         case 'hero_ability_skilled':
@@ -210,7 +233,8 @@ const onNewEvents = ({ events }) => {
             break;
 
         default:
-        // return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
+            // return tracker.log(`[ON_NEW_EVENTS] [DOTA_2] -> [${name}] -> `, data);
+            return null;
     }
 
     return null;
@@ -227,11 +251,16 @@ const onInfoUpdates = (data) => {
             break;
 
         case 'party':
+            const party = JSON.stringify(info.party.party);
+            gameData = updateGameData({ party });
+
             return tracker.log('party -> ', data);
 
         default:
             return null;
     }
+
+    return null;
 };
 
 export const setDotaListener = () => {

@@ -36,8 +36,8 @@ export default class Performance extends Component {
                 <LastMatchBox className={Styles.LastMatchBox} />
                 <LifetimePointsBox className={Styles.points} />
                 <TimeSpentBox className={Styles.timeSpent} />
-                <TournamentsBox className={Styles.tournaments} />
                 <SoloVsPartyBox className={Styles.soloAndParty} />
+                <TournamentsBox className={Styles.tournaments} />
             </section>
         );
     }

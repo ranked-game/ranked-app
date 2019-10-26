@@ -2,6 +2,7 @@
 
 .container {
     display: grid;
+    grid-template-rows: auto 1fr;
     place-items: center;
 
     width: 100%;
@@ -11,4 +12,37 @@
     border-radius: 4px;
 
     background: $palettePurple2;
+
+    & .labels {
+        width: 100%;
+
+        display: grid;
+        grid-auto-flow: column;
+
+        & .labelLeft {
+            place-self: center start;
+
+            padding: 0.5rem 2rem;
+
+            background: $paletteYellow2;
+            border-radius: 4px 0 0 0;
+            clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+
+            color: $palettePurple2;
+            font-size: 1.25rem;
+        }
+
+        & .labelRight {
+            place-self: center end;
+
+            padding: 0.5rem 2rem;
+
+            background: $paletteYellow2;
+            border-radius: 0 4px 0 0;
+            clip-path: polygon(0 0, 100% 0%, 100% 100%, 4% 100%);
+
+            color: $palettePurple2;
+            font-size: 1.25rem;
+        }
+    }
 }

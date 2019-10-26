@@ -32,7 +32,10 @@ export default class SoloVsPartyBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                SoloVsPartyBox
+                <div className={Styles.labels}>
+                    <span className={Styles.labelLeft}>Solo points</span>
+                    <span className={Styles.labelRight}>Party points</span>
+                </div>
             </section>
         );
     }

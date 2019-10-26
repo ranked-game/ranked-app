@@ -13,6 +13,7 @@ import TimeSpentBox from './TimeSpentBox';
 import LifetimePointsBox from './LifetimePointsBox';
 import TournamentsBox from './TournamentsBox';
 import SoloVsPartyBox from './SoloVsPartyBox';
+import DotaRoster from './DotaRoster';
 
 import {
     Leaderboard as TournamentLeaderboard,
@@ -71,5 +72,6 @@ export {
     LifetimePointsBox,
     TournamentsBox,
     SoloVsPartyBox,
+    DotaRoster,
 };
 export default Admin;

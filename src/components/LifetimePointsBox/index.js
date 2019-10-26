@@ -32,7 +32,7 @@ export default class LifetimePointsBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                Lifetime points box
+                <span className={Styles.label}>Lifetime points</span>
             </section>
         );
     }
