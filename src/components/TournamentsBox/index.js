@@ -33,6 +33,7 @@ export default class TournamentsBox extends Component {
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
                 <span className={Styles.label}>Ongoing tournaments</span>
+                <div className={Styles.data}>{''}</div>
             </section>
         );
     }

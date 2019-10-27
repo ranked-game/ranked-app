@@ -2,6 +2,7 @@
 
 .container {
     display: grid;
+    grid-template-rows: 1fr 5fr;
     place-items: center;
 
     width: 100%;
@@ -10,18 +11,28 @@
     border: 1px solid transparent;
     border-radius: 4px;
 
-    background: $palettePurple2;
+    background: transparent;
 
     & .label {
-        position: absolute;
+        place-self: center start;
 
-        padding: 0.85rem 2rem;
+        padding: 1rem 0;
 
-        background: $paletteYellow2;
-        border-radius: 4px 0 0 0;
-        clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
-
-        color: $palettePurple2;
         font-size: 1.25rem;
+        color: $paletteWhite;
+    }
+
+    & .data {
+        width: 100%;
+        height: 100%;
+
+        background: $palettePurple2;
+
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        &:hover {
+            border: 1px solid $palettePurple5;
+        }
     }
 }

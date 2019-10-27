@@ -20,11 +20,11 @@ const mapDispatchToProps = {
     mapStateToProps,
     mapDispatchToProps,
 )
-export default class LifetimePointsBox extends Component {
+export default class WinrateBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
 
-        fillLeftSide('LineChart', { title: 'Points earned' });
+        fillLeftSide('LineChart', { title: 'Winrate' });
     };
 
     render() {
@@ -32,7 +32,15 @@ export default class LifetimePointsBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                <span className={Styles.label}>Lifetime points</span>
+                <span className={Styles.label}>Winrate</span>
+                <div className={Styles.data}>
+                    <p className={Styles.text}>During this week:</p>
+                    <p className={Styles.dimension}>
+                        1342
+                        <br />
+                        <span>points</span>
+                    </p>
+                </div>
             </section>
         );
     }

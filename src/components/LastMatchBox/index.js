@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 // Styles
 import Styles from './styles.module.scss';
 
-// Instruments
-import { DotaRoster } from '..';
-
 // Test
 import Dota2API from 'dota2-web-api';
 const dota2Api = new Dota2API('3A1B5FE4C6F1BAC35AB4F597B14770DC', 'en_us');
@@ -91,16 +88,43 @@ export default class LastMatchBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`}>
-                <p className={Styles.lastMatch}>Last match</p>
-                <p className={Styles.date}>22 Oct, 10:32 PM</p>
-                <img src={heroImage} alt="" className={Styles.heroImage} />
-                <p className={Styles.matchOutcome}>
-                    Match outcome: <br />
-                    <span>{victory ? 'Victory' : 'Defeat'}</span>
-                </p>
-                <DotaRoster className={Styles.roster} />
-                <p className={Styles.details}>{'<< Details '}</p>
-                <p className={Styles.kda}>{`${kills} / ${deaths} / ${assists}`}</p>
+                <p className={Styles.label}>Last match</p>
+                <div className={Styles.data}>
+                    <div className={Styles.details}>
+                        <img src={heroImage} alt="" />
+                        <p className={`${Styles.stats} ${Styles.kills}`}>
+                            {kills} <br />
+                            <span>Kills</span>
+                        </p>
+                        <p className={`${Styles.stats} ${Styles.borders}`}>
+                            {deaths} <br />
+                            <span>Deaths</span>
+                        </p>
+                        <p className={`${Styles.stats} ${Styles.assists}`}>
+                            {assists} <br />
+                            <span>Assists</span>
+                        </p>
+                        <div className={Styles.matchOutcome}>
+                            <p>Match outcome:</p>
+                            <div className={victory ? Styles.victory : Styles.defeat}>
+                                {victory ? 'Victory' : 'Defeat'}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={Styles.roster}>
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <p>VS.</p>
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                        <img src={heroImage} alt="" />
+                    </div>
+                </div>
             </section>
         );
     }

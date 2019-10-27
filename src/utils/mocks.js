@@ -1,5 +1,5 @@
 export const lastGameData = {
-    assists: 0,
+    assists: 8,
     bestMultikill: 'Rampage',
     bots: false,
     customMode: false,
@@ -12,7 +12,7 @@ export const lastGameData = {
     maximumKillStreak: 15,
     multikillsAmount: 7,
     party: null,
-    playerHero: 'spectre',
+    playerHero: 'furion',
     playerInventory: [
         'item_slippers',
         'item_ring_of_protection',

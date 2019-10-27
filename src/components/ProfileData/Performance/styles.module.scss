@@ -2,39 +2,30 @@
 
 .container {
     display: grid;
-    grid-auto-rows: 1fr;
-    gap: 1rem;
+    grid-template-rows: 30% 20% 20% 30%;
+    grid-auto-columns: 50%;
+    gap: 0 1rem;
 
-    padding: 1rem;
+    padding: 0.5rem 1rem;
 
     overflow: scroll;
-
-    & .LastMatchBox {
-        grid-column: 1 / 3;
-        grid-row: 1 / 3;
-    }
 
     & .timeSpent,
     .points,
     .tournaments,
-    .soloAndParty {
-        cursor: pointer;
-
+    .soloAndParty,
+    .LastMatchBox {
         width: 100%;
         height: 100%;
 
         border: 1px solid transparent;
         border-radius: 4px;
 
-        background: $palettePurple2;
+        background: transparent;
+    }
 
-        &:hover {
-            border: 1px solid $palettePurple5;
-        }
-
-        &.active {
-            border: 1px solid $palettePurple5;
-        }
+    & .LastMatchBox {
+        grid-column: 1 / 3;
     }
 
     & .timeSpent {
@@ -51,7 +42,6 @@
 
     & .tournaments {
         grid-column: 1 / 3;
-        grid-row: 5 / 7;
 
         display: grid;
         place-items: center;

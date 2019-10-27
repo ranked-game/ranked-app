@@ -2,7 +2,7 @@
 
 .container {
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr 2fr;
     place-items: center;
 
     width: 100%;
@@ -11,38 +11,88 @@
     border: 1px solid transparent;
     border-radius: 4px;
 
-    background: $palettePurple2;
+    & .label {
+        place-self: center start;
 
-    & .labels {
-        width: 100%;
+        padding: 1rem 0;
 
+        font-size: 1.25rem;
+        color: $paletteWhite;
+    }
+
+    & .data {
+        cursor: pointer;
         display: grid;
-        grid-auto-flow: column;
+        grid-template-columns: 3fr 2fr 2fr 3fr;
 
-        & .labelLeft {
-            place-self: center start;
+        width: 100%;
+        height: 100%;
 
-            padding: 0.5rem 2rem;
+        background: $palettePurple2;
 
-            background: $paletteYellow2;
-            border-radius: 4px 0 0 0;
-            clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+        border: 1px solid transparent;
+        border-radius: 4px;
 
-            color: $palettePurple2;
+        overflow: hidden;
+
+        &:hover {
+            border: 1px solid $palettePurple5;
+        }
+
+        & .soloText {
+            display: grid;
+            place-items: center;
+
+            background: $palettePurple2;
+
             font-size: 1.25rem;
         }
 
-        & .labelRight {
-            place-self: center end;
+        & .partyText {
+            display: grid;
+            place-items: center;
 
-            padding: 0.5rem 2rem;
+            background: $palettePurple2;
 
-            background: $paletteYellow2;
-            border-radius: 0 4px 0 0;
-            clip-path: polygon(0 0, 100% 0%, 100% 100%, 4% 100%);
-
-            color: $palettePurple2;
             font-size: 1.25rem;
+        }
+
+        & .soloNumber {
+            display: grid;
+            grid-auto-flow: row;
+            place-items: end center;
+
+            background: $palettePurple7;
+            border-right: 1px solid $palettePurple2;
+
+            font-size: 2rem;
+            color: $paletteWhite;
+
+            & span {
+                place-self: start center;
+
+                font-size: 1.25rem;
+                color: $palettePurple5;
+            }
+        }
+
+        & .partyNumber {
+            display: grid;
+            grid-auto-flow: row;
+            place-items: end center;
+
+            background: $palettePurple7;
+            border-left: 1px solid $palettePurple2;
+
+            font-size: 2rem;
+            color: $paletteWhite;
+
+            & span {
+                place-self: start center;
+
+                font-size: 1.25rem;
+                color: $palettePurple5;
+            }
         }
     }
 }

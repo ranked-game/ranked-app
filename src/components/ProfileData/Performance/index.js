@@ -9,13 +9,7 @@ import Styles from './styles.module.scss';
 import { uiActions } from '../../../bus/ui/actions';
 
 // Instruments
-import {
-    LastMatchBox,
-    TimeSpentBox,
-    LifetimePointsBox,
-    TournamentsBox,
-    SoloVsPartyBox,
-} from '../..';
+import { LastMatchBox, TimeSpentBox, WinrateBox, TournamentsBox, SoloVsPartyBox } from '../..';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -34,7 +28,7 @@ export default class Performance extends Component {
         return (
             <section className={Styles.container}>
                 <LastMatchBox className={Styles.LastMatchBox} />
-                <LifetimePointsBox className={Styles.points} />
+                <WinrateBox className={Styles.points} />
                 <TimeSpentBox className={Styles.timeSpent} />
                 <SoloVsPartyBox className={Styles.soloAndParty} />
                 <TournamentsBox className={Styles.tournaments} />

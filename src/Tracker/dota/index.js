@@ -142,17 +142,17 @@ const onNewEvents = ({ events }) => {
                 const {
                     party,
                     roster: { players },
-                    me: { steam_id, hero },
+                    me: { steam_id },
                 } = res;
 
                 gameData = updateGameData({
                     victory: winner === gameData.playerTeam,
                     playerInventory: resetInventory(),
                     party: party ? JSON.parse(party.party) : null,
-                    roster: JSON.parse(players),
                     playerSteamId: steam_id,
-                    hero,
                 });
+
+                gameData = updateGameData(handleRosterUpdate(JSON.parse(players)));
 
                 tracker.log(gameData);
                 clearGameData(gameData);
