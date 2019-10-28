@@ -4,12 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
 //  Pages
-import {
-    Login,
-    // Initialization,
-    // Registration,
-    // PasswordRecovery
-} from '../../pages';
+import { Login } from '../../pages';
 
 // Instruments
 import { book } from './book';

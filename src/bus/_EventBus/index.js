@@ -1,11 +1,12 @@
 import uuid from 'uuid/v4';
 
+export const types = {
+    LOGGED_IN: 'LOGGED_IN',
+    MATCH_ENDED: 'MATCH_ENDED',
+};
+
 export default function() {
     let _listeners = [];
-
-    const _types = {
-        LOGGED_IN: 'LOGGED_IN',
-    };
 
     //  adding new listener + returning an id to be able to remove listener
     //  listener => function that is called every time event is fired
@@ -33,6 +34,5 @@ export default function() {
         addListener,
         removeListener,
         fire,
-        types: _types,
     };
 }

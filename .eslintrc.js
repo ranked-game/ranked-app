@@ -115,6 +115,7 @@ module.exports = {
     globals: {
         overwolf: true,
         tracker: true,
+        app: true,
     },
     settings: {
         react: {

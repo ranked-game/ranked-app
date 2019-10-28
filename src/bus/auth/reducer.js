@@ -8,8 +8,8 @@ const initialState = Map({
     isAuthenticated: false,
 });
 
-export const authReducer = (state = initialState, action) => {
-    switch (action.type) {
+export const authReducer = (state = initialState, { type, payload = {} }) => {
+    switch (type) {
         case types.AUTHENTICATE:
             return state.set('isAuthenticated', true);
 

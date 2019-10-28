@@ -7,6 +7,7 @@ import {
     clearGameData,
     updateGameData,
     handleRosterUpdate,
+    endgame,
 } from './helpers';
 
 const features = [
@@ -154,7 +155,7 @@ const onNewEvents = ({ events }) => {
 
                 gameData = updateGameData(handleRosterUpdate(JSON.parse(players)));
 
-                tracker.log(gameData);
+                endgame(gameData);
                 clearGameData(gameData);
             });
 

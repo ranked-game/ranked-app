@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Instruments
-import EventBus from '../../bus/_EventBus';
+import EventBus, { types } from '../../bus/_EventBus';
 
 export default class Controller extends Component {
     componentDidMount = () => {
@@ -39,6 +39,7 @@ export default class Controller extends Component {
 
         // creating event bus
         window.eventBus = new EventBus();
+        window.eventBusTypes = types;
     };
 
     render() {

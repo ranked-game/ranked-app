@@ -8,6 +8,11 @@ import Styles from './styles.module.scss';
 // Components
 import Admin, { MainNavigation } from '../../components';
 
+// Actions
+import { profileActions } from '../../bus/profile/actions';
+
+import image from '../../theme/assets/svg/logoShortYellow.svg';
+
 const mapStateToProps = (state) => ({
     leftSide: state.ui.get('leftSide'),
     rightSide: state.ui.get('rightSide'),
@@ -15,13 +20,24 @@ const mapStateToProps = (state) => ({
     rightSideProps: state.ui.get('rightSideProps'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    fetchLastGameAsync: profileActions.fetchLastGameAsync,
+};
 
 @connect(
     mapStateToProps,
     mapDispatchToProps,
 )
 export default class App extends Component {
+    componentDidMount = () => {
+        const { fetchLastGameAsync } = this.props;
+
+        if (process.env.NODE_ENV !== 'production') return null;
+        const { eventBus } = overwolf.windows.getMainWindow();
+
+        return eventBus.addListener('MATCH_ENDED', fetchLastGameAsync);
+    };
+
     render() {
         const { leftSide, rightSide, leftSideProps, rightSideProps } = this.props;
 
