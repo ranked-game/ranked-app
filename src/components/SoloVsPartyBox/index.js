@@ -24,7 +24,13 @@ export default class SoloVsPartyBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
 
-        fillLeftSide('SpiderwebChart', { title: 'Solo vs Party' });
+        fillLeftSide('SpiderwebChart', {
+            title: 'Solo vs Party',
+            data: {
+                Solo: [1, 6, 4, 6, 7, 10],
+                Party: [10, 5, 4, 10, 3, 8],
+            },
+        });
     };
 
     render() {

@@ -1,36 +1,22 @@
 // Core
 import React from 'react';
+import ReactHighcharts from 'react-highcharts';
+import HighchartsMore from 'highcharts-more';
+HighchartsMore(ReactHighcharts.Highcharts);
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import ReactHighcharts from 'react-highcharts';
-import HighchartsMore from 'highcharts-more';
-HighchartsMore(ReactHighcharts.Highcharts);
+import { createSeries } from './utils';
 
-export const SpiderwebChart = ({ title = 'Solo vs Party', data = {} }) => {
-    const verifyData = () => {
-        const { solo, party } = data;
-        const verifiedData = { ...data };
-
-        if (!solo) {
-            verifiedData.solo = Array(6).fill(0);
-        }
-
-        if (!party) {
-            verifiedData.party = Array(6).fill(0);
-        }
-
-        return verifiedData;
-    };
-
+export const SpiderwebChart = ({ title = '', data = {} }) => {
     const options = {
         chart: {
             polar: true,
             backgroundColor: '#1e1154',
             borderRadius: 4,
-            type: 'line',
+            type: 'area',
             height: '65%',
         },
 
@@ -103,20 +89,7 @@ export const SpiderwebChart = ({ title = 'Solo vs Party', data = {} }) => {
             enabled: false,
         },
 
-        series: [
-            {
-                name: 'Solo',
-                data: verifyData().solo,
-                color: '#179bdb',
-                pointPlacement: 'on',
-            },
-            {
-                name: 'Party',
-                data: verifyData().party,
-                color: '#fead0f',
-                pointPlacement: 'on',
-            },
-        ],
+        series: createSeries(data),
     };
 
     return (
