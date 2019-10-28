@@ -11,8 +11,6 @@ import Admin, { MainNavigation } from '../../components';
 // Actions
 import { profileActions } from '../../bus/profile/actions';
 
-import image from '../../theme/assets/svg/logoShortYellow.svg';
-
 const mapStateToProps = (state) => ({
     leftSide: state.ui.get('leftSide'),
     rightSide: state.ui.get('rightSide'),

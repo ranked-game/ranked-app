@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // Styles
 import Styles from './styles.module.scss';
 
+// Actions
+import { uiActions } from '../../bus/ui/actions';
+
 // Test
 // import SteamID from 'steamid';
 // const sid = new SteamID('76561198143141868');
@@ -13,8 +16,37 @@ const mapStateToProps = (state) => ({
     lastGame: state.profile.get('lastGame').toJS(),
 });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = {
+    fillLeftSide: uiActions.fillLeftSide,
+};
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)
 export default class LastMatchBox extends Component {
+    _openGameDetails = () => {
+        const {
+            fillLeftSide,
+            lastGame: { matchId },
+        } = this.props;
+
+        fillLeftSide('SpiderwebChart', {
+            title: `Match #${matchId} performance`,
+            data: {
+                Points: [
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                ],
+            },
+            categories: ['Duration', 'KDA', 'Supporting', 'Pushing', 'XPM', 'GPM'],
+        });
+    };
+
     render() {
         const {
             className,
@@ -32,7 +64,7 @@ export default class LastMatchBox extends Component {
         return (
             <section className={`${Styles.container} ${className}`}>
                 <p className={Styles.label}>Last match</p>
-                <div className={Styles.data}>
+                <div className={Styles.data} onClick={this._openGameDetails}>
                     <div className={Styles.details}>
                         <img src={playerHeroImage} alt="" />
                         <p className={`${Styles.stats} ${Styles.kills}`}>

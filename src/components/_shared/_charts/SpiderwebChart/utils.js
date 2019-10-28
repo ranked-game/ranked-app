@@ -1,12 +1,5 @@
 import { isEmpty } from 'lodash';
 
-// {
-//     name: 'Solo',
-//     data: verifyData().solo,
-//     color: '#179bdb',
-//     pointPlacement: 'on',
-// },
-
 const lineColors = ['#fead0f', '#179bdb'];
 
 export const createSeries = (data) => {

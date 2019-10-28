@@ -1,5 +1,5 @@
 export const endgame = (gameData) => {
-    const { kills, deaths, assists, playerHero, victory, roster } = gameData;
+    const { kills, deaths, assists, playerHero, victory, roster, matchId } = gameData;
     const { eventBus } = overwolf.windows.getMainWindow();
 
     sessionStorage.setItem(
@@ -11,6 +11,7 @@ export const endgame = (gameData) => {
             playerHero,
             victory,
             roster,
+            matchId,
         }),
     );
 

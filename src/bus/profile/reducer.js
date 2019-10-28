@@ -14,6 +14,7 @@ const initialState = Map({
         kills: 0,
         playerHeroImage: image,
         radiantImages: [image, image, image, image, image],
+        matchId: '',
         victory: true,
     }),
 });

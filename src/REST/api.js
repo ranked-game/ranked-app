@@ -15,6 +15,7 @@ export const Api = {
                 assists,
                 playerHero,
                 victory,
+                matchId,
                 roster: { radiant, dire },
             } = JSON.parse(sessionStorage.getItem('gameData'));
             const playerHeroImage = dota2Api.getHeroImage(playerHero, 'vert.jpg');
@@ -31,6 +32,7 @@ export const Api = {
                 direImages,
                 radiantImages,
                 victory,
+                matchId,
             };
         },
     },
