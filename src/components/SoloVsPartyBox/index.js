@@ -27,9 +27,31 @@ export default class SoloVsPartyBox extends Component {
         fillLeftSide('SpiderwebChart', {
             title: 'Solo vs Party',
             data: {
-                Solo: [1, 6, 4, 6, 7, 10],
-                Party: [10, 5, 4, 10, 3, 8],
+                Party: [
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                ],
+                Solo: [
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                ],
             },
+            categories: [
+                'Time\xa0spent',
+                'Games played',
+                'Points earned',
+                'Tournaments\xa0won',
+                'Winrate',
+                'Performance',
+            ],
         });
     };
 

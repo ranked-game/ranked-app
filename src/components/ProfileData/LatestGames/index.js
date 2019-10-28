@@ -30,22 +30,16 @@ export default class LatestGames extends Component {
         fillLeftSide();
     };
 
-    _openGameDetails = ({ target: { id } }) => {
-        const { fillLeftSide, games } = this.props;
-
-        fillLeftSide('GameDetails', { id, games });
-    };
-
     render() {
         return (
             <section className={Styles.container}>
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
-                <GameHistoryRow openGameDetails={this._openGameDetails} />
+                <GameHistoryRow />
+                <GameHistoryRow />
+                <GameHistoryRow />
+                <GameHistoryRow />
+                <GameHistoryRow />
+                <GameHistoryRow />
+                <GameHistoryRow />
             </section>
         );
     }

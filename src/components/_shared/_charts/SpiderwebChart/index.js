@@ -10,7 +10,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { createSeries } from './utils';
 
-export const SpiderwebChart = ({ title = '', data = {} }) => {
+export const SpiderwebChart = ({ title = '', data = {}, categories = [] }) => {
     const options = {
         chart: {
             polar: true,
@@ -41,14 +41,7 @@ export const SpiderwebChart = ({ title = '', data = {} }) => {
         },
 
         xAxis: {
-            categories: [
-                'Time\xa0spent',
-                'Games played',
-                'Points earned',
-                'Tournaments\xa0won',
-                'Winrate',
-                'Performance',
-            ],
+            categories,
             labels: {
                 style: {
                     color: '#9d92c9',

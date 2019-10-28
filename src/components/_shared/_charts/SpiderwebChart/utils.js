@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
 //     pointPlacement: 'on',
 // },
 
-const lineColors = ['#179bdb', '#fead0f'];
+const lineColors = ['#fead0f', '#179bdb'];
 
 export const createSeries = (data) => {
     // returning mock if no data was provided

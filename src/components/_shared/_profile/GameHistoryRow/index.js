@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -7,15 +8,45 @@ import Styles from './styles.module.scss';
 // Instruments
 import dotaLogo from '../../../../theme/assets/svg/dota-logo.svg';
 
+// Actions
+import { uiActions } from '../../../../bus/ui/actions';
+
+const mapDispatchToProps = {
+    fillLeftSide: uiActions.fillLeftSide,
+};
+
+@connect(
+    null,
+    mapDispatchToProps,
+)
 export default class GameHistoryRow extends Component {
+    _openGameDetails = () => {
+        const { fillLeftSide } = this.props;
+
+        fillLeftSide('SpiderwebChart', {
+            title: 'Game performance',
+            data: {
+                Points: [
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                    Math.ceil(Math.random() * 10),
+                ],
+            },
+            categories: ['Duration', 'KDA', 'Supporting', 'Pushing', 'XPM', 'GPM'],
+        });
+    };
+
     render() {
-        const { openGameDetails, active } = this.props;
+        const { active } = this.props;
 
         return (
             <section
                 className={`${Styles.container} ${active && Styles.active}`}
                 id={1}
-                onClick={openGameDetails}
+                onClick={this._openGameDetails}
             >
                 <img className={Styles.gameLogo} src={dotaLogo} />
                 <>
