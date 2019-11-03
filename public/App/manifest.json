@@ -22,7 +22,7 @@
         },
         "game_targeting": {
             "type": "dedicated",
-            "game_ids": [7314, 5426]
+            "game_ids": [7314, 10826]
         },
         "hotkeys": {
             "toggle_app": {
@@ -101,13 +101,13 @@
                 "mute": true
             }
         },
-        "game_events": [7314, 5426],
+        "game_events": [7314, 10826],
         "force_browser": "overwolf",
         "launch_events": [
             {
                 "event": "GameLaunch",
                 "event_data": {
-                    "game_ids": [7314, 5426, 10902]
+                    "game_ids": [7314, 10826]
                 },
                 "start_minimized": true
             }

@@ -1,0 +1,35 @@
+{
+    "account": {
+        "email": "string",
+        "nickname": "string",
+        "avatar": "string -> src",
+        "league": "string",
+        "matchHistory": ["array of matchData"],
+        "tournamentHistory": ["array of userTournamentData"],
+        "currentTournaments": {
+            "solo": [],
+            "party": []
+        },
+        "friendList": [
+            "array of basic user data: img, nickname, id, online status (?), in-game status (?)"
+        ],
+        "earlyAccess": "Boolean",
+        "achievements": ["array of AchievementObjects"],
+        "team": {
+            "name": "string",
+            "members": [],
+            "tournaments": ["optional"]
+        },
+        "pointsEarnedLifetime": {
+            "soloPoints": "number",
+            "partyPoints": "number"
+        },
+        "gamesPlayedLifetime": "number"
+    },
+
+    "dotaMatch": {},
+
+    "R6SMatch": {},
+
+    "tournament": {}
+}

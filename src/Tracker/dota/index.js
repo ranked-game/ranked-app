@@ -44,9 +44,6 @@ export let gameData = {
     deaths: 0,
     assists: 0,
 
-    xpm: 0,
-    gpm: 0,
-
     lastHits: 0,
     denies: 0,
 
@@ -107,6 +104,7 @@ const onNewEvents = ({ events }) => {
 
             switch (match_state) {
                 case 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP':
+                    gameData = clearGameData();
                     gameData = updateGameData({ customMode: true });
                     return tracker.warning('Custom game');
 
@@ -117,20 +115,17 @@ const onNewEvents = ({ events }) => {
                         playerTeam: player_team,
                     });
 
-                    tracker.log("ID's set");
-
-                    return null;
+                    return tracker.log("ID's set");
 
                 case 'DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD':
+                    gameData = clearGameData();
                     gameData = updateGameData({
                         matchId: match_id,
                         playerSteamId: player_steam_id,
                         playerTeam: player_team,
                     });
 
-                    tracker.log("ID's set");
-
-                    return null;
+                    return tracker.log("ID's set");
 
                 default:
                     return null;
@@ -156,7 +151,7 @@ const onNewEvents = ({ events }) => {
                 gameData = updateGameData(handleRosterUpdate(JSON.parse(players)));
 
                 endgame(gameData);
-                clearGameData(gameData);
+                gameData = clearGameData();
             });
 
             break;
@@ -186,16 +181,6 @@ const onNewEvents = ({ events }) => {
         case 'assist':
             const { assists } = data;
             gameData = updateGameData({ assists });
-            break;
-
-        case 'xpm':
-            const { xpm } = data;
-            gameData = updateGameData({ xpm });
-            break;
-
-        case 'gpm':
-            const { gpm } = data;
-            gameData = updateGameData({ gpm });
             break;
 
         case 'hero_ability_skilled':

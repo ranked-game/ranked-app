@@ -147,11 +147,11 @@ export default class Login extends Component {
                 <img src={logo} alt="logo" className={Styles.logo} />
                 <p className={Styles.title}>Log In / Sign Up</p>
                 <a
-                    // href="https://api.ranked.game/api/auth/google"
+                    href="https://api.ranked.game/api/auth/google"
                     className={`${Styles.socialButton} ${Styles.google}`}
                     rel="noopener noreferrer"
                     target="_blank"
-                    onClick={this._handleLoginButtonClick}
+                    // onClick={this._handleLoginButtonClick}
                 >
                     <img src={google} alt="" />
                     Log in with Google

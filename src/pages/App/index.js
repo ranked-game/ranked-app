@@ -29,11 +29,32 @@ const mapDispatchToProps = {
 export default class App extends Component {
     componentDidMount = () => {
         const { fetchLastGameAsync } = this.props;
-
         if (process.env.NODE_ENV !== 'production') return null;
-        const { eventBus } = overwolf.windows.getMainWindow();
 
-        return eventBus.addListener('MATCH_ENDED', fetchLastGameAsync);
+        // EventBus init
+        const { eventBus } = overwolf.windows.getMainWindow();
+        eventBus.addListener('MATCH_ENDED', fetchLastGameAsync);
+
+        // Getting monitors
+        // (we want main app window to be shown at the second monitor if possible)
+        overwolf.utils.getMonitorsList(this._moveAppToTheSecondMonitor);
+    };
+
+    _moveAppToTheSecondMonitor = ({ displays }) => {
+        // getting target display
+        const { x, y, height, width } =
+            displays.length > 1 ? displays.filter((item) => !item.is_primary)[0] : displays[0];
+
+        overwolf.windows.obtainDeclaredWindow('app', ({ window, status }) => {
+            if (status !== 'success') return null;
+            const { id, width: appWindowWidth, height: appWindowHeight } = window;
+
+            overwolf.windows.changePosition(
+                id,
+                x + (screen.availWidth - appWindowWidth) * 0.5,
+                y + (screen.availHeight - appWindowHeight) * 0.5,
+            );
+        });
     };
 
     render() {

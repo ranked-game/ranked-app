@@ -1,4 +1,9 @@
 {
     "7314": "Dota 2",
-    "5426": "League of Legends"
+    "5426": "League of Legends",
+    "10826": "Tom Clancy's Rainbow Six Siege",
+    "appId": {
+        "Dota 2": 570,
+        "Tom Clancy's Rainbow Six Siege": 359550
+    }
 }
