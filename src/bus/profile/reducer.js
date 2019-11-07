@@ -1,5 +1,5 @@
 // Core
-import { Map, fromJS } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
 
 // Types
 import { types } from './types';
@@ -7,6 +7,18 @@ import { types } from './types';
 import image from '../../theme/assets/svg/logoShortOriginal.svg';
 
 const initialState = Map({
+    avatar: '',
+    currentTournaments: List(),
+    email: '',
+    gamesPlayedLifetime: 0,
+    id: '',
+    league: '',
+    nickname: '',
+    pointsEarnedLifetime: Map({
+        solo: List(),
+        party: List(),
+    }),
+    team: Map({}),
     lastGame: Map({
         assists: 0,
         deaths: 0,
@@ -21,6 +33,9 @@ const initialState = Map({
 
 export const profileReducer = (state = initialState, { type, payload = {} }) => {
     switch (type) {
+        case types.FILL_PROFILE_DATA:
+            return state.merge(payload);
+
         case types.FILL_LAST_GAME:
             return state.set('lastGame', fromJS(payload));
 

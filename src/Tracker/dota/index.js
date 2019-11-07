@@ -8,6 +8,9 @@ import {
     updateGameData,
     handleRosterUpdate,
     endgame,
+    startgame,
+    getGameData,
+    showPregameWindow,
 } from './helpers';
 
 const features = [
@@ -31,40 +34,6 @@ const features = [
     'party',
 ];
 
-export let gameData = {
-    bots: false,
-    customMode: false,
-
-    roster: {
-        radiant: [],
-        dire: [],
-    },
-
-    kills: 0,
-    deaths: 0,
-    assists: 0,
-
-    lastHits: 0,
-    denies: 0,
-
-    wardsPlaced: 0,
-    smokesUsed: 0,
-
-    maximumKillStreak: 0,
-    bestMultikill: null,
-    multikillsAmount: 0,
-
-    playerTeam: null,
-    playerSteamId: null,
-    playerHero: null,
-    skillBuild: [],
-    playerInventory: [],
-
-    matchId: null,
-    victory: null,
-    party: null,
-};
-
 const setFeatures = () => {
     overwolf.games.events.setRequiredFeatures(features, ({ status }) =>
         status === 'error' ? setTimeout(setFeatures, 2000) : tracker.log('Dota 2 features set'),
@@ -81,19 +50,10 @@ const onNewEvents = ({ events }) => {
 
             switch (matchState) {
                 case 'DOTA_GAMERULES_STATE_STRATEGY_TIME':
-                    //! add a helper for pre-game screen
-                    if (gameData.customMode)
-                        return tracker.warning('Showing custom game pre-game screen');
-
-                    if (gameData.bots)
-                        return tracker.warning('Showing game with bots pre-game screen');
-
-                    return tracker.success('Showing pre-game screen');
+                    return showPregameWindow();
 
                 case 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS':
-                    if (gameData.customMode || gameData.bots) return null;
-
-                    return tracker.success('Sending startgame transaction....');
+                    return startgame();
 
                 default:
                     return null;
@@ -104,12 +64,12 @@ const onNewEvents = ({ events }) => {
 
             switch (match_state) {
                 case 'DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP':
-                    gameData = clearGameData();
-                    gameData = updateGameData({ customMode: true });
+                    clearGameData();
+                    updateGameData({ customMode: true });
                     return tracker.warning('Custom game');
 
                 case 'DOTA_GAMERULES_STATE_INIT':
-                    gameData = updateGameData({
+                    updateGameData({
                         matchId: match_id,
                         playerSteamId: player_steam_id,
                         playerTeam: player_team,
@@ -118,8 +78,8 @@ const onNewEvents = ({ events }) => {
                     return tracker.log("ID's set");
 
                 case 'DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD':
-                    gameData = clearGameData();
-                    gameData = updateGameData({
+                    clearGameData();
+                    updateGameData({
                         matchId: match_id,
                         playerSteamId: player_steam_id,
                         playerTeam: player_team,
@@ -141,31 +101,29 @@ const onNewEvents = ({ events }) => {
                     me: { steam_id },
                 } = res;
 
-                gameData = updateGameData({
-                    victory: winner === gameData.playerTeam,
+                handleRosterUpdate(JSON.parse(players));
+                updateGameData({
+                    victory: winner === getGameData().playerTeam,
                     playerInventory: resetInventory(),
                     party: party ? JSON.parse(party.party) : null,
                     playerSteamId: steam_id,
                 });
 
-                gameData = updateGameData(handleRosterUpdate(JSON.parse(players)));
-
-                endgame(gameData);
-                gameData = clearGameData();
+                endgame();
             });
 
             break;
 
         case 'cs':
             const { last_hits: lastHits, denies } = data;
-            gameData = updateGameData({ lastHits, denies });
+            updateGameData({ lastHits, denies });
 
             break;
 
         case 'kill':
             const { kills, kill_streak, label } = data;
-            const { bestMultikill, maximumKillStreak, multikillsAmount } = gameData;
-            gameData = updateGameData({
+            const { bestMultikill, maximumKillStreak, multikillsAmount } = getGameData();
+            updateGameData({
                 maximumKillStreak: Math.max(kill_streak, maximumKillStreak),
                 bestMultikill: countBestMultikill(bestMultikill, label),
                 multikillsAmount: label === 'kill' ? multikillsAmount : multikillsAmount + 1,
@@ -175,19 +133,19 @@ const onNewEvents = ({ events }) => {
 
         case 'death':
             const { deaths } = data;
-            gameData = updateGameData({ deaths });
+            updateGameData({ deaths });
             break;
 
         case 'assist':
             const { assists } = data;
-            gameData = updateGameData({ assists });
+            updateGameData({ assists });
             break;
 
         case 'hero_ability_skilled':
             const { name: skill } = data;
 
-            gameData = updateGameData({
-                skillBuild: [...gameData.skillBuild, skill],
+            updateGameData({
+                skillBuild: [...getGameData().skillBuild, skill],
             });
             break;
 
@@ -201,18 +159,18 @@ const onNewEvents = ({ events }) => {
             const { slot: itemSlot, name: changedItemName, location } = data;
 
             if (location === 'hero') {
-                updateInventory(itemSlot, changedItemName, gameData);
+                updateInventory(itemSlot, changedItemName);
             }
             break;
 
         case 'hero_item_consumed':
             const { slot: consumedSlot, name: consumedName } = data;
-            watchItemConsumed(consumedSlot, consumedName, gameData);
+            watchItemConsumed(consumedSlot, consumedName);
             break;
 
         case 'hero_item_used':
             const { name: itemName } = data;
-            watchItemUsed(itemName, gameData);
+            watchItemUsed(itemName);
             break;
 
         case 'hero_status_effect_changed':
@@ -233,12 +191,12 @@ const onInfoUpdates = (data) => {
         case 'roster':
             const roster = JSON.parse(info.roster.players);
 
-            gameData = updateGameData(handleRosterUpdate(roster));
+            handleRosterUpdate(roster);
             break;
 
         case 'party':
             const party = JSON.stringify(info.party.party);
-            gameData = updateGameData({ party });
+            updateGameData({ party });
 
             return tracker.log('party -> ', data);
 

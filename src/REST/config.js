@@ -1,1 +1,1 @@
-export const MAIN_URL = 'https://api.ranked.game';
+export const MAIN_URL = 'https://api.ranked.game/api';

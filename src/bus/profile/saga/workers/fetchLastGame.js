@@ -12,7 +12,7 @@ import { uiActions } from '../../../ui/actions';
 //* put -> dispatch
 export function* fetchLastGame() {
     try {
-        const response = yield apply(Api, Api.profile.fetchLastGameAsync);
+        const response = yield apply(Api, Api.account.fetchLastGameAsync);
 
         yield put(profileActions.fillLastGame(response));
     } catch (error) {

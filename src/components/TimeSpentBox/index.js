@@ -9,7 +9,7 @@ import Styles from './styles.module.scss';
 import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    gamesPlayedLifetime: state.profile.get('gamesPlayedLifetime'),
 });
 
 const mapDispatchToProps = {
@@ -20,7 +20,7 @@ const mapDispatchToProps = {
     mapStateToProps,
     mapDispatchToProps,
 )
-export default class TimeSpentBox extends Component {
+export default class GamesPlayedBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
 
@@ -28,17 +28,17 @@ export default class TimeSpentBox extends Component {
     };
 
     render() {
-        const { className } = this.props;
+        const { className, gamesPlayedLifetime } = this.props;
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                <span className={Styles.label}>Time spent</span>
+                <span className={Styles.label}>Games played</span>
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
-                        42
+                        {gamesPlayedLifetime}
                         <br />
-                        <span>hours</span>
+                        <span>games</span>
                     </p>
                 </div>
             </section>

@@ -11,13 +11,36 @@ import { authActions } from '../../../auth/actions';
 
 //* put -> запускає діспатч
 export function* logout() {
-    //? maybe we should add disabling token functionality on backend?
-    //? if so -> add try..catch
-
     console.log('Logging out action dispatched');
-
-    yield put(authActions.logout());
     yield apply(localStorage, localStorage.clear);
-    // yield put(profileActions.clearProfile());
-    // yield put(historyActions.clearHistory());
+
+    yield apply(overwolf, overwolf.windows.obtainDeclaredWindow, [
+        'login',
+        (result) => {
+            const {
+                window: { id },
+                status,
+            } = result;
+
+            if (status === 'success') {
+                overwolf.windows.restore(id);
+            }
+        },
+    ]);
+
+    yield apply(overwolf, overwolf.windows.getCurrentWindow, [
+        (result) => {
+            const {
+                window: { id },
+                status,
+            } = result;
+
+            if (status === 'success') {
+                overwolf.windows.close(id);
+            }
+        },
+    ]);
+
+    // this usually sets isAuthenticated to false
+    yield put(authActions.logout());
 }

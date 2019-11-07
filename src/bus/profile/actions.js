@@ -6,6 +6,10 @@ export const profileActions = {
         type: types.FILL_LAST_GAME,
         payload,
     }),
+    fillProfileData: (payload) => ({
+        type: types.FILL_PROFILE_DATA,
+        payload,
+    }),
 
     // Async
     fetchLastGameAsync: () => ({

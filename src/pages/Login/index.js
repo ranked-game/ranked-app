@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
+import queryString from 'query-string';
 import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
 import google from '../../theme/assets/svg/google-logo.svg';
 import discord from '../../theme/assets/svg/discord-logo.svg';
@@ -47,11 +48,19 @@ export default class Login extends Component {
         });
 
         window.addEventListener('storage', this._localStorageListener);
-        localStorage.setItem('ranked-remember-me', true);
+        localStorage.setItem('ranked-remember-me', false);
     };
 
     _localStorageListener = (e) => {
         if (e.key === 'ranked-external-auth') {
+            //parsing query stored in the localStorage
+            //getting refresh token
+            const { access, refresh } = queryString.parse(
+                localStorage.getItem('ranked-external-auth'),
+            );
+            localStorage.setItem('ranked-game-token', access);
+            localStorage.setItem('ranked-game-refreshToken', refresh);
+
             overwolf.windows.obtainDeclaredWindow('app', (result) => {
                 const {
                     window: { id },

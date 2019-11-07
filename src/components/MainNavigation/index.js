@@ -7,11 +7,12 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import logo from '../../theme/assets/svg/logoBigHorizontal.svg';
-import settings from '../../theme/assets/svg/settings.svg';
+// import settings from '../../theme/assets/svg/settings.svg';
+import logout from '../../theme/assets/svg/logout.svg';
 import logoShortYellow from '../../theme/assets/svg/logoShortYellow.svg';
 
 // Actions
-import { uiActions } from '../../bus/allActions';
+import { uiActions, authActions } from '../../bus/allActions';
 
 const navLinks = [
     {
@@ -38,11 +39,13 @@ const navLinks = [
 
 const mapStateToProps = (state) => ({
     rightSide: state.ui.get('rightSide'),
+    nickname: state.profile.get('nickname'),
 });
 
 const mapDispatchToProps = {
     fillRightSide: uiActions.fillRightSide,
     fillLeftSide: uiActions.fillLeftSide,
+    logoutAsync: authActions.logoutAsync,
 };
 
 @connect(
@@ -58,7 +61,7 @@ export default class MainNavigation extends Component {
     };
 
     render() {
-        const { rightSide } = this.props;
+        const { rightSide, logoutAsync, nickname } = this.props;
 
         return (
             <section className={Styles.container}>
@@ -68,9 +71,9 @@ export default class MainNavigation extends Component {
                     <p className={Styles.username}>
                         Welcome,
                         <br />
-                        <span>Who Is John Galt?</span>
+                        <span>{nickname}</span>
                     </p>
-                    <img src={settings} alt="" className={Styles.settings} />
+                    <img src={logout} alt="" className={Styles.logout} onClick={logoutAsync} />
                 </div>
 
                 {navLinks.map((item, index) => (

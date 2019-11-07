@@ -9,7 +9,8 @@ import { types } from '../types';
 import {
     login,
     logout,
-    // getUserData,  loginWithToken, refreshTokens
+    getUserData,
+    // loginWithToken, refreshTokens
 } from './workers';
 
 function* watchLogin() {
@@ -18,9 +19,9 @@ function* watchLogin() {
 // function* watchLoginWithToken() {
 //     yield takeEvery(types.LOGIN_WITH_TOKEN_ASYNC, loginWithToken);
 // }
-// function* watchGetUserData() {
-//     yield takeEvery(types.GET_USERDATA_ASYNC, getUserData);
-// }
+function* watchGetUserData() {
+    yield takeEvery(types.GET_USERDATA_ASYNC, getUserData);
+}
 function* watchLogout() {
     yield takeEvery(types.LOGOUT_ASYNC, logout);
 }
@@ -32,7 +33,7 @@ export function* watchAuth() {
     yield all([
         call(watchLogin),
         // call(watchLoginWithToken),
-        // call(watchGetUserData),
+        call(watchGetUserData),
         call(watchLogout),
         // call(watchRefreshTokens),
     ]);

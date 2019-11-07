@@ -31,10 +31,9 @@ export const authActions = {
             payload: token,
         };
     },
-    getUserDataAsync: (token) => {
+    getUserDataAsync: () => {
         return {
             type: types.GET_USERDATA_ASYNC,
-            payload: token,
         };
     },
     refreshTokensAsync: () => {

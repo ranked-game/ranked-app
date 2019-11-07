@@ -1,16 +1,19 @@
+import { updateGameData, getGameData } from './index';
 import { debounce } from 'lodash';
 
 let currentUserInventory = ['empty', 'empty', 'empty', 'empty', 'empty', 'empty'];
 
 /* LOCAL FUNCTIONS BLOCK */
-const incrementWardsPlaced = debounce((wardWasPlaced, gameDataReference) => {
+const incrementWardsPlaced = debounce((wardWasPlaced = true) => {
     if (!wardWasPlaced) return null;
 
-    gameDataReference.wardsPlaced++;
+    updateGameData({
+        wardsPlaced: ++getGameData().wardsPlaced,
+    });
     return tracker.success('Ward placed');
 }, 300);
 
-const checkWardUsedAndUpdateInventory = (slot, item, gameDataReference) => {
+const checkWardUsedAndUpdateInventory = (slot, item) => {
     const wards = ['item_ward_observer', 'item_ward_sentry'];
     const prevSlotItem = currentUserInventory[slot];
 
@@ -23,7 +26,7 @@ const checkWardUsedAndUpdateInventory = (slot, item, gameDataReference) => {
         }
 
         currentUserInventory[slot] = item;
-        return incrementWardsPlaced(true, gameDataReference);
+        return incrementWardsPlaced();
     }
 
     currentUserInventory[slot] = item;
@@ -45,27 +48,53 @@ export const resetInventory = () => {
 /**
  * @param {number} slot
  * @param {object} item
- * @param {object} gameDataReference - ref to gameData object
  */
-export const updateInventory = (slot, item, gameDataReference) => {
+export const updateInventory = (slot, item) => {
     const prevSlotItem = currentUserInventory[slot];
     const wards = ['item_ward_observer', 'item_ward_sentry'];
 
     if (prevSlotItem === 'item_ward_dispenser' && wards.includes(item)) {
         currentUserInventory[slot] = item;
-        return incrementWardsPlaced(true, gameDataReference);
+        return incrementWardsPlaced();
     }
 
-    return checkWardUsedAndUpdateInventory(slot, item, gameDataReference);
+    return checkWardUsedAndUpdateInventory(slot, item);
 };
 
 /**
  * @param {number} slot
  * @param {object} item
- * @param {object} gameDataReference - ref to gameData object
  */
 export const watchItemConsumed = (slot, item) => {
     if (item === 'empty') return null;
 
     return tracker.log('Item consuumed -> ', item);
+};
+
+/**
+ *
+ * @param {string} itemName
+ */
+export const watchItemUsed = (itemName) => {
+    switch (itemName) {
+        case 'item_ward_dispenser':
+            tracker.log('Ward placed');
+            incrementWardsPlaced();
+            break;
+
+        case 'item_ward_observer':
+            tracker.log('Obs placed');
+            incrementWardsPlaced();
+            break;
+
+        case 'item_ward_sentry':
+            tracker.log('Sentry placed');
+            incrementWardsPlaced();
+            break;
+
+        default:
+            return tracker.log(`[ITEM] -> ${itemName}`);
+    }
+
+    return null;
 };

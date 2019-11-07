@@ -3,7 +3,7 @@
     "type": "WebApp",
     "meta": {
         "name": "Ranked",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "minimum-overwolf-version": "0.119.1",
         "author": "Ranked Game",
         "icon": "IconMouseOver.png",
@@ -12,7 +12,14 @@
         "description": "Join a team and fight your way to the competitive cyberscene!",
         "dock_button_title": "Ranked Game"
     },
-    "permissions": ["Extensions", "Streaming", "Profile", "GameInfo", "Clipboard"],
+    "permissions": [
+        "Extensions",
+        "Streaming",
+        "Profile",
+        "GameInfo",
+        "Clipboard",
+        "DesktopStreaming"
+    ],
     "data": {
         "start_window": "controller",
         "protocol_override_domains": { "googlesyndication": "http" },

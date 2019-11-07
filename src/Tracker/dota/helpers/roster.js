@@ -1,34 +1,34 @@
 import { debounce } from 'lodash';
-import { gameData } from '..';
+import { getGameData, updateGameData } from './index';
 
 /**
  * @returns {boolean}
  */
-export const checkBots = () => {
-    const {
-        roster: { radiant, dire },
-    } = gameData;
-    const bots = [...radiant, ...dire].filter((item) => item.steamId.startsWith('9007199'));
+export const checkBots = (roster) => {
+    const bots = roster.filter((item) => item.steamId.startsWith('9007199'));
 
-    return bots.length > 0;
+    return updateGameData({
+        bots: bots.length > 0,
+    });
 };
 
 /**
  * @param {Object} roster - Receiving `roster` object as a param
- * @returns {Object} Either object to update `gameData` or empty obj
  */
 export const handleRosterUpdate = debounce((roster) => {
     const radiant = roster.filter((item) => item.team === 2);
     const dire = roster.filter((item) => item.team === 3);
 
     if (roster.length !== 10) return {};
-    if (!gameData.playerSteamId) return {};
+    if (!getGameData().playerSteamId) return {};
 
-    const playerData = roster.filter((item) => item.steamId === gameData.playerSteamId)[0];
+    const playerData = roster.filter((item) => item.steamId === getGameData().playerSteamId)[0];
 
-    return {
+    updateGameData({
         roster: { radiant, dire },
-        bots: checkBots(),
         playerHero: playerData.hero,
-    };
+    });
+    checkBots(roster);
+
+    return null;
 }, 5000);

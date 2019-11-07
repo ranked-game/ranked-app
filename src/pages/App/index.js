@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Components
-import Admin, { MainNavigation } from '../../components';
+import Admin, { MainNavigation, Profile } from '../../components';
 
 // Actions
 import { profileActions } from '../../bus/profile/actions';
+import { authActions } from '../../bus/auth/actions';
 
 const mapStateToProps = (state) => ({
     leftSide: state.ui.get('leftSide'),
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchLastGameAsync: profileActions.fetchLastGameAsync,
+    getUserDataAsync: authActions.getUserDataAsync,
 };
 
 @connect(
@@ -28,7 +30,9 @@ const mapDispatchToProps = {
 )
 export default class App extends Component {
     componentDidMount = () => {
-        const { fetchLastGameAsync } = this.props;
+        const { fetchLastGameAsync, getUserDataAsync } = this.props;
+        getUserDataAsync();
+
         if (process.env.NODE_ENV !== 'production') return null;
 
         // EventBus init
@@ -37,19 +41,19 @@ export default class App extends Component {
 
         // Getting monitors
         // (we want main app window to be shown at the second monitor if possible)
-        overwolf.utils.getMonitorsList(this._moveAppToTheSecondMonitor);
+        return overwolf.utils.getMonitorsList(this._moveAppToTheSecondMonitor);
     };
 
     _moveAppToTheSecondMonitor = ({ displays }) => {
         // getting target display
-        const { x, y, height, width } =
+        const { x, y } =
             displays.length > 1 ? displays.filter((item) => !item.is_primary)[0] : displays[0];
 
         overwolf.windows.obtainDeclaredWindow('app', ({ window, status }) => {
             if (status !== 'success') return null;
             const { id, width: appWindowWidth, height: appWindowHeight } = window;
 
-            overwolf.windows.changePosition(
+            return overwolf.windows.changePosition(
                 id,
                 x + (screen.availWidth - appWindowWidth) * 0.5,
                 y + (screen.availHeight - appWindowHeight) * 0.5,
