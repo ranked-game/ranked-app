@@ -4,7 +4,9 @@
 // Defaults
 const defaultHeaders = {
     'Content-Type': 'application/json',
-    Authorization: localStorage.getItem('ranked-game-token'),
+    // Authorization: localStorage.getItem('ranked-game-token'),
+    Authorization:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyYTM0ZTRmLTAyN2UtNDg3Yi04NWFmLTcxZjk2YjcyMDFjOSIsImVtYWlsIjoicm9xdWVmb3JlQGZ1bGNydW0ucm9ja3MiLCJleHAiOjYwMDAwMDAwMDE1NzMzMzQwMDAsImlhdCI6MTU3MzMzNDMwNH0.GeTm9MLeMPOXHqFiQIKfwDGOOn5LjZ1rg-WnNfixqO0',
 };
 
 // Encryption

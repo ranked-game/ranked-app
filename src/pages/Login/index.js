@@ -53,8 +53,8 @@ export default class Login extends Component {
 
     _localStorageListener = (e) => {
         if (e.key === 'ranked-external-auth') {
-            //parsing query stored in the localStorage
-            //getting refresh token
+            // parsing query stored in the localStorage
+            // getting refresh token
             const { access, refresh } = queryString.parse(
                 localStorage.getItem('ranked-external-auth'),
             );

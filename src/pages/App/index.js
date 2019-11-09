@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Components
-import Admin, { MainNavigation, Profile } from '../../components';
+import Admin, { MainNavigation } from '../../components';
 
 // Actions
 import { profileActions } from '../../bus/profile/actions';

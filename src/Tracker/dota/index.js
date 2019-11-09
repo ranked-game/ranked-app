@@ -189,6 +189,7 @@ const onInfoUpdates = (data) => {
 
     switch (feature) {
         case 'roster':
+            if (!info.roster.players) return null;
             const roster = JSON.parse(info.roster.players);
 
             handleRosterUpdate(roster);
