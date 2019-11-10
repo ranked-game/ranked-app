@@ -2,7 +2,14 @@ import { updateGameData } from './index';
 
 export const handleRosterUpdate = (roster) => {
     const json = Object.values(roster)[0];
-    const { is_local, name, team } = JSON.stringify(data);
+    if (!json) return null;
 
-    if (is_local) return updateGameData({ playerName: name, playerTeam: team });
+    const { is_local, name, team } = JSON.parse(json);
+
+    if (is_local) {
+        tracker.log('Player name -> ', name);
+        tracker.log('Player team -> ', team);
+
+        return updateGameData({ playerName: name, playerTeam: team });
+    }
 };

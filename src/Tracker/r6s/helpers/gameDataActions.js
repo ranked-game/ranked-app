@@ -15,7 +15,7 @@ let gameData = {
         blue: 0,
     },
 
-    matchId: '',
+    matchId: '0',
     gameMode: '',
     victory: null,
     playerName: '',
@@ -60,7 +60,7 @@ export const clearGameData = () => {
             blue: 0,
         },
 
-        matchId: '',
+        matchId: '0',
         gameMode: '',
         victory: null,
         playerName: '',

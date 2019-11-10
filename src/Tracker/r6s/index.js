@@ -1,4 +1,11 @@
-import { updateGameData, getGameData } from './helpers';
+import {
+    updateGameData,
+    getGameData,
+    handleRosterUpdate,
+    endgame,
+    startgame,
+    handleGameMode,
+} from './helpers';
 
 const features = ['game_info', 'match', 'match_info', 'roster', 'kill', 'death'];
 
@@ -14,21 +21,24 @@ const onNewEvents = ({ events }) => {
 
     switch (name) {
         case 'matchOutcome':
-            return updateGameData({ victory: data === 'victory' });
+            tracker.log('matchOutcome -> ', data);
+            updateGameData({ victory: data === 'victory' });
+            return endgame();
 
         case 'roundStart':
+            startgame();
             return null;
 
         case 'roundEnd':
             return null;
 
         case 'roundOutcome':
-            return data
-                ? updateGameData({ roundsWon: ++getGameData().roundsWon })
-                : updateGameData({ roundsLost: ++getGameData().roundsLost });
+            return data === 'defeat'
+                ? updateGameData({ roundsLost: ++getGameData().roundsLost })
+                : updateGameData({ roundsWon: ++getGameData().roundsWon });
 
         case 'kill':
-            return null;
+            return updateGameData({ kills: ++getGameData().kills });
 
         case 'headshot':
             return updateGameData({ headshots: ++getGameData().headshots });
@@ -37,12 +47,12 @@ const onNewEvents = ({ events }) => {
             return updateGameData({ knockouts: ++getGameData().knockouts });
 
         case 'death':
-            return null;
+            return updateGameData({ deaths: ++getGameData().deaths });
 
         case 'killer':
-            const { playerName, suicides } = getGameData();
+            let { playerName, suicides } = getGameData();
 
-            return data === playerName ? updateGameData({ suicides: suicides + 1 }) : null;
+            return data === playerName ? updateGameData({ suicides: ++suicides }) : null;
 
         default:
             return null;
@@ -55,23 +65,22 @@ const onInfoUpdates = ({ feature, info }) => {
             return null;
 
         case 'match':
-            return null;
+            return tracker.log('Match -> ', info);
+        // return updateGameData({ teamScore: JSON.parse(info.match.score) });
 
         case 'match_info':
             const {
-                match_info: { game_mode, pseudo_match_id },
+                match_info: { game_mode },
             } = info;
 
-            if (game_mode) return updateGameData({ gameMode: game_mode });
-
-            return updateGameData({ matchId: pseudo_match_id });
+            return game_mode ? updateGameData({ gameMode: game_mode }) : null;
 
         case 'roster':
             const type = Object.keys(info)[0];
 
-            if (type === 'players') return tracker.log('Roster data -> ', info.players);
-
-            return tracker.log('Player data -> ', info.player);
+            return type === 'players'
+                ? handleRosterUpdate(info.players)
+                : updateGameData({ score: info.player.score || getGameData().score });
 
         default:
             return tracker.log(`onInfoUpdates from RS6 ->`, feature, info);
