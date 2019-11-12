@@ -2,9 +2,9 @@ import {
     updateGameData,
     getGameData,
     handleRosterUpdate,
+    handleMatchId,
     endgame,
     startgame,
-    handleGameMode,
 } from './helpers';
 
 const features = ['game_info', 'match', 'match_info', 'roster', 'kill', 'death'];
@@ -26,7 +26,6 @@ const onNewEvents = ({ events }) => {
             return endgame();
 
         case 'roundStart':
-            startgame();
             return null;
 
         case 'roundEnd':
@@ -65,22 +64,24 @@ const onInfoUpdates = ({ feature, info }) => {
             return null;
 
         case 'match':
-            return tracker.log('Match -> ', info);
-        // return updateGameData({ teamScore: JSON.parse(info.match.score) });
+            const { match } = info;
+            return match ? updateGameData({ teamScore: JSON.parse(match.score) }) : null;
 
         case 'match_info':
             const {
-                match_info: { game_mode },
+                match_info: { game_mode, pseudo_match_id },
             } = info;
 
-            return game_mode ? updateGameData({ gameMode: game_mode }) : null;
+            return game_mode
+                ? updateGameData({ gameMode: game_mode })
+                : handleMatchId(pseudo_match_id);
 
         case 'roster':
             const type = Object.keys(info)[0];
 
             return type === 'players'
                 ? handleRosterUpdate(info.players)
-                : updateGameData({ score: info.player.score || getGameData().score });
+                : updateGameData({ score: +info.player.score || getGameData().score });
 
         default:
             return tracker.log(`onInfoUpdates from RS6 ->`, feature, info);

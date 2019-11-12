@@ -1,15 +1,28 @@
 import uuid from 'uuid';
+import validate from 'uuid-validate';
+import { Api } from '../../../REST';
 import { getGameData, updateGameData } from './index';
 
-export const startgame = () => {
+export const startgame = async () => {
     const { matchId, gameMode } = getGameData();
-    if (matchId !== '0' || !gameMode.includes('PVP')) return null;
-
-    updateGameData({ matchId: uuid() });
+    if (!gameMode.includes('PVP') || !validate(matchId)) return null;
 
     tracker.success('Sending startgame transaction...');
+    const response = await Api.games.sendStartgameTransaction({
+        gameId: '10826',
+        matchId,
+        party: {},
+    });
+    const result = await response.json();
+
+    if (response.status > 204)
+        return tracker.error('Startgame transaction error -> \n', JSON.stringify(result, null, 2));
+
+    return tracker.log('Startgame transaction result -> ', result);
 };
 
-export const handleGameMode = (mode) => {
-    if (mode.includes('PVP')) return startgame();
+export const handleMatchId = (matchId) => {
+    tracker.log("Match id's set");
+    updateGameData({ matchId });
+    return startgame();
 };

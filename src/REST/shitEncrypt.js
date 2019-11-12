@@ -13,10 +13,10 @@ const defaultHeaders = {
 const shitEncrypt = ({ endpoint, headers = defaultHeaders, body: defaultBody, method }) => {
     if (!defaultBody) return fetch(endpoint, { method, headers });
 
-    // const body = JSON.stringify({ data: encrypt(defaultBody) });
+    const body = JSON.stringify(defaultBody);
 
     // return () => fetch(endpoint, { method, headers, body });
-    return fetch(endpoint, { method, headers, defaultBody });
+    return fetch(endpoint, { method, headers, body });
 };
 
 export default shitEncrypt;
