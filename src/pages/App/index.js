@@ -20,24 +20,21 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    fetchLastGameAsync: profileActions.fetchLastGameAsync,
+    fetchMatchHistoryAsync: profileActions.fetchMatchHistoryAsync,
     getUserDataAsync: authActions.getUserDataAsync,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
     componentDidMount = () => {
-        const { fetchLastGameAsync, getUserDataAsync } = this.props;
+        const { fetchMatchHistoryAsync, getUserDataAsync } = this.props;
         getUserDataAsync();
 
         if (process.env.NODE_ENV !== 'production') return null;
 
         // EventBus init
         const { eventBus } = overwolf.windows.getMainWindow();
-        eventBus.addListener('MATCH_ENDED', fetchLastGameAsync);
+        eventBus.addListener('MATCH_ENDED', fetchMatchHistoryAsync);
 
         // Getting monitors
         // (we want main app window to be shown at the second monitor if possible)

@@ -8,6 +8,7 @@ export const endgame = async () => {
         matchId,
         roster: { radiant, dire },
     } = getGameData();
+    const { eventBus } = overwolf.windows.getMainWindow();
 
     if (customMode || bots || dire.length < 1 || radiant.length < 1) return null;
 
@@ -22,6 +23,8 @@ export const endgame = async () => {
     const result = await response.json();
 
     if (response.status > 204) return tracker.error('Endgame transaction error -> ', result);
+
+    eventBus.fire('MATCH_ENDED');
 
     tracker.log('Endgame transaction result -> ', result);
 

@@ -1,6 +1,8 @@
+// Listeners
 import { setDotaListener, removeDotaListener } from './dota';
 import { setR6SiegeListener, removeR6SiegeListener } from './r6s';
 
+// Instruments
 const development = process.env.NODE_ENV === 'development';
 let listenerSet = false;
 
