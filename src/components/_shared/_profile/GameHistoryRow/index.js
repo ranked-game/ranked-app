@@ -7,6 +7,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import dotaLogo from '../../../../theme/assets/svg/dota-logo.svg';
+import r6Logo from '../../../../theme/assets/images/r6-logo.jpg';
 
 // Actions
 import { uiActions } from '../../../../bus/ui/actions';
@@ -15,10 +16,7 @@ const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    null,
-    mapDispatchToProps,
-)
+@connect(null, mapDispatchToProps)
 export default class GameHistoryRow extends Component {
     _openGameDetails = () => {
         const { fillLeftSide } = this.props;
@@ -40,7 +38,16 @@ export default class GameHistoryRow extends Component {
     };
 
     render() {
-        const { active } = this.props;
+        const {
+            active,
+            data: {
+                gameId,
+                score,
+                victory,
+                tournamentName = `${gameId} Solo Ladder`,
+                pointsEarned = Math.round(Math.random() * 50),
+            },
+        } = this.props;
 
         return (
             <section
@@ -48,18 +55,18 @@ export default class GameHistoryRow extends Component {
                 id={1}
                 onClick={this._openGameDetails}
             >
-                <img className={Styles.gameLogo} src={dotaLogo} />
+                <img className={Styles.gameLogo} src={gameId === '7314' ? dotaLogo : r6Logo} />
                 <>
-                    <p className={Styles.title}>Score:</p>
+                    <p className={Styles.title}>{gameId === '7314' ? 'KDA:' : 'Score:'}</p>
                     <p className={Styles.title}>Outcome:</p>
                     <p className={Styles.title}>Tournament name:</p>
                     <p className={Styles.title}>Points earned:</p>
                 </>
                 <>
-                    <p className={Styles.data}>3 / 2 / 6</p>
-                    <p className={Styles.data}>Victory</p>
-                    <p className={Styles.data}>Dota 2 BigDaddy</p>
-                    <p className={Styles.data}>15</p>
+                    <p className={Styles.data}>{score}</p>
+                    <p className={Styles.data}>{victory ? 'Victory' : 'Defeat'}</p>
+                    <p className={Styles.data}>{tournamentName}</p>
+                    <p className={Styles.data}>{pointsEarned}</p>
                 </>
             </section>
         );

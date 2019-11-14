@@ -15,10 +15,7 @@ const mapDispatchToProps = {
     fillRightSide: uiActions.fillRightSide,
 };
 
-@connect(
-    null,
-    mapDispatchToProps,
-)
+@connect(null, mapDispatchToProps)
 export default class Profile extends Component {
     state = {
         tabs: ['Performance', 'Latest games', 'Hall of Fame'],
@@ -29,7 +26,7 @@ export default class Profile extends Component {
         const { tabs } = this.state;
 
         if (!tabs.includes(active)) {
-            fillRightSide(null, { active: 'Performance' });
+            fillRightSide(null, { active: 'Latest games' });
         }
     };
 
