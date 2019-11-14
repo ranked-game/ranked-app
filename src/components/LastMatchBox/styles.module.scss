@@ -44,7 +44,137 @@
             border: 1px solid $palettePurple5;
         }
 
-        & .details {
+        &.r6s {
+            grid-template-rows: 1fr 2fr;
+            grid-template-columns: repeat(5, 1fr);
+
+            & .playerTeamFlag {
+                grid-column: 1 / 3;
+                grid-row: 1;
+
+                display: grid;
+                place-items: center start;
+
+                height: 100%;
+                width: 100%;
+                padding: 0 2rem;
+
+                font-size: 3rem;
+                color: $paletteWhite;
+            }
+
+            & .enemyTeamFlag {
+                grid-column: 4 / 6;
+                grid-row: 1;
+
+                display: grid;
+                place-items: center end;
+
+                height: 100%;
+                width: 100%;
+                padding: 0 2rem;
+
+                font-size: 3rem;
+                color: $paletteWhite;
+            }
+
+            & .playerScore {
+                display: grid;
+                place-items: center;
+                gap: 0.25rem;
+
+                font-size: 1.5rem;
+
+                & p {
+                    font-size: 1.2rem;
+                }
+
+                & span {
+                    color: $paletteWhite;
+                }
+            }
+
+            & img {
+                height: 70%;
+
+                border-radius: 100%;
+            }
+
+            & .stats {
+                display: grid;
+                grid-auto-flow: row;
+                place-items: end center;
+
+                width: 100%;
+                padding: 0.5rem 0;
+
+                font-size: 2rem;
+                color: $paletteWhite;
+
+                & span {
+                    place-self: start center;
+
+                    font-size: 1rem;
+                    color: $palettePurple5;
+                }
+
+                &.borders {
+                    width: 120%;
+
+                    border-left: 2px solid $palettePurple7;
+                    border-right: 2px solid $palettePurple7;
+                }
+            }
+
+            & .matchOutcome {
+                display: grid;
+                grid-auto-flow: row;
+                gap: 1rem;
+
+                & .victory {
+                    padding: 0.75rem 2rem;
+
+                    border: 1px solid $paletteSuccessGreen;
+                    border-radius: 4px;
+
+                    color: $paletteSuccessGreen;
+                    font-size: 1.25rem;
+                }
+
+                & .defeat {
+                    padding: 0.75rem 2rem;
+
+                    border: 1px solid $paletteErrorRed;
+                    border-radius: 4px;
+
+                    color: $paletteErrorRed;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        & .loading {
+            grid-row: 1 / 3;
+
+            display: grid;
+            grid-auto-flow: row;
+            place-items: center;
+
+            width: 100%;
+            height: 100%;
+            padding-top: 2rem;
+
+            & img {
+                place-self: end center;
+                height: 100%;
+            }
+
+            & p {
+                font-size: 1.25rem;
+            }
+        }
+
+        & .dotaDetails {
             display: grid;
             grid-template-columns: 2fr 2fr 2fr 2fr 3fr;
             gap: 1rem;

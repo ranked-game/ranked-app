@@ -6,12 +6,12 @@ import { types } from '../types';
 
 //* REMEMBER TO REEXPORT
 // Workers
-import { fetchLastGame } from './workers';
+import { fetchMatchHistory } from './workers';
 
-function* watchFetchLastGame() {
-    yield takeEvery(types.FETCH_LAST_GAME_ASYNC, fetchLastGame);
+function* watchFetchHistory() {
+    yield takeEvery(types.FETCH_MATCH_HISTORY_ASYNC, fetchMatchHistory);
 }
 
 export function* watchProfile() {
-    yield all([call(watchFetchLastGame)]);
+    yield all([call(watchFetchHistory)]);
 }

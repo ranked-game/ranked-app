@@ -1,11 +1,4 @@
-import {
-    updateGameData,
-    getGameData,
-    handleRosterUpdate,
-    handleMatchId,
-    endgame,
-    startgame,
-} from './helpers';
+import { updateGameData, getGameData, handleRosterUpdate, handleMatchId, endgame } from './helpers';
 
 const features = ['game_info', 'match', 'match_info', 'roster', 'kill', 'death'];
 
@@ -74,7 +67,7 @@ const onInfoUpdates = ({ feature, info }) => {
 
             return game_mode
                 ? updateGameData({ gameMode: game_mode })
-                : handleMatchId(pseudo_match_id);
+                : handleMatchId(pseudo_match_id); // this kicks off startgame transaction
 
         case 'roster':
             const type = Object.keys(info)[0];

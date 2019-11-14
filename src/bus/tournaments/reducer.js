@@ -29,16 +29,12 @@ const initialState = Map({
         matchId: '',
         victory: true,
     }),
-    matchHistory: List(),
 });
 
 export const profileReducer = (state = initialState, { type, payload = {} }) => {
     switch (type) {
         case types.FILL_PROFILE_DATA:
             return state.merge(payload);
-
-        case types.FILL_MATCH_HISTORY:
-            return state.set('matchHistory', fromJS(payload));
 
         case types.FILL_LAST_GAME:
             return state.set('lastGame', fromJS(payload));

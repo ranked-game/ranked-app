@@ -3,32 +3,11 @@ import { getGameData, clearGameData } from './index';
 
 export const endgame = async () => {
     const {
-        kills,
-        deaths,
-        assists,
-        playerHero,
-        victory,
-        roster,
-        matchId,
         customMode,
         bots,
+        matchId,
+        roster: { radiant, dire },
     } = getGameData();
-    const { dire, radiant } = roster; // temporary
-    const { eventBus } = overwolf.windows.getMainWindow();
-
-    sessionStorage.setItem(
-        'gameData',
-        JSON.stringify({
-            kills,
-            deaths,
-            assists,
-            playerHero,
-            victory,
-            roster,
-            matchId,
-        }),
-    );
-    eventBus.fire('MATCH_ENDED');
 
     if (customMode || bots || dire.length < 1 || radiant.length < 1) return null;
 

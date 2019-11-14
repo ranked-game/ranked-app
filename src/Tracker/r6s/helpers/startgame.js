@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import validate from 'uuid-validate';
 import { Api } from '../../../REST';
 import { getGameData, updateGameData } from './index';

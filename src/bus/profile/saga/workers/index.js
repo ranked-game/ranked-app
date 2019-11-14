@@ -1,1 +1,1 @@
-export * from './fetchLastGame';
+export * from './fetchMatchHistory';

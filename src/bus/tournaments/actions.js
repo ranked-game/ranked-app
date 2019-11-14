@@ -6,19 +6,13 @@ export const profileActions = {
         type: types.FILL_LAST_GAME,
         payload,
     }),
-
     fillProfileData: (payload) => ({
         type: types.FILL_PROFILE_DATA,
         payload,
     }),
 
-    fillMatchHistory: (payload) => ({
-        type: types.FILL_MATCH_HISTORY,
-        payload,
-    }),
-
     // Async
-    fetchMatchHistoryAsync: () => ({
-        type: types.FETCH_MATCH_HISTORY_ASYNC,
+    fetchLastGameAsync: () => ({
+        type: types.FETCH_LAST_GAME_ASYNC,
     }),
 };

@@ -5,25 +5,26 @@ import { connect } from 'react-redux';
 // Styles
 import Styles from './styles.module.scss';
 
+// Instruments
+import { DotaData } from './dota';
+import { R6Data } from './r6s';
+import logo from '../../theme/assets/svg/logoShort.svg';
+
 // Actions
 import { uiActions } from '../../bus/ui/actions';
 
-// Test
-// import SteamID from 'steamid';
-// const sid = new SteamID('76561198143141868');
-
 const mapStateToProps = (state) => ({
-    lastGame: state.profile.get('lastGame').toJS(),
+    lastGame: state.profile
+        .get('matchHistory')
+        ?.last()
+        ?.toJS(),
 });
 
 const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class LastMatchBox extends Component {
     _openGameDetails = () => {
         const {
@@ -48,53 +49,25 @@ export default class LastMatchBox extends Component {
     };
 
     render() {
-        const {
-            className,
-            lastGame: {
-                playerHeroImage,
-                kills,
-                deaths,
-                assists,
-                victory,
-                direImages,
-                radiantImages,
-            },
-        } = this.props;
+        const { className, lastGame } = this.props;
 
         return (
             <section className={`${Styles.container} ${className}`}>
                 <p className={Styles.label}>Last match</p>
-                <div className={Styles.data} onClick={this._openGameDetails}>
-                    <div className={Styles.details}>
-                        <img src={playerHeroImage} alt="" />
-                        <p className={`${Styles.stats} ${Styles.kills}`}>
-                            {kills} <br />
-                            <span>Kills</span>
-                        </p>
-                        <p className={`${Styles.stats} ${Styles.borders}`}>
-                            {deaths} <br />
-                            <span>Deaths</span>
-                        </p>
-                        <p className={`${Styles.stats} ${Styles.assists}`}>
-                            {assists} <br />
-                            <span>Assists</span>
-                        </p>
-                        <div className={Styles.matchOutcome}>
-                            <p>Match outcome:</p>
-                            <div className={victory ? Styles.victory : Styles.defeat}>
-                                {victory ? 'Victory' : 'Defeat'}
-                            </div>
+                <div
+                    className={`${Styles.data} ${lastGame?.gameId === '10826' && Styles.r6s}`}
+                    onClick={this._openGameDetails}
+                >
+                    {lastGame?.gameId === '7314' ? (
+                        <DotaData Styles={Styles} gameData={lastGame} />
+                    ) : lastGame?.gameId === '10826' ? (
+                        <R6Data Styles={Styles} gameData={lastGame} />
+                    ) : (
+                        <div className={Styles.loading}>
+                            <img src={logo} alt='' />
+                            <p>Calling FBI to retrieve your personal data...</p>
                         </div>
-                    </div>
-                    <div className={Styles.roster}>
-                        {radiantImages.map((item, index) => (
-                            <img src={item} alt="" key={index} />
-                        ))}
-                        <p>VS.</p>
-                        {direImages.map((item, index) => (
-                            <img src={item} alt="" key={index} />
-                        ))}
-                    </div>
+                    )}
                 </div>
             </section>
         );

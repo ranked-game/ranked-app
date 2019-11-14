@@ -26,6 +26,7 @@ export function* getUserData() {
                 nickname: result.nickname.length > 0 ? result.nickname : result.email.split('@')[0],
             }),
         );
+        yield put(profileActions.fetchMatchHistoryAsync());
     } catch (error) {
         yield put(uiActions.emitError(error, '-> getUserData worker'));
     }
