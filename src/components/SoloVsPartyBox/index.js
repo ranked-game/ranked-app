@@ -9,18 +9,15 @@ import Styles from './styles.module.scss';
 import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    // soloPoints: state.profile.get('pointsEarnedLifetime').get('solo'),
-    // partyPoints: state.profile.get('pointsEarnedLifetime').get('party'),
+    soloPoints: state.profile.get('pointsEarnedLifetime').get('solo'),
+    partyPoints: state.profile.get('pointsEarnedLifetime').get('party'),
 });
 
 const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class SoloVsPartyBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
@@ -57,7 +54,7 @@ export default class SoloVsPartyBox extends Component {
     };
 
     render() {
-        const { className, soloPoints = 0, partyPoints = 0 } = this.props;
+        const { className, soloPoints, partyPoints } = this.props;
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
@@ -65,12 +62,12 @@ export default class SoloVsPartyBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.soloText}>Solo</p>
                     <div className={Styles.soloNumber}>
-                        {soloPoints}
+                        {soloPoints.size}
                         <br />
                         <span>points</span>
                     </div>
                     <div className={Styles.partyNumber}>
-                        {partyPoints}
+                        {partyPoints.size}
                         <br />
                         <span>points</span>
                     </div>

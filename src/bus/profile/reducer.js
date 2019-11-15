@@ -35,7 +35,7 @@ const initialState = Map({
 export const profileReducer = (state = initialState, { type, payload = {} }) => {
     switch (type) {
         case types.FILL_PROFILE_DATA:
-            return state.merge(payload);
+            return state.merge(fromJS(payload));
 
         case types.FILL_MATCH_HISTORY:
             return state.set('matchHistory', fromJS(payload));

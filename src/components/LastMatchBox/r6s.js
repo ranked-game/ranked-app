@@ -48,6 +48,7 @@ export const R6Data = ({ Styles, gameData }) => {
                 <p>Score:</p>
                 <span>{score}</span>
             </div>
+            {/* <p className={Styles.playerName}>{playerName}</p> */}
             <img src={logo} alt='' />
             <p className={`${Styles.stats} ${Styles.kills}`}>
                 {kills} <br />
