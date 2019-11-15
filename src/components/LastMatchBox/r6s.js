@@ -12,7 +12,7 @@ export const R6Data = ({ Styles, gameData }) => {
             deaths,
             kills,
             headshots,
-            playerName,
+            // playerName,
             playerTeam,
             teamScore: { blue, orange },
             victory,

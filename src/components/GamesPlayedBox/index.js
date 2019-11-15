@@ -5,21 +5,22 @@ import { connect } from 'react-redux';
 // Styles
 import Styles from './styles.module.scss';
 
+// Instruments
+import moment from 'moment';
+
 // Actions
 import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     gamesPlayedLifetime: state.profile.get('gamesPlayedLifetime'),
+    matchHistory: state.profile.get('matchHistory').toJS(),
 });
 
 const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class GamesPlayedBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
@@ -28,7 +29,16 @@ export default class GamesPlayedBox extends Component {
     };
 
     render() {
-        const { className, gamesPlayedLifetime } = this.props;
+        const {
+            className,
+            // gamesPlayedLifetime,
+            matchHistory,
+        } = this.props;
+        const lastWeekMatches = matchHistory.filter(({ created }) =>
+            moment()
+                .startOf('week')
+                .isBefore(created),
+        );
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
@@ -36,7 +46,7 @@ export default class GamesPlayedBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
-                        {gamesPlayedLifetime}
+                        {lastWeekMatches.length}
                         <br />
                         <span>games</span>
                     </p>
