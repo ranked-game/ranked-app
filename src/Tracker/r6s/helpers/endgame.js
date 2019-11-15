@@ -3,9 +3,9 @@ import { getGameData, clearGameData } from './index';
 
 export const endgame = async () => {
     const { matchId } = getGameData();
+    const { eventBus } = overwolf.windows.getMainWindow();
 
     tracker.success('Sending endgame transaction...');
-    tracker.log(getGameData());
 
     const response = await Api.games.sendEndgameTransaction({
         gameId: '10826',
@@ -17,6 +17,8 @@ export const endgame = async () => {
     if (response.status > 204) return tracker.error('Endgame transaction error -> ', result);
 
     tracker.log('Endgame transaction result -> ', result);
+
+    eventBus.fire('MATCH_ENDED');
 
     return clearGameData();
 };

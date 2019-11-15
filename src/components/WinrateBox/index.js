@@ -59,7 +59,7 @@ export default class WinrateBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
-                        {winrate ? winrate : '...'}
+                        {winrate ? winrate.toFixed(2) : '...'}
                         <br />
                         <span>percent</span>
                     </p>
