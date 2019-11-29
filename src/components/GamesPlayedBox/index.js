@@ -7,6 +7,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
+import { countAmountOfMatchesDaily } from '../../utils';
 
 // Actions
 import { uiActions } from '../../bus/ui/actions';
@@ -23,9 +24,13 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class GamesPlayedBox extends Component {
     _openDetails = () => {
-        const { fillLeftSide } = this.props;
+        const { fillLeftSide, matchHistory } = this.props;
 
-        fillLeftSide('LineChart', { title: 'Time spent' });
+        fillLeftSide('LineChart', {
+            title: 'Time spent',
+            name: 'Games',
+            values: countAmountOfMatchesDaily(matchHistory),
+        });
     };
 
     render() {
@@ -34,10 +39,9 @@ export default class GamesPlayedBox extends Component {
             // gamesPlayedLifetime,
             matchHistory,
         } = this.props;
-        const lastWeekMatches = matchHistory.filter(({ created }) =>
-            moment()
-                .startOf('week')
-                .isBefore(created),
+
+        const lastWeekMatches = countAmountOfMatchesDaily(matchHistory).reduce(
+            (prev, next) => prev + next,
         );
 
         return (
@@ -46,7 +50,7 @@ export default class GamesPlayedBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
-                        {lastWeekMatches.length}
+                        {lastWeekMatches}
                         <br />
                         <span>games</span>
                     </p>
