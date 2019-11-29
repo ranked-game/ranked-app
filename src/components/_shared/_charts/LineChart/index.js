@@ -7,13 +7,13 @@ import Styles from './styles.module.scss';
 // Instruments
 import ReactHighcharts from 'react-highcharts';
 
-export const LineChart = ({ title = 'No title :(', values = [] }) => {
+export const LineChart = ({ title = 'No title :(', values = [], name = '' }) => {
     const getDaysOfTheWeek = () => {
         const daysList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const today = new Date().getDay();
 
-        const firstPart = daysList.slice(today + 1, 7);
-        const secondPart = daysList.slice(0, today + 1);
+        const firstPart = daysList.slice(today + 2, 7);
+        const secondPart = daysList.slice(0, today + 2);
 
         return [...firstPart, ...secondPart];
     };
@@ -45,6 +45,7 @@ export const LineChart = ({ title = 'No title :(', values = [] }) => {
         series: [
             {
                 data: checkArrayLengthAndFill(),
+                name,
             },
         ],
         tooltip: {

@@ -7,6 +7,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
+import { countWeeklyWinrate } from '../../utils';
 
 // Actions
 import { uiActions } from '../../bus/ui/actions';
@@ -22,15 +23,25 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class WinrateBox extends Component {
     _openDetails = () => {
-        const { fillLeftSide } = this.props;
+        const { fillLeftSide, matchHistory } = this.props;
 
-        fillLeftSide('LineChart', { title: 'Winrate' });
+        // Getting matches of current week
+        const currentWeekMatches = matchHistory.filter(({ created }) =>
+            moment()
+                .startOf('week')
+                .isBefore(created),
+        );
+
+        return fillLeftSide('LineChart', {
+            title: 'Winrate',
+            values: countWeeklyWinrate(currentWeekMatches),
+            name: 'Winrate',
+        });
     };
 
     _countWinrate = () => {
         const { matchHistory } = this.props;
         let victories = 0;
-        let defeats = 0;
 
         matchHistory.forEach(({ created, data: { victory } }) => {
             // Taking only matches during this week
@@ -43,10 +54,9 @@ export default class WinrateBox extends Component {
 
             // Increment
             if (victory) return victories++;
-            return defeats++;
         });
 
-        return (victories / defeats) * 100;
+        return (victories / matchHistory.length) * 100;
     };
 
     render() {
