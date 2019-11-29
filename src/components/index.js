@@ -9,7 +9,7 @@ import AccountSummary from './AccountSummary';
 import Profile from './Profile';
 import Tournaments from './Tournaments';
 import LastMatchBox from './LastMatchBox';
-import GamesPlayedBox from './GamesPlayedBox';
+import MatchesPlayedBox from './MatchesPlayedBox';
 import WinrateBox from './WinrateBox';
 import TournamentsBox from './TournamentsBox';
 import SoloVsPartyBox from './SoloVsPartyBox';
@@ -67,7 +67,7 @@ export {
     Profile,
     Tournaments,
     LastMatchBox,
-    GamesPlayedBox,
+    MatchesPlayedBox,
     WinrateBox,
     TournamentsBox,
     SoloVsPartyBox,

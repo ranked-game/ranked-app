@@ -27,13 +27,10 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LastMatchBox extends Component {
     _openGameDetails = () => {
-        const {
-            fillLeftSide,
-            lastGame: { matchId },
-        } = this.props;
+        const { fillLeftSide } = this.props;
 
         fillLeftSide('SpiderwebChart', {
-            title: `Match #${matchId} performance`,
+            title: `Last match performance`,
             data: {
                 Points: [
                     Math.ceil(Math.random() * 10),

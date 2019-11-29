@@ -11,7 +11,7 @@ import { uiActions } from '../../../bus/ui/actions';
 // Instruments
 import {
     LastMatchBox,
-    GamesPlayedBox,
+    MatchesPlayedBox,
     WinrateBox,
     TournamentsBox,
     SoloVsPartyBox,
@@ -32,7 +32,7 @@ export default class Performance extends Component {
             <section className={Styles.container}>
                 <LastMatchBox className={Styles.LastMatchBox} />
                 <WinrateBox className={Styles.points} />
-                <GamesPlayedBox className={Styles.gamesPlayed} />
+                <MatchesPlayedBox className={Styles.gamesPlayed} />
                 <SoloVsPartyBox className={Styles.soloAndParty} />
                 <TournamentsBox className={Styles.tournaments} />
             </section>

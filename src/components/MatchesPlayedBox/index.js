@@ -22,7 +22,7 @@ const mapDispatchToProps = {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class GamesPlayedBox extends Component {
+export default class MatchesPlayedBox extends Component {
     _openDetails = () => {
         const { fillLeftSide, matchHistory } = this.props;
 
@@ -46,7 +46,7 @@ export default class GamesPlayedBox extends Component {
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
-                <span className={Styles.label}>Games played</span>
+                <span className={Styles.label}>Matches played</span>
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
