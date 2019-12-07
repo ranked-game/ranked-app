@@ -16,10 +16,24 @@ const countDailyWinrate = (matchesResults) => {
 
 /**
  *
+ * @param {Array} matchesResults Array of matches results of current week
+ * @returns {Number} Number representing daily winrate or null
+ */
+export const countWinrateByWeek = (matchesResults) => {
+    if (matchesResults.length === 0) return null;
+    let victories = 0;
+
+    matchesResults.forEach(({ data }) => (data.victory ? victories++ : null));
+
+    return Number(((victories / matchesResults.length) * 100).toFixed(2));
+};
+
+/**
+ *
  * @param {Array} matches Array of weekly matches to be processed
  * @returns {Array} Array of daily winrates to be rendered in chart
  */
-export const countWeeklyWinrate = (matches) => {
+export const countWeeklyWinrateByDays = (matches) => {
     const winrateByDay = [[], [], [], [], [], [], []];
 
     matches.forEach(({ created, data: { victory } }) =>
@@ -43,9 +57,7 @@ export const countAmountOfMatchesDaily = (matches) => {
             .isBefore(created),
     );
 
-    lastWeekMatches.forEach(
-        ({ created, data: { victory } }) => ++gamesPlayedByDay[new Date(created).getDay()],
-    );
+    lastWeekMatches.forEach(({ created }) => ++gamesPlayedByDay[new Date(created).getDay()]);
 
     return gamesPlayedByDay;
 };

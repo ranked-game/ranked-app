@@ -7,7 +7,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
-import { countWeeklyWinrate } from '../../utils';
+import { countWeeklyWinrateByDays, countWinrateByWeek } from '../../utils';
 
 // Actions
 import { uiActions } from '../../bus/ui/actions';
@@ -34,34 +34,18 @@ export default class WinrateBox extends Component {
 
         return fillLeftSide('LineChart', {
             title: 'Winrate',
-            values: countWeeklyWinrate(currentWeekMatches),
+            values: countWeeklyWinrateByDays(currentWeekMatches),
             name: 'Winrate',
         });
     };
 
-    _countWinrate = () => {
-        const { matchHistory } = this.props;
-        let victories = 0;
-
-        matchHistory.forEach(({ created, data: { victory } }) => {
-            // Taking only matches during this week
-            if (
-                !moment()
-                    .startOf('week')
-                    .isBefore(created)
-            )
-                return null;
-
-            // Increment
-            if (victory) return victories++;
-        });
-
-        return (victories / matchHistory.length) * 100;
-    };
-
     render() {
-        const { className } = this.props;
-        const winrate = this._countWinrate();
+        const { className, matchHistory } = this.props;
+        const currentWeekMatches = matchHistory.filter(({ created }) =>
+            moment()
+                .startOf('week')
+                .isBefore(created),
+        );
 
         return (
             <section className={`${Styles.container} ${className}`} onClick={this._openDetails}>
@@ -69,7 +53,7 @@ export default class WinrateBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.text}>During this week:</p>
                     <p className={Styles.dimension}>
-                        {winrate ? winrate.toFixed(2) : '...'}
+                        {countWinrateByWeek(currentWeekMatches) || '...'}
                         <br />
                         <span>percent</span>
                     </p>

@@ -34,10 +34,11 @@ export const updateGameData = (newData) => {
 };
 
 export const updatePlayerData = (data) => {
-    const key = Object.keys(data)[0];
+    // const key = Object.keys(data)[0];
 
-    switch (key) {
-    }
+    // switch (key) {
+    // }
+    return data;
 };
 
 export const clearGameData = () => {

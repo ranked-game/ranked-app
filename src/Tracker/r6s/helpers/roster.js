@@ -12,4 +12,6 @@ export const handleRosterUpdate = (roster) => {
 
         return updateGameData({ playerName: name, playerTeam: team });
     }
+
+    return null;
 };

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
-import moment from 'moment';
 import { countAmountOfMatchesDaily } from '../../utils';
 
 // Actions
