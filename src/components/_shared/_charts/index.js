@@ -1,2 +1,2 @@
-export { LineChart } from './LineChart';
+export { LineChartLastWeek } from './LineChartLastWeek';
 export { SpiderwebChart } from './SpiderwebChart';

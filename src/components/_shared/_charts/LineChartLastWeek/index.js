@@ -7,15 +7,16 @@ import Styles from './styles.module.scss';
 // Instruments
 import ReactHighcharts from 'react-highcharts';
 
-export const LineChart = ({ title = 'No title :(', values = [], name = '' }) => {
+export const LineChartLastWeek = ({ title = 'No title :(', values = [], name = '' }) => {
     const getDaysOfTheWeek = () => {
         const daysList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const today = new Date().getDay();
+        // const today = new Date().getDay();
 
-        const firstPart = daysList.slice(today + 2, 7);
-        const secondPart = daysList.slice(0, today + 2);
+        // const firstPart = daysList.slice(today + 2, 7);
+        // const secondPart = daysList.slice(0, today + 2);
 
-        return [...firstPart, ...secondPart];
+        // return [...firstPart, ...secondPart];
+        return daysList;
     };
 
     const checkArrayLengthAndFill = () => {

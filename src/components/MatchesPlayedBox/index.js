@@ -25,7 +25,7 @@ export default class MatchesPlayedBox extends Component {
     _openDetails = () => {
         const { fillLeftSide, matchHistory } = this.props;
 
-        fillLeftSide('LineChart', {
+        fillLeftSide('LineChartLastWeek', {
             title: 'Time spent',
             name: 'Games',
             values: countAmountOfMatchesDaily(matchHistory),

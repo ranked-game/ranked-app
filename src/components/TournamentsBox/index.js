@@ -16,15 +16,12 @@ const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class TournamentsBox extends Component {
     _openDetails = () => {
         const { fillLeftSide } = this.props;
 
-        fillLeftSide('LineChart', { title: 'Tournaments performance' });
+        fillLeftSide('LineChartLastWeek', { title: 'Tournaments performance' });
     };
 
     render() {

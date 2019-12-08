@@ -32,7 +32,7 @@ export default class WinrateBox extends Component {
                 .isBefore(created),
         );
 
-        return fillLeftSide('LineChart', {
+        return fillLeftSide('LineChartLastWeek', {
             title: 'Winrate',
             values: countWeeklyWinrateByDays(currentWeekMatches),
             name: 'Winrate',
