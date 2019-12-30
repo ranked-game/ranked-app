@@ -8,38 +8,7 @@ import image from '../../theme/assets/svg/logoShortOriginal.svg';
 
 const initialState = Map({
     avatar: '',
-    currentTournaments: List([
-        Map({
-            game: '7314',
-            name: 'Test Tournament',
-            description:
-                'Lorem ipsum dolor sit amet, ad persius explicari inciderint sea. Qui ad wisi scriptorem. Duis wisi exerci per no, nec natum detraxit recusabo in, quo mollis aperiam aperiri ex. Ea nostrud electram sed.',
-            vip: false,
-            level: 'Rookie',
-            mainType: 'Solo',
-            subType: 'Core',
-            dateStart: Date.UTC(2019, 11, 30),
-            dateEnd: Date.UTC(2020, 1, 10),
-            leaderboard: List(),
-            reward: List(),
-            coefficients: List(),
-        }),
-        Map({
-            game: '7314',
-            name: 'Test VIP Tournament',
-            description:
-                'Lorem ipsum dolor sit amet, ad persius explicari inciderint sea. Qui ad wisi scriptorem. Duis wisi exerci per no, nec natum detraxit recusabo in, quo mollis aperiam aperiri ex. Ea nostrud electram sed.',
-            vip: true,
-            level: 'Competitive',
-            mainType: 'Solo',
-            subType: 'Support',
-            dateStart: Date.UTC(2019, 11, 30),
-            dateEnd: Date.UTC(2020, 1, 10),
-            leaderboard: List(),
-            reward: List(),
-            coefficients: List(),
-        }),
-    ]),
+    currentTournaments: List(),
     email: '',
     gamesPlayedLifetime: 0,
     id: '',

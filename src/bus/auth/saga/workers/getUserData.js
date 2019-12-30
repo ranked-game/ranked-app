@@ -41,9 +41,13 @@ export function* getUserData() {
                         leaderboard: [],
                         reward: [],
                         coefficients: [],
+                        player: {
+                            rank: 3,
+                            points: 685,
+                        },
                     },
                     {
-                        game: '7314',
+                        game: '10826',
                         name: 'Test VIP Tournament',
                         description:
                             'Lorem ipsum dolor sit amet, ad persius explicari inciderint sea. Qui ad wisi scriptorem. Duis wisi exerci per no, nec natum detraxit recusabo in, quo mollis aperiam aperiri ex. Ea nostrud electram sed.',
@@ -56,6 +60,10 @@ export function* getUserData() {
                         leaderboard: [],
                         reward: [],
                         coefficients: [],
+                        player: {
+                            rank: 73,
+                            points: 65,
+                        },
                     },
                 ],
             }),

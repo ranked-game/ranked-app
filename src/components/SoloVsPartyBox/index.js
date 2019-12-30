@@ -62,12 +62,12 @@ export default class SoloVsPartyBox extends Component {
                 <div className={Styles.data}>
                     <p className={Styles.soloText}>Solo</p>
                     <div className={Styles.soloNumber}>
-                        {soloPoints.size}
+                        {soloPoints}
                         <br />
                         <span>points</span>
                     </div>
                     <div className={Styles.partyNumber}>
-                        {partyPoints.size}
+                        {partyPoints}
                         <br />
                         <span>points</span>
                     </div>

@@ -1,0 +1,74 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    cursor: pointer;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    grid-template-rows: 50% 50%;
+    place-items: center start;
+
+    height: 3rem;
+    padding: 0.25rem 0;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: linear-gradient(90deg, $palettePurple1 0%, $palettePurple2 50%);
+
+    &.vip {
+        color: $paletteYellow2;
+
+        border: 1px solid $paletteYellow2;
+
+        &:hover {
+            border: 1px solid $paletteYellow1;
+        }
+
+        & .points,
+        .participants,
+        .timeToEnd {
+            color: $paletteYellow1;
+        }
+    }
+
+    &:hover {
+        border: 1px solid $palettePurple3;
+    }
+
+    & .subTitle {
+        grid-row: 1;
+        place-self: center;
+    }
+
+    & .gameLogo {
+        grid-row: 1 / 3;
+        place-self: center start;
+
+        height: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    & .tournamentName {
+        grid-row: 1 / 3;
+
+        display: grid;
+        place-content: center start;
+
+        height: 100%;
+        width: 100%;
+        padding-left: 1rem;
+
+        font-size: 1.25rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    & .points,
+    .participants,
+    .timeToEnd {
+        place-self: center;
+
+        color: $paletteWhite;
+    }
+}
