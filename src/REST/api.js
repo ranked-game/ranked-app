@@ -16,7 +16,7 @@ export const Api = {
         getMatchHistory: () =>
             shitEncrypt({
                 method: 'GET',
-                endpoint: `${MAIN_URL}/games/history`,
+                endpoint: `${MAIN_URL}/games/history?page=1&limit=20`,
             }),
     },
 

@@ -16,6 +16,7 @@ import { uiActions } from '../../bus/ui/actions';
 const mapStateToProps = (state) => ({
     lastGame: state.profile
         .get('matchHistory')
+        .get('matches')
         ?.last()
         ?.toJS(),
 });

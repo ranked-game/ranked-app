@@ -13,7 +13,10 @@ import { countWeeklyWinrateByDays, countWinrateByWeek } from '../../utils';
 import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    matchHistory: state.profile.get('matchHistory').toJS(),
+    matchHistory: state.profile
+        .get('matchHistory')
+        .get('matches')
+        .toJS(),
 });
 
 const mapDispatchToProps = {

@@ -13,13 +13,13 @@ import { uiActions } from '../../../ui/actions';
 export function* fetchMatchHistory() {
     try {
         const response = yield apply(Api, Api.account.getMatchHistory);
-        const { data, error } = yield apply(response, response.json);
+        const { data, pages, page, error } = yield apply(response, response.json);
 
         if (response.status > 204) {
             throw new Error(error);
         }
 
-        yield put(profileActions.fillMatchHistory(data));
+        yield put(profileActions.fillMatchHistory({ matches: data, pages, page }));
     } catch (error) {
         yield put(uiActions.emitError(error, '-> fetchMatchHistory worker'));
     }

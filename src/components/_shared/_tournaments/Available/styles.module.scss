@@ -98,10 +98,20 @@
 
         transition: background 0.3s;
 
-        &:hover {
+        &:disabled {
             background: transparent;
-            border: 1px solid $paletteYellow2;
-            color: $paletteYellow2;
+            border: 1px solid $palettePurple5;
+            color: $palettePurple5;
+
+            &:hover {
+                background: transparent;
+                border: 1px solid $palettePurple5;
+                color: $palettePurple5;
+            }
+        }
+
+        &:hover {
+            background: $paletteBlue2;
         }
     }
 }

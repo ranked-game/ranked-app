@@ -14,6 +14,7 @@ import { uiActions } from '../../../bus/ui/actions';
 const mapStateToProps = (state) => ({
     matchHistory: state.profile
         .get('matchHistory')
+        .get('matches')
         .reverse()
         .toJS(),
 });

@@ -27,12 +27,12 @@ export default class AvailableTournament extends Component {
                     </>
                 ) : (
                     <>
-                        <img className={Styles.gameLogo} src={dotaLogo} alt="" />
+                        <img className={Styles.gameLogo} src={dotaLogo} alt='' />
                         <p className={Styles.name}>SuperCoolName</p>
                         <p className={Styles.points}>50</p>
                         <p className={Styles.participants}>54/100</p>
                         <p className={Styles.timeToStart}>24 hours</p>
-                        {!upcoming && <p className={Styles.apply}>Join</p>}
+                        {!upcoming && <button className={Styles.apply}>Join</button>}
                     </>
                 )}
             </section>

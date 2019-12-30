@@ -19,10 +19,7 @@ const mapDispatchToProps = {
     fillLeftSide: uiActions.fillLeftSide,
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class HallOfFame extends Component {
     componentDidMount = () => {
         const { fillLeftSide } = this.props;
@@ -33,8 +30,10 @@ export default class HallOfFame extends Component {
     render() {
         return (
             <section className={Styles.container}>
-                <img src={logo} alt="" className={Styles.logo} />
-                <p className={Styles.text}>This section is under construction yet</p>
+                <img src={logo} alt='' className={Styles.logo} />
+                <p className={Styles.text}>
+                    &#x1f6a7; This section is under construction yet &#x1f6a7;
+                </p>
             </section>
         );
     }

@@ -13,7 +13,10 @@ import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     gamesPlayedLifetime: state.profile.get('gamesPlayedLifetime'),
-    matchHistory: state.profile.get('matchHistory').toJS(),
+    matchHistory: state.profile
+        .get('matchHistory')
+        .get('matches')
+        .toJS(),
 });
 
 const mapDispatchToProps = {
