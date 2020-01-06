@@ -1,5 +1,5 @@
 // Core
-import React, { Component } from 'react';
+import React from 'react';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -9,8 +9,8 @@ import arrow from '../../theme/assets/svg/triangle-arrow.svg';
 import minimize from '../../theme/assets/svg/minimize.svg';
 import close from '../../theme/assets/svg/close.svg';
 
-export default class TopControlBar extends Component {
-    _minimize = () => {
+const TopControlBar = () => {
+    const _minimize = () => {
         overwolf.windows.getCurrentWindow((data) => {
             const { id } = data.window;
 
@@ -20,14 +20,14 @@ export default class TopControlBar extends Component {
         });
     };
 
-    _closeWindow = () => {
+    const _closeWindow = () => {
         overwolf.windows.obtainDeclaredWindow('controller', (data) => {
             const { id } = data.window;
             overwolf.windows.close(id, (result) => console.log(result));
         });
     };
 
-    _onMouseDown = (e) => {
+    const _onMouseDown = (e) => {
         const {
             button,
             target: { className },
@@ -43,28 +43,28 @@ export default class TopControlBar extends Component {
         });
     };
 
-    _handleArrowClick = () => {
+    const _handleArrowClick = () => {
         console.log('arrow button clicked');
     };
 
-    render() {
-        return (
-            <section className={Styles.container} onMouseDown={this._onMouseDown}>
-                <p className={Styles.title}>Ranked Game</p>
-                <img
-                    src={arrow}
-                    alt="minimize button"
-                    onClick={this._handleArrowClick}
-                    className={Styles.arrow}
-                />
-                <img
-                    src={minimize}
-                    alt="minimize button"
-                    onClick={this._minimize}
-                    className={Styles.minimize}
-                />
-                <img src={close} alt="close button" onClick={this._closeWindow} />
-            </section>
-        );
-    }
-}
+    return (
+        <section className={Styles.container} onMouseDown={_onMouseDown}>
+            <p className={Styles.title}>Ranked Game</p>
+            <img
+                src={arrow}
+                alt='minimize button'
+                onClick={_handleArrowClick}
+                className={Styles.arrow}
+            />
+            <img
+                src={minimize}
+                alt='minimize button'
+                onClick={_minimize}
+                className={Styles.minimize}
+            />
+            <img src={close} alt='close button' onClick={_closeWindow} />
+        </section>
+    );
+};
+
+export default TopControlBar;

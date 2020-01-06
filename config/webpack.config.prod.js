@@ -22,6 +22,11 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
+const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || '10000');
+
+const isEnvDevelopment = false;
+const isEnvProduction = true;
+
 //  Webpack uses `publicPath` to determine where the app is being served from.
 //  It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -372,58 +377,58 @@ module.exports = {
                     {
                         test: cssRegex,
                         exclude: cssModuleRegex,
-                        loader: getStyleLoaders({
+                        use: getStyleLoaders({
                             importLoaders: 1,
-                            sourceMap: shouldUseSourceMap,
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
                         }),
-                        //  Don't consider CSS imports dead code even if the
-                        //  containing package claims to have no side effects.
-                        //  Remove this when webpack adds a warning or an error for this.
-                        //  See https:// github.com/webpack/webpack/issues/6571
+                        // Don't consider CSS imports dead code even if the
+                        // containing package claims to have no side effects.
+                        // Remove this when webpack adds a warning or an error for this.
+                        // See https://github.com/webpack/webpack/issues/6571
                         sideEffects: true,
                     },
-                    //  Adds support for CSS Modules (https:// github.com/css-modules/css-modules)
-                    //  using the extension .module.css
+                    // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
+                    // using the extension .module.css
                     {
                         test: cssModuleRegex,
-                        loader: getStyleLoaders({
+                        use: getStyleLoaders({
                             importLoaders: 1,
-                            sourceMap: shouldUseSourceMap,
-                            modules: true,
-                            getLocalIdent: getCSSModuleLocalIdent,
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
+                            modules: {
+                                getLocalIdent: getCSSModuleLocalIdent,
+                            },
                         }),
                     },
-                    //  Opt-in support for SASS. The logic here is somewhat similar
-                    //  as in the CSS routine, except that "sass-loader" runs first
-                    //  to compile SASS files into CSS.
-                    //  By default we support SASS Modules with the
-                    //  extensions .module.scss or .module.sass
+                    // Opt-in support for SASS (using .scss or .sass extensions).
+                    // By default we support SASS Modules with the
+                    // extensions .module.scss or .module.sass
                     {
                         test: sassRegex,
                         exclude: sassModuleRegex,
-                        loader: getStyleLoaders(
+                        use: getStyleLoaders(
                             {
                                 importLoaders: 2,
-                                sourceMap: shouldUseSourceMap,
+                                sourceMap: isEnvProduction && shouldUseSourceMap,
                             },
                             'sass-loader',
                         ),
-                        //  Don't consider CSS imports dead code even if the
-                        //  containing package claims to have no side effects.
-                        //  Remove this when webpack adds a warning or an error for this.
-                        //  See https:// github.com/webpack/webpack/issues/6571
+                        // Don't consider CSS imports dead code even if the
+                        // containing package claims to have no side effects.
+                        // Remove this when webpack adds a warning or an error for this.
+                        // See https://github.com/webpack/webpack/issues/6571
                         sideEffects: true,
                     },
-                    //  Adds support for CSS Modules, but using SASS
-                    //  using the extension .module.scss or .module.sass
+                    // Adds support for CSS Modules, but using SASS
+                    // using the extension .module.scss or .module.sass
                     {
                         test: sassModuleRegex,
-                        loader: getStyleLoaders(
+                        use: getStyleLoaders(
                             {
                                 importLoaders: 2,
-                                sourceMap: shouldUseSourceMap,
-                                modules: true,
-                                getLocalIdent: getCSSModuleLocalIdent,
+                                sourceMap: isEnvProduction && shouldUseSourceMap,
+                                modules: {
+                                    getLocalIdent: getCSSModuleLocalIdent,
+                                },
                             },
                             'sass-loader',
                         ),

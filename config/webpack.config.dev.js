@@ -18,6 +18,17 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
+// Source maps are resource heavy and can cause out of memory issue for large source files.
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+// Some apps do not need the benefits of saving a web request, so not inlining the chunk
+// makes for a smoother build process.
+const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
+
+const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || '10000');
+
+const isEnvDevelopment = true;
+const isEnvProduction = false;
+
 //  Webpack uses `publicPath` to determine where the app is being served from.
 //  In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -278,6 +289,7 @@ module.exports = {
                         exclude: cssModuleRegex,
                         use: getStyleLoaders({
                             importLoaders: 1,
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
                         }),
                     },
                     //  Adds support for CSS Modules (https:// github.com/css-modules/css-modules)
@@ -286,8 +298,10 @@ module.exports = {
                         test: cssModuleRegex,
                         use: getStyleLoaders({
                             importLoaders: 1,
-                            modules: true,
-                            getLocalIdent: getCSSModuleLocalIdent,
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
+                            modules: {
+                                getLocalIdent: getCSSModuleLocalIdent,
+                            },
                         }),
                     },
                     //  Opt-in support for SASS (using .scss or .sass extensions).
@@ -298,7 +312,13 @@ module.exports = {
                     {
                         test: sassRegex,
                         exclude: sassModuleRegex,
-                        use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+                        use: getStyleLoaders(
+                            {
+                                importLoaders: 2,
+                                sourceMap: isEnvProduction && shouldUseSourceMap,
+                            },
+                            'sass-loader',
+                        ),
                     },
                     //  Adds support for CSS Modules, but using SASS
                     //  using the extension .module.scss or .module.sass
@@ -307,8 +327,10 @@ module.exports = {
                         use: getStyleLoaders(
                             {
                                 importLoaders: 2,
-                                modules: true,
-                                getLocalIdent: getCSSModuleLocalIdent,
+                                sourceMap: isEnvProduction && shouldUseSourceMap,
+                                modules: {
+                                    getLocalIdent: getCSSModuleLocalIdent,
+                                },
                             },
                             'sass-loader',
                         ),
